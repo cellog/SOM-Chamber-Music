@@ -7,6 +7,7 @@ class SOM
     protected $key;
     function __construct()
     {
+        Podio::setup($this->appid, $this->apikey);
         $user = explode('/', $_SERVER['DOCUMENT_ROOT']);
         $user = $user[2];
         $data = json_decode(file_get_contents('/home/' . $user . '/somchamber.json'));
@@ -34,7 +35,6 @@ class SOM
     function authenticate()
     {
         if (isset($_GET['code'])) {
-            Podio::setup($this->appid, $this->apikey);
             Podio::authenticate('authorization_code', array('code' => $_GET['code'],
                                                             'redirect_uri' => 'http://chiaraquartet.net/SOM-Chamber-Music/'));
             $_SESSION['access_token'] = Podio::$oauth->access_token;
