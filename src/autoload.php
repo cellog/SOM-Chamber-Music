@@ -1,8 +1,8 @@
 <?php
 function myAutoload($class)
 {
-    if (-1 == strpos($class, 'SOM')) return;
-    include __DIR__ . str_replace('\\', '/', $class) . '.php';
+    if (0 !== strpos($class, 'SOM')) return;
+    include __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
 }
 $GLOBALS['___PODIO_MAP'] =
 array(
@@ -72,7 +72,7 @@ array(
 );
 function Podio_autoload($class)
 {
-    if (-1 == strpos($class, 'Podio')) return;
+    if (0 !== strpos($class, 'Podio')) return;
     include dirname(__DIR__) . '/podio/' . $GLOBALS['___PODIO_MAP'][$class];
 }
 spl_autoload_register('myAutoload');
