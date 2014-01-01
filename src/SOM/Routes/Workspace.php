@@ -1,7 +1,7 @@
 <?php
 namespace SOM\Routes;
 use SOM, SOM\CM;
-class Workspace extends SOM\Routes
+class Workspace extends SOM\Route
 {
     function __construct(Array $params = array()) {
         if (!isset($params[0])) {
