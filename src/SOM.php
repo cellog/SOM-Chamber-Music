@@ -1,6 +1,7 @@
 <?php
 class SOM
 {
+    private $org_id = 136384;
     private $apikey;
     private $appid;
     protected $key;
@@ -40,5 +41,34 @@ class SOM
             return true;
         }
         return false;
+    }
+
+    function path()
+    {
+        return '/SOM-Chamber-Music';
+    }
+
+    function linkTo($thing)
+    {
+        return '<a href="' . $thing->link($this) . '">' . $thing->name() . '</a>';
+    }
+
+    function home()
+    {
+        $spaces = PodioSpace::get_for_org($this->org_id);
+        foreach ($spaces as $space) {
+            if (false !== strpos($space->name, 'SOM: Chamber Music')) {
+                $space = new SOM\Workspace($space);
+                echo $this->linkTo($space) . '<br>'; // hack to get started
+            }
+        }
+    }
+
+    function route()
+    {
+        if (!isset($_SERVER['PATH_INFO'])) {
+            return $this->home();
+        }
+        $info = explode('/', $_SERVER['PATH_INFO']);
     }
 }
