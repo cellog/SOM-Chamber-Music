@@ -37,6 +37,8 @@ class SOM
             Podio::authenticate('authorization_code', array('code' => $_GET['code'],
                                                             'redirect_uri' => 'http://chiaraquartet.net/SOM-Chamber-Music/'));
             $_SESSION['access_token'] = Podio::$oauth->access_token;
+            return true;
         }
+        return false;
     }
 }
