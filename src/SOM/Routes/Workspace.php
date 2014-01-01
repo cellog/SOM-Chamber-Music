@@ -33,8 +33,8 @@ class Workspace extends SOM\Route
              '</strong>.  Choose a new name if you want to name it something else/<p>',
              '<form action="', $som->path(), '/workspace/clone/', $this->params['id'],
              '" method="post">',
-             '<input type="text" name="archive" size="40" value="', htmlspecialchars($this->getLastSemester($workspace)), '">',
-             '<input type="text" name="newworkspace" size="30" value="', htmlspecialchars($workspace->name()), '">',
+             'Archive name: <input type="text" name="archive" size="40" value="', htmlspecialchars($this->getLastSemester($workspace)), '">',
+             '<br>New Name<input type="text" name="newworkspace" size="30" value="', htmlspecialchars($workspace->name()), '">',
              '<input type="submit" value="Clone"></form>';
     }
 }?>
