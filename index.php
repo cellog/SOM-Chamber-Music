@@ -4,5 +4,5 @@
     
 </html>
 <body>
-    Apparently we are logged in with access key <?php echo $som->getAccessKey() ?>
+    <?php $som->route() ?>
 </body>
