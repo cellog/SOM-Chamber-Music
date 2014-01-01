@@ -17,7 +17,7 @@ class Workspace extends SOM\Route
         if ($month >= 5) {
             $date = date('Y') . ' Spring';
         } else {
-            $date = date('Y') . ' Fall';
+            $date = (date('Y') - 1) . ' Fall';
         }
         return str_replace('Chamber', $date . ' Chamber', $workspace->name()) . ' Archive';
     }
