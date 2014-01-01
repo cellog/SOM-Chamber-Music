@@ -35,6 +35,6 @@ class Workspace extends SOM\Route
              '" method="post">',
              'Archive name: <input type="text" name="archive" size="40" value="', htmlspecialchars($this->getLastSemester($workspace)), '">',
              '<br>New Name<input type="text" name="newworkspace" size="30" value="', htmlspecialchars($workspace->name()), '">',
-             '<input type="submit" value="Clone"></form>';
+             '<br><input type="submit" value="Clone"></form>';
     }
 }?>
