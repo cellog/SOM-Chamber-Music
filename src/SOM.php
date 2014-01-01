@@ -5,7 +5,9 @@ class SOM
     private $appid;
     function __construct()
     {
-        $data = json_decode(file_get_contents('/home/' . $_SERVER['user'] . '/somchamber.json'));
+        $user = explode('/', $_SERVER['DOCUMENT_ROOT']);
+        $user = $user[2];
+        $data = json_decode(file_get_contents('/home/' . $user . '/somchamber.json'));
         $this->apikey = $data['key'];
         $this->appid = $data['client'];
         var_dump($data);
