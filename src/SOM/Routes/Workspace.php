@@ -19,7 +19,7 @@ class Workspace extends SOM\Route
         } else {
             $date = date('Y') . ' Fall';
         }
-        return str_replace('Chamber', $date . ' ' . $chamber, $workspace->name());
+        return str_replace('Chamber', $date . ' Chamber', $workspace->name()) . ' Archive';
     }
 
     function activate(SOM $som)
@@ -33,8 +33,8 @@ class Workspace extends SOM\Route
              '</strong>.  Choose a new name if you want to name it something else/<p>',
              '<form action="', $som->path(), '/workspace/clone/', $this->params['id'],
              '" method="post">',
-             '<input type="text" name="archive" value="', htmlspecialchars($this->getLastSemester($workspace)), '">',
-             '<input type="text" name="newworkspace" value="', htmlspecialchars($workspace->name()), '">',
+             '<input type="text" name="archive" size="40" value="', htmlspecialchars($this->getLastSemester($workspace)), '">',
+             '<input type="text" name="newworkspace" size="30" value="', htmlspecialchars($workspace->name()), '">',
              '<input type="submit" value="Clone"></form>';
     }
 }?>
