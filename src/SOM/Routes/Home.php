@@ -9,7 +9,7 @@ class Home extends Route
         foreach ($spaces as $space) {
             if (false !== strpos($space->name, 'SOM: Chamber Music')) {
                 $space = new SOM\Workspace($space);
-                echo $this->linkTo($space) . '<br>'; // hack to get started
+                echo $som->linkTo($space) . '<br>'; // hack to get started
             }
         }
     }
