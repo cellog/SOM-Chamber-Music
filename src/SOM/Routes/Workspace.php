@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes;
-use SOM, SOM\CM;
+use SOM, SOM\Workspace as CM, PodioSpace;
 class Workspace extends SOM\Route
 {
     function __construct(Array $params = array()) {
@@ -24,7 +24,7 @@ class Workspace extends SOM\Route
 
     function activate(SOM $som)
     {
-        $workspace = new CM(array('space_id' => $this->params['id']));
+        $workspace = new CM($this->params['id']);
         echo '<h1>Archive and set up workspace</h1>';
         echo '<p>Clicking "Submit" will archive the existing workspace with the name <strong>',
              htmlspecialchars($this->getLastSemester()),

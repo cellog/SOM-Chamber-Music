@@ -4,8 +4,11 @@ use SOM, PodioSpace;
 class Workspace
 {
     protected $podioObject;
-    function __construct(PodioSpace $obj)
+    function __construct($obj)
     {
+        if (!($obj instanceof PodioSpace)) {
+            $obj = PodioSpace::get($obj);
+        }
         $this->podioObject = $obj;
     }
 
