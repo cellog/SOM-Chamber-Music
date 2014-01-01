@@ -59,10 +59,13 @@ class SOM
 
     function route()
     {
-        if (!isset($_SERVER['PATH_INFO'])) {
-            $route = new SOM\Routes\Home;
-        } else {
+        $route = new SOM\Routes\Home;
+        if (isset($_SERVER['PATH_INFO'])) {
             $info = explode('/', $_SERVER['PATH_INFO']);
+            if (isset($map[$info[1]])) {
+                $class = $map[$info[1]];
+                $route = new $class(array_slice($info, 2));
+            }
         }
         $route->activate($this);
     }
