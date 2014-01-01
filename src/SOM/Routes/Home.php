@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes;
-use SOM\Route, SOM;
+use SOM\Route, SOM, PodioSpace;
 class Home extends Route
 {
     function activate(SOM $som)
