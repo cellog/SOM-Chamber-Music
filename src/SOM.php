@@ -52,22 +52,18 @@ class SOM
         return '<a href="' . $thing->link($this) . '">' . $thing->name() . '</a>';
     }
 
-    function home()
+    function getOrg()
     {
-        $spaces = PodioSpace::get_for_org($this->org_id);
-        foreach ($spaces as $space) {
-            if (false !== strpos($space->name, 'SOM: Chamber Music')) {
-                $space = new SOM\Workspace($space);
-                echo $this->linkTo($space) . '<br>'; // hack to get started
-            }
-        }
+        return $this->org_id;
     }
 
     function route()
     {
         if (!isset($_SERVER['PATH_INFO'])) {
-            return $this->home();
+            $route = new SOM\Home;
+        } else {
+            $info = explode('/', $_SERVER['PATH_INFO']);
         }
-        $info = explode('/', $_SERVER['PATH_INFO']);
+        $route->activate($this);
     }
 }
