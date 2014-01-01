@@ -13,7 +13,6 @@ class SOM
         $data = json_decode(file_get_contents('/home/' . $user . '/somchamber.json'));
         $this->apikey = $data->key;
         $this->appid = $data->client;
-        session_start();
         if (isset($_SESSION['access_token']) || $this->authenticate()) {
             $this->key = $_SESSION['access_token'];
         } else {

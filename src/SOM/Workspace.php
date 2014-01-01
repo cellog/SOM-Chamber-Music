@@ -1,10 +1,10 @@
 <?php
 namespace SOM;
-use SOM;
+use SOM, PodioSpace;
 class Workspace
 {
     protected $podioObject;
-    function __construct(PodioObject $obj)
+    function __construct(PodioSpace $obj)
     {
         $this->podioObject = $obj;
     }
