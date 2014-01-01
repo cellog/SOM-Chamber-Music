@@ -44,7 +44,7 @@ class SOM
 
     function path()
     {
-        return '/SOM-Chamber-Music';
+        return '/SOM-Chamber-Music/index.php';
     }
 
     function linkTo($thing)
