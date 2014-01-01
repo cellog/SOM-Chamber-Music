@@ -60,7 +60,7 @@ class SOM
     function route()
     {
         if (!isset($_SERVER['PATH_INFO'])) {
-            $route = new SOM\Home;
+            $route = new SOM\Routes\Home;
         } else {
             $info = explode('/', $_SERVER['PATH_INFO']);
         }
