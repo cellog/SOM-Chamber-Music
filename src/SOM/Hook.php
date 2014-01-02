@@ -179,6 +179,7 @@ class Hook extends SOM
                 continue;
             } else {
                 $newval = array_flip($groups->api_friendly_values());
+                Podio::$logger->log(var_export($newval, 1));
                 unset($newval[$itemid]);
                 $groups->set_value(array_values($newval));
             }
