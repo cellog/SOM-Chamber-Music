@@ -127,6 +127,7 @@ class Hook extends SOM
 
     function updategroup($itemid, $revisionid)
     {
+        $this->preparePrimary();
         $diff = PodioItemDiff::get_for($itemid, $revisionid - 1, $revisionid);
         Podio::$logger->log(var_export($diff, 1));exit;
         // primary is Chamber Groups app
