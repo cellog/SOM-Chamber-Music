@@ -2,6 +2,7 @@
 include __DIR__ . '/src/autoload.php';
 try {
   Podio::$debug = true;
+  Podio::$logger = new PodioLogger();
   
   $hook = new SOM\Hook();
 
