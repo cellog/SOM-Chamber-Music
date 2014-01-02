@@ -158,16 +158,16 @@ class Hook extends SOM
             if (!$groups) {
                 $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
                 $groups = $member->field('groups');
-                $groups->set_value($groupid);
+                $groups->set_value($itemid);
             } else {
                 foreach ($groups->values as $value) {
-                    if ($value['value']['item_id'] == $groupid) {
+                    if ($value['value']['item_id'] == $itemid) {
                         // member already in the group
                         continue 2;
                     }
                 }
                 $newval = $groups->api_friendly_values();
-                $newval[] = $groupid;
+                $newval[] = $itemid;
                 $groups->set_value($newval);
             }
             $groups->save(array('hook' => false));
@@ -179,7 +179,7 @@ class Hook extends SOM
                 continue;
             } else {
                 $newval = array_flip($groups->api_friendly_values());
-                unset($newval[$groupid]);
+                unset($newval[$itemid]);
                 $groups->set_value(array_values($newval));
             }
             $groups->save(array('hook' => false));
