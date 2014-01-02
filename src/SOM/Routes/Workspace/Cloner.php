@@ -28,10 +28,9 @@ class Cloner extends Workspace
         ));
         echo "Created space <strong>", htmlspecialchars($name), "</strong><br>";
         $installed = PodioAppMarketShare::install(66742, array('space_id' => $space['space_id']));
-        echo '<pre>';
         foreach ($installed['child_app_ids'] as $id) {
             $info = PodioApp::get($id, array('type' => 'micro'));
-            var_dump($info);
+            echo "Installed app <strong>", htmlspecialchars($info->name), "</strong><br>";
         }
     }
 }
