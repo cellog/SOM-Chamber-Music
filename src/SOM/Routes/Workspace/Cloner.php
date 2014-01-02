@@ -1,6 +1,7 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM, SOM\Workspace as CM, PodioSpace, SOM\Routes\Workspace, PodioApp, PodioAppMarketShare;
+use SOM, SOM\Workspace as CM, PodioSpace, SOM\Routes\Workspace, PodioApp, PodioAppMarketShare, PodioHook, Podio,
+    SOM\Hook;
 class Cloner extends Workspace
 {
     protected $newname;
@@ -32,6 +33,12 @@ class Cloner extends Workspace
             PodioApp::get($id, array('type' => 'micro'));
         }
         echo "Installed <strong>Chamber Music</strong> app market pack<br>";
+        // make hooks
+        // find Chamber Groups app
+        $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $space->url_label . '/chamber-groups', array()));
+        // find Students app
+        $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $space->url_label . '/students', array()));
         
+        echo "Installing new group hook for chamber groups: <strong>", Hook::prepareUrl('newgroup', $chambergroups, $students);
     }
 }
