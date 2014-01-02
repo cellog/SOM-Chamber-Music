@@ -128,8 +128,27 @@ class Hook extends SOM
     function updategroup($itemid, $revisionid)
     {
         $this->preparePrimary();
-        $diff = PodioItemDiff::get_for($itemid, $revisionid - 1, $revisionid);
-        Podio::$logger->log(var_export($diff, 1));exit;
+        $diffs = PodioItemDiff::get_for($itemid, $revisionid - 1, $revisionid);
+        foreach ($diffs as $diff) {
+            if ($diff->label == 'Members') {
+                // retrieve old members ids
+                $ids = array();
+                foreach ($diff->from as $member) {
+                    $ids[$members['value']['item_id']] = 1;
+                }
+                $add = array();
+                foreach ($diff->to as $member) {
+                    if (isset($ids[$member['value']['item_id']])) {
+                        // item exists
+                        unset($ids[$member['value']['item_id']]);
+                    } else {
+                        $add[] = $member['value']['item_id'];
+                    }
+                }
+                $remove = array_keys($ids);
+            }
+        }
+        Podio::$logger->log(var_export($add, 1), var_export($remove, 1));exit;
         // primary is Chamber Groups app
         // secondary is Students app
         $ret = $this->retrieveMembers($itemid);
