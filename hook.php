@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . '/src/autoload.php';
 try {
+  Podio::$debug = true;
   
   $hook = new SOM\Hook();
 
