@@ -174,7 +174,7 @@ class Hook extends SOM
             case 'item.create':
             case 'item.update':
             case 'item.delete':
-                $this->act($params['item_id']);
+                $this->act($params['item_id'], $params['revision_id']);
         }
     }
 }
