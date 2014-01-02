@@ -8,6 +8,6 @@ class Test extends Route
         $_SERVER['PATH_INFO'] = null;
         $hook = new Hook();
         $members = $hook->newgroup(106446524);
-        echo '<pre>';var_dump($members);
+        echo '<pre>';var_dump($members->values);
     }
 }
