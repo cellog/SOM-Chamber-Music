@@ -1,6 +1,6 @@
 <?php
 namespace SOM;
-use SOM, Podio, PodioHook;
+use SOM, Podio, PodioHook, PodioItem;
 class Hook extends SOM
 {
     protected $primary = array();
