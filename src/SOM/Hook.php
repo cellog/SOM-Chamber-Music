@@ -74,6 +74,13 @@ class Hook extends SOM
         return array($groupid, $ids);
     }
 
+    function markStudentActive($member, $active = true)
+    {
+        $active = $member->field('active');
+        $active->set_value($active ? 1 : 2);
+        $active->save(array('hook' => false));
+    }
+
     function newgroup($itemid)
     {
         // primary is Chamber Groups app
@@ -84,6 +91,7 @@ class Hook extends SOM
 
         foreach ($ids as $id) {
             $member = PodioItem::get($id);
+            $this->markStudentActive($member);
             $groups = $member->field('groups');
             if (!$groups) {
                 $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
@@ -119,7 +127,7 @@ class Hook extends SOM
             } else {
                 $newval = array_flip($groups->api_friendly_values());
                 unset($newval[$groupid]);
-                $groups->set_value(array_values($newval));
+                $groups->set_value(array_keys($newval));
             }
             $groups->save(array('hook' => false));
         }
@@ -154,6 +162,7 @@ class Hook extends SOM
 
         foreach ($add as $id) {
             $member = PodioItem::get($id);
+            $this->markStudentActive($member);
             $groups = $member->field('groups');
             if (!$groups) {
                 $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
@@ -180,6 +189,7 @@ class Hook extends SOM
             } else {
                 $newval = array_flip($groups->api_friendly_values());
                 unset($newval[$itemid]);
+                $this->markStudentActive($member, count($newval));
                 $groups->set_value(array_keys($newval));
             }
             $groups->save(array('hook' => false));
