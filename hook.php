@@ -4,7 +4,7 @@ try {
   
   $hook = new SOM\Hook();
 
-  $hook->perform($_POST['type'], $_POST);
+  $hook->perform($_GET['type'], $_GET);
 
 }
 catch (PodioError $e) {
