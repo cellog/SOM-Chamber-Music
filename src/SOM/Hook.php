@@ -1,6 +1,6 @@
 <?php
 namespace SOM;
-use SOM, Podio, PodioHook, PodioItem;
+use SOM, Podio, PodioHook, PodioItem, PodioAppItemField;
 class Hook extends SOM
 {
     protected $primary = array();
@@ -71,6 +71,10 @@ class Hook extends SOM
         foreach ($ids as $id) {
             $member = PodioItem::get($id);
             $groups = $member->field('groups');
+            if (!$groups) {
+                $member->add_field(new PodioAppItemField(array('external_id' => 'groups', 'values' => $groupid)));
+            }
+            
         echo '<pre>';
         var_dump($member);
         exit;
