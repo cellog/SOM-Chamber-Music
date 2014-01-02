@@ -71,6 +71,9 @@ class Hook extends SOM
         foreach ($ids as $id) {
             $member = PodioItem::get($id);
             $groups = $member->field('groups');
+        echo '<pre>';
+        var_dump($groups);
+        exit;
             foreach ($groups->values as $value) {
                 if ($value['value']['item_id'] == $groupid) {
                     // member already in the group
@@ -80,9 +83,6 @@ class Hook extends SOM
             $newval = $groups->api_friendly_values();
             $newval[] = $groupid;
             $groups->set_value($newval);
-        echo '<pre>';
-        var_dump($groups->values);
-        exit;
             $groups->save(array('hook' => false));
         }
     }
