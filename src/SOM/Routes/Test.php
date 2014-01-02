@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes;
-use SOM\Route, SOM, SOM\Route\Hook;
+use SOM\Route, SOM, SOM\Hook;
 class Test extends Route
 {
     function activate(SOM $som)
