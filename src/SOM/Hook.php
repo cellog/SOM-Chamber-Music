@@ -55,7 +55,7 @@ class Hook extends SOM
                                          'app_token' => $this->secondary['token']));
     }
 
-    function newgroup($itemid)
+    function retrieveMembers($itemid)
     {
         // primary is Chamber Groups app
         // secondary is Students app
@@ -68,6 +68,17 @@ class Hook extends SOM
             $ids[] = $value['value']['item_id'];
         }
         $this->prepareSecondary();
+        return array($groupid, $ids);
+    }
+
+    function newgroup($itemid)
+    {
+        // primary is Chamber Groups app
+        // secondary is Students app
+        $ret = $this->retrieveMembers($itemid);
+        $groupid = $ret[0];
+        $ids = $ret[1];
+
         foreach ($ids as $id) {
             $member = PodioItem::get($id);
             $groups = $member->field('groups');
@@ -79,7 +90,6 @@ class Hook extends SOM
                 foreach ($groups->values as $value) {
                     if ($value['value']['item_id'] == $groupid) {
                         // member already in the group
-                        echo "Found";
                         continue 2;
                     }
                 }
@@ -93,7 +103,23 @@ class Hook extends SOM
 
     function deletegroup($itemid)
     {
-        
+        // primary is Chamber Groups app
+        // secondary is Students app
+        $ret = $this->retrieveMembers($itemid);
+        $groupid = $ret[0];
+        $ids = $ret[1];
+        foreach ($ids as $id) {
+            $member = PodioItem::get($id);
+            $groups = $member->field('groups');
+            if (!$groups) {
+                continue;
+            } else {
+                $newval = array_flip($groups->api_friendly_values());
+                unset($newval[$groupid]);
+                $groups->set_value(array_values($newval));
+            }
+            $groups->save(array('hook' => false));
+        }
     }
 
     function updategroup($itemid)
