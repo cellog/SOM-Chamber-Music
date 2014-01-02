@@ -9,6 +9,7 @@ try {
 
 }
 catch (PodioError $e) {
+  Podio::$logger->log($e->body['error_description']);
   // Something went wrong. Examine $e->body['error_description'] for a description of the error.
 }
 
