@@ -59,8 +59,11 @@ class Hook extends SOM
     {
         // primary is Chamber Groups app
         // secondary is Students app
-        //$this->preparePrimary();
+        $this->preparePrimary();
         $group = PodioItem::get($itemid);
+        echo '<pre>';
+        var_dump($group);
+        exit;
         $members = $group->field('members');
         return $members;
         $groupid = $group->item_id;
@@ -68,7 +71,7 @@ class Hook extends SOM
         foreach ($members->values as $value) {
             $ids[] = $value['value']['item_id'];
         }
-        //$this->prepareSecondary();
+        $this->prepareSecondary();
         foreach ($ids as $id) {
             $member = PodioItem::get($id);
             $groups = $member->field('groups');
@@ -78,6 +81,10 @@ class Hook extends SOM
                     continue 2;
                 }
             }
+            $newval = $groups->api_friendly_values();
+            $newval[] = $groupid;
+            $groups->set_value($newval);
+            $groups->save(array('hook' => false));
         }
     }
 

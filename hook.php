@@ -2,7 +2,7 @@
 include __DIR__ . '/src/autoload.php';
 try {
   
-  $hook = new Hook();
+  $hook = new SOM\Hook();
 
   $hook->perform($_POST['type'], $_POST);
 
