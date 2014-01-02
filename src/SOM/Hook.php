@@ -9,7 +9,9 @@ class Hook extends SOM
     function __construct()
     {
         parent::__construct(true);
+        Podio::$logger->log("starting");
         if (isset($_SERVER['PATH_INFO'])) {
+            Podio::$logger->log("processing");
             $info = explode('/', $_SERVER['PATH_INFO']);
             $action = $info[1];
             $this->primary['id'] = $info[2];
@@ -27,6 +29,7 @@ class Hook extends SOM
                     $this->action = 'deletegroup';
                     break;
                 case 'updategroup' :
+                    Podio::$logger->log("updategroup");
                     $this->action = 'updategroup';
                     break;
                 case 'newstudent' :
