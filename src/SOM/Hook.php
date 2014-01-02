@@ -148,7 +148,7 @@ class Hook extends SOM
                 $remove = array_keys($ids);
             }
         }
-        Podio::$logger->log(var_export($add, 1), var_export($remove, 1));exit;
+        Podio::$logger->log('add ' . var_export($add, 1) . ' remove ' . var_export($remove, 1));exit;
         // primary is Chamber Groups app
         // secondary is Students app
         $ret = $this->retrieveMembers($itemid);
