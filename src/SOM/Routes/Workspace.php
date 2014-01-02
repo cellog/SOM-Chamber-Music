@@ -28,10 +28,10 @@ class Workspace extends SOM\Route
         echo '<h1>Archive and set up workspace</h1>';
         echo '<p>Clicking "Submit" will archive the existing workspace with the name <strong>',
              htmlspecialchars($this->getLastSemester($workspace)),
-             '</strong> and Create a new workspace with the name of the existing workspace <strong>',
+             '</strong> and<br>Create a new workspace with the name of the existing workspace <strong>',
              htmlspecialchars($workspace->name()),
              '</strong>.  Choose a new name if you want to name it something else/<p>',
-             '<form action="', $som->path(), '/workspace/clone/', $this->params['id'],
+             '<form action="', $som->path(), '/clone/', $this->params['id'],
              '" method="post">',
              'Archive name: <input type="text" name="archive" size="40" value="', htmlspecialchars($this->getLastSemester($workspace)), '">',
              '<br>New Name<input type="text" name="newworkspace" size="30" value="', htmlspecialchars($workspace->name()), '">',

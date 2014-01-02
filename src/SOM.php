@@ -61,7 +61,8 @@ class SOM
     {
         $route = new SOM\Routes\Home;
         if (isset($_SERVER['PATH_INFO'])) {
-            $map = array('workspace' => 'SOM\\Routes\\Workspace');
+            $map = array('workspace' => 'SOM\\Routes\\Workspace',
+                         'clone' => 'SOM\\Routes\\Workspace\\Cloner');
             $info = explode('/', $_SERVER['PATH_INFO']);
             if (isset($map[$info[1]])) {
                 $class = $map[$info[1]];
