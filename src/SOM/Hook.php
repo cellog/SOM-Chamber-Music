@@ -127,7 +127,6 @@ class Hook extends SOM
 
     function updategroup($itemid, $revisionid)
     {
-        Podio::$logger->log("id " . $revisionid . var_export($_POST, 1));exit;
         // primary is Chamber Groups app
         // secondary is Students app
         $ret = $this->retrieveMembers($itemid);
@@ -174,6 +173,7 @@ class Hook extends SOM
             case 'item.create':
             case 'item.update':
             case 'item.delete':
+                Podio::$logger->log(var_export($params, 1));exit;
                 $this->act($params['item_id'], $params['item_revision_id']);
         }
     }
