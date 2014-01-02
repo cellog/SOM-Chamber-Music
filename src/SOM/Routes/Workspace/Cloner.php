@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM, SOM\Workspace as CM, PodioSpace, SOM\Routes\Workspace;
+use SOM, SOM\Workspace as CM, PodioSpace, SOM\Routes\Workspace, PodioApp;
 class Cloner extends Workspace
 {
     protected $newname;
@@ -26,6 +26,12 @@ class Cloner extends Workspace
             'post_on_new_app' => true,
             'post_on_new_member' => true,
         ));
-        echo "Created space <strong>", htmlspecialchars($name), "</strong>";
+        echo "Created space <strong>", htmlspecialchars($name), "</strong><br>";
+        $installed = PodioAppMarketShare::install(66742, array('space_id' => $space['space_id']));
+        echo '<pre>';
+        foreach ($installed['child_app_ids'] as $id) {
+            $info = PodioApp::get($id, array('type' => 'micro'));
+            var_dump($info);
+        }
     }
 }
