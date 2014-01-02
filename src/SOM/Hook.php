@@ -61,11 +61,10 @@ class Hook extends SOM
         // secondary is Students app
         $this->preparePrimary();
         $group = PodioItem::get($itemid);
-        echo '<pre>';
-        var_dump($group);
-        exit;
         $members = $group->field('members');
-        return $members;
+        echo '<pre>';
+        var_dump($members);
+        exit;
         $groupid = $group->item_id;
         $ids = array();
         foreach ($members->values as $value) {
