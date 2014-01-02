@@ -59,7 +59,7 @@ class Hook extends SOM
     {
         // primary is Chamber Groups app
         // secondary is Students app
-        $this->preparePrimary();
+        //$this->preparePrimary();
         $group = PodioItem::get($itemid);
         $members = $group->field('members');
         return $members;
