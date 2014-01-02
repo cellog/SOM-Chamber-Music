@@ -5,7 +5,7 @@ class SOM
     private $apikey;
     private $appid;
     protected $key;
-    function __construct()
+    function __construct($nologin = false)
     {
         Podio::setup($this->appid, $this->apikey);
         $user = explode('/', $_SERVER['DOCUMENT_ROOT']);
@@ -13,10 +13,12 @@ class SOM
         $data = json_decode(file_get_contents('/home/' . $user . '/somchamber.json'));
         $this->apikey = $data->key;
         $this->appid = $data->client;
-        if (isset($_SESSION['access_token']) || $this->authenticate()) {
-            $this->key = $_SESSION['access_token'];
-        } else {
-            $this->login();
+        if (!$nologin) {
+            if (isset($_SESSION['access_token']) || $this->authenticate()) {
+                $this->key = $_SESSION['access_token'];
+            } else {
+                $this->login();
+            }
         }
     }
 
