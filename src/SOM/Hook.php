@@ -72,7 +72,7 @@ class Hook extends SOM
             $member = PodioItem::get($id);
             $groups = $member->field('groups');
         echo '<pre>';
-        var_dump($groups);
+        var_dump($member);
         exit;
             foreach ($groups->values as $value) {
                 if ($value['value']['item_id'] == $groupid) {
