@@ -27,12 +27,11 @@ class Cloner extends Workspace
             'post_on_new_member' => true,
         ));
         echo "Created space <strong>", htmlspecialchars($name), "</strong><br>";
-        flush();
         $installed = PodioAppMarketShare::install(66742, array('space_id' => $space['space_id']));
         foreach ($installed['child_app_ids'] as $id) {
-            $info = PodioApp::get($id, array('type' => 'micro'));
-            echo "Installed app <strong>", htmlspecialchars($info->name), "</strong><br>";
-            flush();
+            PodioApp::get($id, array('type' => 'micro'));
         }
+        echo "Installed <strong>Chamber Music</strong> app market pack<br>";
+        
     }
 }
