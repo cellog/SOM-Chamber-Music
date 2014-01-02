@@ -1,6 +1,6 @@
 <?php
 namespace SOM;
-use SOM, Podio, PodioHook, PodioItem, PodioAppItemField;
+use SOM, Podio, PodioHook, PodioItem, PodioAppItemField, PodioItemDiff;
 class Hook extends SOM
 {
     protected $primary = array();
@@ -57,9 +57,6 @@ class Hook extends SOM
 
     function retrieveMembers($itemid)
     {
-        // primary is Chamber Groups app
-        // secondary is Students app
-        $this->preparePrimary();
         $group = PodioItem::get($itemid);
         $members = $group->field('members');
         $groupid = $group->item_id;
@@ -75,6 +72,7 @@ class Hook extends SOM
     {
         // primary is Chamber Groups app
         // secondary is Students app
+        $this->preparePrimary();
         $ret = $this->retrieveMembers($itemid);
         $groupid = $ret[0];
         $ids = $ret[1];
@@ -101,11 +99,14 @@ class Hook extends SOM
         }
     }
 
-    function deletegroup($itemid)
+    function deletegroup($itemid, $revisionid)
     {
         // primary is Chamber Groups app
         // secondary is Students app
+        $this->preparePrimary();
+        PodioItemDiff::revert($itemid, $revisionid); // try to get the data
         $ret = $this->retrieveMembers($itemid);
+        PodioItem::delete($itemid, array(), array('hook' => false, 'silent' => true)); // then delete it again
         $groupid = $ret[0];
         $ids = $ret[1];
         foreach ($ids as $id) {
@@ -145,7 +146,7 @@ class Hook extends SOM
             case 'item.create':
             case 'item.update':
             case 'item.delete':
-                $this->act($params['item_id']);
+                $this->act($params['item_id'], $params['revision_id']);
         }
     }
 }
