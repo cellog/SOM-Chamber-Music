@@ -127,7 +127,7 @@ class Hook extends SOM
 
     function updategroup($itemid, $revisionid)
     {
-        Podio::$logger->log("id " . $revisionid);exit;
+        Podio::$logger->log("id " . $revisionid . var_export($_POST, 1));exit;
         // primary is Chamber Groups app
         // secondary is Students app
         $ret = $this->retrieveMembers($itemid);
