@@ -1,6 +1,6 @@
 <?php
 namespace SOM;
-use SOM, Podio, PodioHook, PodioItem, PodioAppItemField, PodioItemDiff;
+use SOM, Podio, PodioHook, PodioItem, PodioAppItemField;
 class Hook extends SOM
 {
     protected $primary = array();
@@ -57,6 +57,9 @@ class Hook extends SOM
 
     function retrieveMembers($itemid)
     {
+        // primary is Chamber Groups app
+        // secondary is Students app
+        $this->preparePrimary();
         $group = PodioItem::get($itemid);
         $members = $group->field('members');
         $groupid = $group->item_id;
@@ -72,7 +75,6 @@ class Hook extends SOM
     {
         // primary is Chamber Groups app
         // secondary is Students app
-        $this->preparePrimary();
         $ret = $this->retrieveMembers($itemid);
         $groupid = $ret[0];
         $ids = $ret[1];
@@ -99,14 +101,11 @@ class Hook extends SOM
         }
     }
 
-    function deletegroup($itemid, $revisionid)
+    function deletegroup($itemid)
     {
         // primary is Chamber Groups app
         // secondary is Students app
-        $this->preparePrimary();
-        PodioItemDiff::revert($itemid, $revisionid); // try to get the data
         $ret = $this->retrieveMembers($itemid);
-        PodioItem::delete($itemid, array(), array('hook' => false, 'silent' => true)); // then delete it again
         $groupid = $ret[0];
         $ids = $ret[1];
         foreach ($ids as $id) {
@@ -123,9 +122,35 @@ class Hook extends SOM
         }
     }
 
-    function updategroup($itemid)
+    function updategroup($itemid, $revisionid)
     {
-        
+        file_put_contents(__DIR__ . '/testit', $revisionid);exit;
+        // primary is Chamber Groups app
+        // secondary is Students app
+        $ret = $this->retrieveMembers($itemid);
+        $groupid = $ret[0];
+        $ids = $ret[1];
+
+        foreach ($ids as $id) {
+            $member = PodioItem::get($id);
+            $groups = $member->field('groups');
+            if (!$groups) {
+                $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
+                $groups = $member->field('groups');
+                $groups->set_value($groupid);
+            } else {
+                foreach ($groups->values as $value) {
+                    if ($value['value']['item_id'] == $groupid) {
+                        // member already in the group
+                        continue 2;
+                    }
+                }
+                $newval = $groups->api_friendly_values();
+                $newval[] = $groupid;
+                $groups->set_value($newval);
+            }
+            $groups->save(array('hook' => false));
+        }
     }
 
     function act($itemid)
@@ -146,7 +171,7 @@ class Hook extends SOM
             case 'item.create':
             case 'item.update':
             case 'item.delete':
-                $this->act($params['item_id'], $params['revision_id']);
+                $this->act($params['item_id']);
         }
     }
 }
