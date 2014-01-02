@@ -29,7 +29,6 @@ class Hook extends SOM
                     $this->action = 'deletegroup';
                     break;
                 case 'updategroup' :
-                    Podio::$logger->log("updategroup");
                     $this->action = 'updategroup';
                     break;
                 case 'newstudent' :
@@ -76,9 +75,15 @@ class Hook extends SOM
 
     function markStudentActive($member, $active = true)
     {
-        $active = $member->field('active');
-        $active->set_value($active ? 1 : 2);
-        $active->save(array('hook' => false));
+        $activefield = $member->field('active');
+        $activefield->set_value($active ? 1 : 2);
+        $activefield->save(array('hook' => false));
+    }
+
+    function testit($itemid)
+    {
+        $member = PodioItem::get($id);
+        $this->markStudentActive($member, false);
     }
 
     function newgroup($itemid)
