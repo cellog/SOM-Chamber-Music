@@ -72,9 +72,9 @@ class Hook extends SOM
             $member = PodioItem::get($id);
             $groups = $member->field('groups');
             if (!$groups) {
-                $member->add_field(new PodioAppItemField(array('external_id' => 'groups',
-                                                               'values' => array('value' => array('item_id' => $groupid)))));
+                $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
                 $groups = $member->field('groups');
+                $groups->set_value($groupid);
                 echo '<pre>';
                 var_dump($groups); exit;
                 echo "Creating";
