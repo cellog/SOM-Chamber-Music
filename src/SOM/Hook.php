@@ -75,7 +75,6 @@ class Hook extends SOM
                 $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
                 $groups = $member->field('groups');
                 $groups->set_value($groupid);
-                echo "Creating";
             } else {
                 foreach ($groups->values as $value) {
                     if ($value['value']['item_id'] == $groupid) {
@@ -84,14 +83,10 @@ class Hook extends SOM
                         continue 2;
                     }
                 }
-                echo "Adding";
                 $newval = $groups->api_friendly_values();
                 $newval[] = $groupid;
                 $groups->set_value($newval);
-                echo '<pre>',$groups;
-                var_dump($groups); exit;
             }
-            echo "Saving";
             $groups->save(array('hook' => false));
         }
     }
