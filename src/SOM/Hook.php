@@ -63,7 +63,22 @@ class Hook extends SOM
         $group = PodioItem::get($itemid);
         $members = $group->field('members');
         return $members;
-        $this->prepareSecondary();
+        $groupid = $group->item_id;
+        $ids = array();
+        foreach ($members->values as $value) {
+            $ids[] = $value['value']['item_id'];
+        }
+        //$this->prepareSecondary();
+        foreach ($ids as $id) {
+            $member = PodioItem::get($id);
+            $groups = $member->field('groups');
+            foreach ($groups->values as $value) {
+                if ($value['value']['item_id'] == $groupid) {
+                    // member already in the group
+                    continue 2;
+                }
+            }
+        }
     }
 
     function deletegroup($itemid)

@@ -74,7 +74,10 @@ function Podio_autoload($class)
 {
     if (0 !== strpos($class, 'Podio')) return;
     if (!isset($GLOBALS['___PODIO_MAP'][$class])) {
-        return false;
+        if (false === strpos($class, 'ItemField')) {
+            return false;
+        }
+        $class = 'PodioItemField';
     }
     include dirname(__DIR__) . '/podio/' . $GLOBALS['___PODIO_MAP'][$class];
 }
