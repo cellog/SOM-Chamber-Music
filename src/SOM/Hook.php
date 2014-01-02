@@ -67,12 +67,12 @@ class Hook extends SOM
         foreach ($members->values as $value) {
             $ids[] = $value['value']['item_id'];
         }
-        echo '<pre>';
-        var_dump($groupid, $ids);
-        exit;
         $this->prepareSecondary();
         foreach ($ids as $id) {
             $member = PodioItem::get($id);
+        echo '<pre>';
+        var_dump($member);
+        exit;
             $groups = $member->field('groups');
             foreach ($groups->values as $value) {
                 if ($value['value']['item_id'] == $groupid) {
