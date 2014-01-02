@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM, SOM\Workspace as CM, PodioSpace;
+use SOM, SOM\Workspace as CM, PodioSpace, SOM\Routes\Workspace;
 class Cloner extends Workspace
 {
     protected $newname;
