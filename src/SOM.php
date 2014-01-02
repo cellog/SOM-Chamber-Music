@@ -14,8 +14,8 @@ class SOM
         $this->appid = $data->client;
         Podio::setup($this->appid, $this->apikey);
         if (!$nologin) {
-            if (!isset($_GET['logout']) && (isset($_SESSION['access_token']) || $this->authenticate())) {
-                $this->key = $_SESSION['access_token'];
+            if (!isset($_GET['logout']) && ($this->authenticate())) {
+                $this->key = Podio::$oauth->access_token;
             } else {
                 $this->login();
             }
@@ -38,7 +38,6 @@ class SOM
         if (isset($_GET['code'])) {
             Podio::authenticate('authorization_code', array('code' => $_GET['code'],
                                                             'redirect_uri' => 'http://chiaraquartet.net/SOM-Chamber-Music/'));
-            $_SESSION['access_token'] = Podio::$oauth->access_token;
             return true;
         }
         return false;
