@@ -7,12 +7,12 @@ class SOM
     protected $key;
     function __construct($nologin = false)
     {
-        Podio::setup($this->appid, $this->apikey);
         $user = explode('/', $_SERVER['DOCUMENT_ROOT']);
         $user = $user[2];
         $data = json_decode(file_get_contents('/home/' . $user . '/somchamber.json'));
         $this->apikey = $data->key;
         $this->appid = $data->client;
+        Podio::setup($this->appid, $this->apikey);
         if (!$nologin) {
             if (!isset($_GET['logout']) && (isset($_SESSION['access_token']) || $this->authenticate())) {
                 $this->key = $_SESSION['access_token'];
