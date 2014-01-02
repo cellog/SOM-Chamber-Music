@@ -35,6 +35,7 @@ class Cloner extends Workspace
         echo "Installed <strong>Chamber Music</strong> app market pack<br>";
         // make hooks
         // find Chamber Groups app
+        echo '<pre>', $space;
         $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $space->url_label . '/chamber-groups', array()));
         // find Students app
         $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $space->url_label . '/students', array()));
