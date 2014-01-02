@@ -135,7 +135,6 @@ class Hook extends SOM
                 $ids = array();
                 foreach ($diff->from as $member) {
                     $ids[$member['value']['item_id']] = 1;
-                    Podio::$logger->log(var_export($ids, 1));
                 }
                 $add = array();
                 foreach ($diff->to as $member) {
@@ -149,14 +148,11 @@ class Hook extends SOM
                 $remove = array_keys($ids);
             }
         }
-        Podio::$logger->log('add ' . var_export($add, 1) . ' remove ' . var_export($remove, 1));exit;
         // primary is Chamber Groups app
         // secondary is Students app
-        $ret = $this->retrieveMembers($itemid);
-        $groupid = $ret[0];
-        $ids = $ret[1];
+        $this->prepareSecondary();
 
-        foreach ($ids as $id) {
+        foreach ($add as $id) {
             $member = PodioItem::get($id);
             $groups = $member->field('groups');
             if (!$groups) {
@@ -173,6 +169,18 @@ class Hook extends SOM
                 $newval = $groups->api_friendly_values();
                 $newval[] = $groupid;
                 $groups->set_value($newval);
+            }
+            $groups->save(array('hook' => false));
+        }
+        foreach ($remove as $id) {
+            $member = PodioItem::get($id);
+            $groups = $member->field('groups');
+            if (!$groups) {
+                continue;
+            } else {
+                $newval = array_flip($groups->api_friendly_values());
+                unset($newval[$groupid]);
+                $groups->set_value(array_values($newval));
             }
             $groups->save(array('hook' => false));
         }
