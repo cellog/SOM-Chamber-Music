@@ -14,7 +14,7 @@ class SOM
         $this->appid = $data->client;
         Podio::setup($this->appid, $this->apikey);
         if (!$nologin) {
-            if (!isset($_GET['logout']) && ($this->authenticate())) {
+            if (!isset($_GET['logout']) && (Podio::$oauth->access_token || $this->authenticate())) {
                 $this->key = Podio::$oauth->access_token;
             } else {
                 $this->login();
