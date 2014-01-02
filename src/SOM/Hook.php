@@ -134,6 +134,7 @@ class Hook extends SOM
                 // retrieve old members ids
                 $ids = array();
                 foreach ($diff->from as $member) {
+                    Podio::$logger->log(var_export($member, 1));
                     $ids[$members['value']['item_id']] = 1;
                 }
                 $add = array();
