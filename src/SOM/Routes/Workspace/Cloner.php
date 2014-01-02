@@ -36,10 +36,11 @@ class Cloner extends Workspace
         // make hooks
         // find Chamber Groups app
         echo '<pre>';
-        var_dump($space);
-        $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $space->url_label . '/chamber-groups', array()));
+        $spaceurl = explode('/', $space['url']);
+        $spaceurl = array_pop($spaceurl);
+        $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/chamber-groups', array()));
         // find Students app
-        $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $space->url_label . '/students', array()));
+        $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/students', array()));
         
         echo "Installing new group hook for chamber groups: <strong>", Hook::prepareUrl('newgroup', $chambergroups, $students);
     }
