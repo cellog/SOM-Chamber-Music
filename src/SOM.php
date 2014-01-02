@@ -14,7 +14,7 @@ class SOM
         $this->apikey = $data->key;
         $this->appid = $data->client;
         if (!$nologin) {
-            if (isset($_SESSION['access_token']) || $this->authenticate()) {
+            if (!isset($_GET['logout']) && (isset($_SESSION['access_token']) || $this->authenticate())) {
                 $this->key = $_SESSION['access_token'];
             } else {
                 $this->login();
