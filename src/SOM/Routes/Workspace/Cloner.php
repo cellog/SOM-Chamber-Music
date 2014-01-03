@@ -38,9 +38,9 @@ class Cloner extends Workspace
         echo '<pre>';
         $spaceurl = explode('/', $space['url']);
         $spaceurl = array_pop($spaceurl);
-        $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $this->spaceurl . '/chamber-groups', array()));
+        $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/chamber-groups', array()));
         // find Students app
-        $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $this->spaceurl . '/students', array()));
+        $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/students', array()));
 
         echo '<form name="hook" action="/index.php/makehook/', htmlspecialchars($memberfield),
              '/', htmlspecialchars($spaceurl), '" method="post">';
