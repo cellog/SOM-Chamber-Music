@@ -18,7 +18,7 @@ class Studentimport extends Route
         // get new
         // download all existing students
         echo "downloading students...<br>";
-        $students = PodioItem::filter($oldid->app_id, array('limit' => 1000));
+        $students = PodioItem::filter($oldid->app_id, array('limit' => 500));
         
         // prepare to upload
         foreach ($students['items'] as $student) {
