@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM\Route, SOM, SOM\Hook, PodioHook, PodioApp;
+use SOM\Route, SOM, SOM\Hook, PodioHook, PodioApp, Podio;
 class Hooks extends Route
 {
     protected $spaceurl;
