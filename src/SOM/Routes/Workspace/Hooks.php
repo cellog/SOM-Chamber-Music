@@ -1,5 +1,5 @@
 <?php
-namespace SOM\Routes;
+namespace SOM\Routes\Workspace;
 use SOM\Route, SOM, SOM\Hook, PodioHook;
 class Hooks extends Route
 {
