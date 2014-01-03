@@ -1,7 +1,7 @@
 <?php
 namespace SOM\Routes\Workspace;
 use SOM, SOM\Workspace as CM, PodioSpace, SOM\Routes\Workspace, PodioApp, PodioAppMarketShare, PodioHook, Podio,
-    SOM\Hook;
+    SOM\Hook, SOM\Route;
 class Cloner extends Route
 {
     protected $archivename;
