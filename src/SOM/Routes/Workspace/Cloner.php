@@ -43,7 +43,7 @@ class Cloner extends Workspace
         $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/students', array()));
 
         echo "<pre>";
-        var_dump(Podio::get('/app/org/unledu/space/' . $spaceurl . '/chamber-groups', array()));return;
+        var_dump(Podio::get('/app/' . $chambergroups->app_id, array('type' => 'full')));return;
         $memberfield = $chambergroups->fields;
         foreach ($memberfield as $field) {
             if ($field->external_id == 'members') {
