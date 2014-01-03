@@ -31,9 +31,9 @@ class Hooks extends Route
                                      $_POST['chamber'], $students,
                                      $_POST['student']);
         echo "Copy this URL template for hooks: <br><strong>", $newgroup,
-             "</strong><br>";
-        PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create'));
-        echo "done<br>";
+             "</strong><br><pre>";
+        var_dump(PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create')));
+        echo "</pre>done<br>";
         return;
 
         $newgroup = Hook::prepareUrl('updategroup', $chambergroups,
