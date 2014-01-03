@@ -14,7 +14,8 @@ class Studentimport extends Route
     function activate(SOM $som)
     {
         // get old student app id
-        $oldid = PodioApp::get_for_url($this->oldspaceid, 'students', array('type' => 'micro'));
+        $oldapp = PodioApp::get_for_url($this->oldspaceid, 'students', array('type' => 'micro'));
+        $newapp = PodioApp::get($this->studentapp);
         // get new
         // download all existing students
         echo "downloading students...<br>";
@@ -23,9 +24,8 @@ class Studentimport extends Route
         // prepare to upload
         foreach ($students['items'] as $student) {
             echo "Importing Student <strong>", $student->fields[0]->humanized_value(), '</strong><br>';
-            echo '<pre>';var_dump($student);exit;
             // convert to new app, remove groups and set as inactive
-            $student->app->id = $this->studentapp;
+            $student->app = $newapp;
             // reset item id
             $student->id = null;
             foreach ($student->fields as $field) {
