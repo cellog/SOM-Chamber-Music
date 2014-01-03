@@ -44,10 +44,10 @@ class Cloner extends Workspace
 
         echo '<a href="https://podio.com/unledu/' . $spaceurl . '/apps/' . $chambergroups->app_id . '/hooks" target="_blank">',
              'Click Here to copy the Chamber Groups token</a> and paste it here: <input type="text" ',
-             'onchange="javascript:document.getElementById(\'chamber\').innerHTML=this.getValue"><br>';
+             'id="one" onchange="javascript:document.getElementById(\'chamber\').innerHTML=document.getElementById(\'one\').value"><br>';
         echo '<a href="https://podio.com/unledu/' . $spaceurl . '/apps/' . $students->app_id . '/hooks" target="_blank">',
              'Click Here to copy the Students token</a> and paste it here: <input type="text" ',
-             'onchange="javascript:document.getElementById(\'student\').innerHTML=this.getValue"><br>';
+             'id="two" onchange="javascript:document.getElementById(\'student\').innerHTML=document.getElementById(\'two\').value"><br>';
         $memberfield = $chambergroups->fields;
         foreach ($memberfield as $field) {
             if ($field->external_id == 'members') {
@@ -58,9 +58,9 @@ class Cloner extends Workspace
         echo "Members field: " . $memberfield . "<br>";
 
         $newgroup = Hook::prepareUrl('newgroup', $chambergroups,
-                                     '<span class="chamber"></span>', $students,
-                                     '<span class="student"></span>');
-        echo "Installing new group hook for chamber groups: <strong>", $newgroup,
+                                     '<span id="chamber"></span>', $students,
+                                     '<span id="student"></span>');
+        echo "Copy this URL for item.create hook: <strong>", $newgroup,
              "</strong><br>";
         return;
         PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create'));
