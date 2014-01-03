@@ -41,7 +41,28 @@ class Cloner extends Workspace
         $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/chamber-groups', array()));
         // find Students app
         $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/students', array()));
-        
-        echo "Installing new group hook for chamber groups: <strong>", Hook::prepareUrl('newgroup', $chambergroups, $students);
+
+        $memberfield = $chambergroups->fields;
+        foreach ($memberfield as $field) {
+            if ($field->external_id == 'members') {
+                $memberfield = $field->field_id;
+                break;
+            }
+        }
+        echo "Members field: " . $memberfield . "<br>";
+
+        $newgroup = Hook::prepareUrl('newgroup', $chambergroups, $students);
+        echo "Installing new group hook for chamber groups: <strong>", $newgroup,
+             "</strong><br>";
+        return;
+        PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create'));
+        echo "done<br>";
+
+        $changegroup = Hook::prepareUrl('updategroup', $chambergroups, $students);
+        echo "Installing update group hook for chamber groups: <strong>", $newgroup,
+             "</strong><br>";
+
+        PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.update'));
+        echo "done<br>";
     }
 }
