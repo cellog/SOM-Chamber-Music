@@ -30,11 +30,11 @@ class Hooks extends Route
         $newgroup = Hook::prepareUrl('newgroup', $chambergroups,
                                      $_POST['chamber'], $students,
                                      $_POST['student']);
-        echo "Copy this URL template for hooks: <br><strong>", $newgroup,
+        echo "Installing create group hook for chamber groups: <br><strong>", $newgroup,
              "</strong><br><pre>";
-        var_dump(PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create')));
+        $id = PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create'));
+        PodioHook::verify($id[0]);
         echo "</pre>done<br>";
-        return;
 
         $newgroup = Hook::prepareUrl('updategroup', $chambergroups,
                                      $_POST['chamber'], $students,
@@ -42,7 +42,8 @@ class Hooks extends Route
         echo "Installing update group hook for chamber groups: <strong>", $newgroup,
              "</strong><br>";
 
-        PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.update'));
+        $id = PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.update'));
+        PodioHook::verify($id[0]);
         echo "done<br>";
     }
 }
