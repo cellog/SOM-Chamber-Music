@@ -4,10 +4,12 @@ use SOM\Route, SOM, SOM\Hook, PodioHook, PodioApp, Podio;
 class Hooks extends Route
 {
     protected $spaceurl;
+    protected $oldspaceid;
 
     function __construct($attrs)
     {
         $this->spaceurl = $attrs[0];
+        $this->oldspaceid = $attrs[1];
     }
     function activate(SOM $som)
     {
@@ -32,8 +34,7 @@ class Hooks extends Route
                                      $_POST['student']);
         echo "Installing create group hook for chamber groups: <br><strong>", $newgroup,
              "</strong><br><pre>";
-        $id = PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.create'));
-        PodioHook::verify($id[0]);
+        PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.create'));
         echo "</pre>done<br>";
 
         $newgroup = Hook::prepareUrl('updategroup', $chambergroups,
@@ -42,8 +43,10 @@ class Hooks extends Route
         echo "Installing update group hook for chamber groups: <strong>", $newgroup,
              "</strong><br>";
 
-        $id = PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.update'));
-        PodioHook::verify($id[0]);
+        PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.update'));
         echo "done<br>";
+        echo '<a href="/SOM-Chamber-Music/index.php/importstudents/', $students->app_id,
+             '/', $this->oldspaceid,
+             '">Continue (Student import)</a>';
     }
 }
