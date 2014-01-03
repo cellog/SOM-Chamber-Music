@@ -22,7 +22,8 @@ class Studentimport extends Route
         
         // prepare to upload
         foreach ($students['items'] as $student) {
-            echo "Importing Student ", $student->fields[0]->humanized_value(), '<br>';
+            echo "Importing Student <strong>", $student->fields[0]->humanized_value(), '</strong><br>';
+            echo '<pre>';var_dump($student);exit;
             // convert to new app, remove groups and set as inactive
             $student->app->id = $this->studentapp;
             // reset item id
