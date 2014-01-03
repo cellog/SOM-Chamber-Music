@@ -44,12 +44,12 @@ class Hook extends SOM
         }
     }
 
-    static function prepareUrl($action, PodioApp $primary, PodioApp $secondary = null)
+    static function prepareUrl($action, PodioApp $primary, $primarytoken, PodioApp $secondary = null, $secondarytoken = null)
     {
         return 'http://chiaraquartet.net/SOM-Chamber-Music/hook.php/' . $action . '/' .
-            $primary->app_id . '/' . $primary->token . (
+            $primary->app_id . '/' . $primarytoken . (
                 null === $secondary ? '' :
-                $secondary->app_id . '/' . $secondary->token
+                $secondary->app_id . '/' . $secondarytoken
             );
     }
 
