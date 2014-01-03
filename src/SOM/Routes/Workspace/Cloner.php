@@ -42,8 +42,8 @@ class Cloner extends Workspace
         // find Students app
         $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/students', array()));
 
-        echo '<form name="hook" action="/SOM-Chamber-Music/index.php/makehook/', htmlspecialchars($memberfield),
-             '/', htmlspecialchars($spaceurl), '" method="post">';
+        echo '<form name="hook" action="/SOM-Chamber-Music/index.php/makehook/',
+             htmlspecialchars($spaceurl), '" method="post">';
         echo '<a href="https://podio.com/unledu/' . $spaceurl . '/apps/' . $chambergroups->app_id . '/hooks" target="_blank">',
              'Click Here to copy the Chamber Groups token</a> and paste it here: <input type="text" ',
              'name="chamber" id="one" onchange="javascript:document.getElementById(\'chamber\').innerHTML=document.getElementById(\'one\').value"><br>';

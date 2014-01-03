@@ -1,15 +1,13 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM\Route, SOM, SOM\Hook, PodioHook;
+use SOM\Route, SOM, SOM\Hook, PodioHook, PodioApp;
 class Hooks extends Route
 {
-    protected $memberfield;
     protected $spaceurl;
 
     function __construct($attrs)
     {
-        $this->membersfield = $attrs[0];
-        $this->spaceurl = $attrs[1];
+        $this->spaceurl = $attrs[0];
     }
     function activate(SOM $som)
     {
@@ -24,7 +22,7 @@ class Hooks extends Route
                 break;
             }
         }
-        echo "Members field: " . $this->memberfield . "<br>";
+        echo "Members field: " . $memberfield . "<br>";
         if (!isset($_POST) || !isset($_POST['chamber']) || !isset($_POST['student'])) {
             throw new \Exception('Invalid Request');
         }
@@ -35,7 +33,7 @@ class Hooks extends Route
         echo "Copy this URL template for hooks: <br><strong>", $newgroup,
              "</strong><br>";
         return;
-        PodioHook::create('app_field', $this->memberfield, array('url' => $newgroup, 'type' => 'item.create'));
+        PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create'));
         echo "done<br>";
 
         $newgroup = Hook::prepareUrl('updategroup', $chambergroups,
@@ -44,7 +42,7 @@ class Hooks extends Route
         echo "Installing update group hook for chamber groups: <strong>", $newgroup,
              "</strong><br>";
 
-        PodioHook::create('app_field', $this->memberfield, array('url' => $newgroup, 'type' => 'item.update'));
+        PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.update'));
         echo "done<br>";
     }
 }
