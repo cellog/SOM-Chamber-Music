@@ -24,7 +24,12 @@ class Cloner extends Workspace
 
     protected function makeSpace($name, $som)
     {
-        PodioSpace::update($this->params['id'], array('name' => $this->archivename));
+        echo 'Renaming current space to <strong>', htmlspecialchars($this->archivename), '</strong><br>';
+        PodioSpace::update($this->params['id'], array('name' => $this->archivename,
+                                                      'privacy' => 'closed',
+                                                      'auto_join' => false,
+                                                      'post_on_new_app' => true,
+                                                      'post_on_new_member' => true));
         $space = PodioSpace::create(array(
             'org_id' => $som->getOrg(),
             'name' => $name,
