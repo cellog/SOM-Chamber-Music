@@ -38,39 +38,16 @@ class Cloner extends Workspace
         echo '<pre>';
         $spaceurl = explode('/', $space['url']);
         $spaceurl = array_pop($spaceurl);
-        $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/chamber-groups', array()));
-        // find Students app
-        $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $spaceurl . '/students', array()));
 
+        echo '<form name="hook" action="/index.php/makehook/', htmlspecialchars($memberfield),
+             '/', htmlspecialchars($spaceurl), '" method="post">';
         echo '<a href="https://podio.com/unledu/' . $spaceurl . '/apps/' . $chambergroups->app_id . '/hooks" target="_blank">',
              'Click Here to copy the Chamber Groups token</a> and paste it here: <input type="text" ',
-             'id="one" onchange="javascript:document.getElementById(\'chamber\').innerHTML=document.getElementById(\'one\').value"><br>';
+             'name="chamber" id="one" onchange="javascript:document.getElementById(\'chamber\').innerHTML=document.getElementById(\'one\').value"><br>';
         echo '<a href="https://podio.com/unledu/' . $spaceurl . '/apps/' . $students->app_id . '/hooks" target="_blank">',
              'Click Here to copy the Students token</a> and paste it here: <input type="text" ',
-             'id="two" onchange="javascript:document.getElementById(\'student\').innerHTML=document.getElementById(\'two\').value"><br>';
-        $memberfield = $chambergroups->fields;
-        foreach ($memberfield as $field) {
-            if ($field->external_id == 'members') {
-                $memberfield = $field->field_id;
-                break;
-            }
-        }
-        echo "Members field: " . $memberfield . "<br>";
-
-        $newgroup = Hook::prepareUrl('newgroup', $chambergroups,
-                                     '<span id="chamber"></span>', $students,
-                                     '<span id="student"></span>');
-        echo "Copy this URL for item.create hook: <strong>", $newgroup,
-             "</strong><br>";
-        return;
-        PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create'));
-        echo "done<br>";
-
-        $changegroup = Hook::prepareUrl('updategroup', $chambergroups, $students);
-        echo "Installing update group hook for chamber groups: <strong>", $newgroup,
-             "</strong><br>";
-
-        PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.update'));
-        echo "done<br>";
+             'name="student" id="two" onchange="javascript:document.getElementById(\'student\').innerHTML=document.getElementById(\'two\').value"><br>';
+        echo '<input type="submit" value="Click to Create Hooks">';
+        echo '</form>';
     }
 }

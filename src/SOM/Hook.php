@@ -49,7 +49,7 @@ class Hook extends SOM
         return 'http://chiaraquartet.net/SOM-Chamber-Music/hook.php/' . $action . '/' .
             $primary->app_id . '/' . $primarytoken . (
                 null === $secondary ? '' :
-                $secondary->app_id . '/' . $secondarytoken
+                '/' . $secondary->app_id . '/' . $secondarytoken
             );
     }
 
