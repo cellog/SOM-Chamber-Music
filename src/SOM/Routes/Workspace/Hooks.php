@@ -32,7 +32,7 @@ class Hooks extends Route
                                      $_POST['student']);
         echo "Installing create group hook for chamber groups: <br><strong>", $newgroup,
              "</strong><br><pre>";
-        $id = PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.create'));
+        $id = PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.create'));
         PodioHook::verify($id[0]);
         echo "</pre>done<br>";
 
@@ -42,7 +42,7 @@ class Hooks extends Route
         echo "Installing update group hook for chamber groups: <strong>", $newgroup,
              "</strong><br>";
 
-        $id = PodioHook::create('app_field', $memberfield, array('url' => $newgroup, 'type' => 'item.update'));
+        $id = PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.update'));
         PodioHook::verify($id[0]);
         echo "done<br>";
     }
