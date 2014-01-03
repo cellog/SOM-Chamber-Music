@@ -2,7 +2,7 @@
 namespace SOM\Routes\Workspace;
 use SOM, SOM\Workspace as CM, PodioSpace, SOM\Routes\Workspace, PodioApp, PodioAppMarketShare, PodioHook, Podio,
     SOM\Hook;
-class Cloner extends Workspace
+class Cloner extends Route
 {
     protected $archivename;
     protected $newname;
@@ -25,11 +25,7 @@ class Cloner extends Workspace
     protected function makeSpace($name, $som)
     {
         echo 'Renaming current space to <strong>', htmlspecialchars($this->archivename), '</strong><br>';
-        PodioSpace::update($this->params['id'], array('name' => $this->archivename,
-                                                      'privacy' => 'closed',
-                                                      'auto_join' => false,
-                                                      'post_on_new_app' => true,
-                                                      'post_on_new_member' => true));
+        PodioSpace::update($this->params['id'], array('name' => $this->archivename));
         $space = PodioSpace::create(array(
             'org_id' => $som->getOrg(),
             'name' => $name,
