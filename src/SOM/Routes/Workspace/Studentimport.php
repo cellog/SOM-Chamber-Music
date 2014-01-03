@@ -28,13 +28,17 @@ class Studentimport extends Route
             $student->app = $newapp;
             // reset item id
             $student->id = null;
-            foreach ($student->fields as $field) {
+            $fields = $student->fields;
+            foreach ($student->fields as $i => $field) {
                 if ($field->external_id == 'groups') {
                     $field->value = null;
                 } elseif ($field->external_id == 'active') {
                     $field->set_value(2);
+                } elseif ($field->external_id == 'ignore-count') {
+                    unset($fields[$i]);
                 }
             }
+            $student->fields = $fields;
             $student->save();
         }
         echo "done";
