@@ -18,7 +18,7 @@ class Updatereferences extends Route
     function getConfig($field)
     {
         $ret = array(
-            'label' => $field->label,
+            'label' => $field->config['label'],
             'description' => $field->config['description'],
             'delta' => 0,
             'settings' => array(
@@ -27,7 +27,6 @@ class Updatereferences extends Route
             'required' => true
         );
         if (!$ret['description']) unset ($ret['description']);
-        echo '<pre>',var_dump($field);
         return $ret;
     }
 
