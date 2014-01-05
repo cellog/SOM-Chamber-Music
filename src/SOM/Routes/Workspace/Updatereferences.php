@@ -22,12 +22,12 @@ class Updatereferences extends Route
             'description' => $field->config['description'],
             'delta' => 0,
             'settings' => array(
-                'referencable_types' => array($this->studentsid)
+                'referenceable_types' => array($this->studentsid)
             ),
             'required' => true
         );
         if (!$ret['description']) unset ($ret['description']);
-        var_dump($ret);
+        echo '<pre>',var_dump($field);
         return $ret;
     }
 
