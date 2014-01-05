@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM\Route, SOM, SOM\Hook, PodioAppField;
+use SOM\Route, SOM, SOM\Hook, PodioAppField, PodioApp;
 class Updatereferences extends Route
 {
     const ID = '6553105';
@@ -18,8 +18,10 @@ class Updatereferences extends Route
     function activate(SOM $som)
     {
         $field = PodioAppField::get(self::ID, self::FIELD);
+        // verify the app id is good
+        $app = PodioApp::get($this->studentsid);
         echo '<pre>';
-        var_dump($field);
-        $field->config['settings']['referenceable_types'];
+        var_dump($app);
+        $field->config['settings']['referenceable_types'] = array($this->studentsid);
     }
 }
