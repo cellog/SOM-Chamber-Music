@@ -17,7 +17,7 @@ class Updatereferences extends Route
 
     function getConfig($field)
     {
-        return array(
+        $ret = array(
             'label' => $field->label,
             'description' => $field->config['description'],
             'delta' => 0,
@@ -27,6 +27,8 @@ class Updatereferences extends Route
             'mapping' => null,
             'required' => true
         );
+        if (!$ret['description']) unset ($ret['description']);
+        return $ret;
     }
 
     function activate(SOM $som)
