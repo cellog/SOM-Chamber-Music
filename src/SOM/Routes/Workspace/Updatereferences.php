@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM\Route, SOM, SOM\Hook, PodioHook, PodioApp, Podio;
+use SOM\Route, SOM, SOM\Hook, PodioAppField;
 class Updatereferences extends Route
 {
     const ID = '6553105';
