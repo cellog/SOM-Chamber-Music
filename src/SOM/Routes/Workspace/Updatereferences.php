@@ -20,8 +20,15 @@ class Updatereferences extends Route
         $field = PodioAppField::get(self::ID, self::FIELD);
         // verify the app id is good
         $app = PodioApp::get($this->studentsid);
-        echo '<pre>';
-        var_dump($app);
-        $field->config['settings']['referenceable_types'] = array($this->studentsid);
+        if ($app->url_label != 'students') {
+            echo '<strong>ERROR</strong>: id passed in was not for a <strong>students</strong> app, but was for <strong>',
+                 $app->config['name'], '</strong>';
+            exit;
+        }
+        $config = $field->config;
+        $config['settings']['referenceable_types'] = array($this->studentsid);
+        $field->config = $config;
+        PodioAppField::update(self::ID, self::FIELD, $field);
+        echo 'Updated references in the Chamber Music Admin workspace to point to the new workspace';
     }
 }
