@@ -12,7 +12,7 @@ class Updatereferences extends Route
         if (count($params) != 1) {
             throw new \Exception('invalid call format');
         }
-        $this->studentsid = $params[0];
+        $this->studentsid = (int) $params[0];
     }
 
     function getConfig($field)
