@@ -15,6 +15,20 @@ class Updatereferences extends Route
         $this->studentsid = $params[0];
     }
 
+    function getConfig($field)
+    {
+        return array(
+            'label' => $field->label,
+            'description' => $field->config['description'],
+            'delta' => 0,
+            'settings' => array(
+                'referencable_types' => array($this->studentsid)
+            ),
+            'mapping' => null,
+            'required' => true
+        );
+    }
+
     function activate(SOM $som)
     {
         $field = PodioAppField::get(self::ID, self::FIELD);
@@ -25,10 +39,7 @@ class Updatereferences extends Route
                  $app->config['name'], '</strong>';
             exit;
         }
-        $config = $field->config;
-        $config['settings']['referenceable_types'] = array($this->studentsid);
-        $field->config = $config;
-        PodioAppField::update(self::ID, self::FIELD, $field);
+        PodioAppField::update(self::ID, self::FIELD, $this->getConfig($field));
         echo 'Updated references in the Chamber Music Admin workspace to point to the new workspace';
     }
 }
