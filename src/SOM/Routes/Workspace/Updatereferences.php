@@ -30,9 +30,10 @@ class Updatereferences extends Route
         return $ret;
     }
 
-    function activate(SOM $som)
+    function updateReferences(SOM $som)
     {
         $field = PodioAppField::get(self::ID, self::FIELD);
+        $field2 = PodioAppField::get(self::ID2, self::FIELD2);
         // verify the app id is good
         $app = PodioApp::get($this->studentsid);
         if ($app->url_label != 'students') {
@@ -41,6 +42,7 @@ class Updatereferences extends Route
             exit;
         }
         PodioAppField::update(self::ID, self::FIELD, $this->getConfig($field));
+        PodioAppField::update(self::ID2, self::FIELD2, $this->getConfig($field2));
         echo 'Updated references in the Chamber Music Admin workspace to point to the new workspace';
     }
 }

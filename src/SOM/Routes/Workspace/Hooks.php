@@ -47,7 +47,7 @@ class Hooks extends Route
         PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.update'));
         echo "done<br>";
         echo '<a href="/SOM-Chamber-Music/index.php/importstudents/', $students->app_id,
-             '/', $this->oldspaceid,
+             '/', $this->oldspaceid, '/', $chambergroups->app_id,
              '">Continue (Student import)</a>';
     }
 }
