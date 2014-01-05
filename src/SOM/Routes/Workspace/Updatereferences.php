@@ -24,7 +24,6 @@ class Updatereferences extends Route
             'settings' => array(
                 'referencable_types' => array($this->studentsid)
             ),
-            'mapping' => null,
             'required' => true
         );
         if (!$ret['description']) unset ($ret['description']);
