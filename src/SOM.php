@@ -66,6 +66,7 @@ class SOM
                          'clone' => 'SOM\\Routes\\Workspace\\Cloner',
                          'makehook' => 'SOM\\Routes\\Workspace\\Hooks',
                          'importstudents' => 'SOM\\Routes\\Workspace\\Studentimport',
+                         'updatereferences' => 'SOM\\Routes\\Workspace\\Updatereferences',
                          //'test' => 'SOM\\Routes\\Test',
                          );
             $info = explode('/', $_SERVER['PATH_INFO']);

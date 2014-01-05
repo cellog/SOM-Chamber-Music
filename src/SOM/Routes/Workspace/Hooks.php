@@ -11,6 +11,7 @@ class Hooks extends Route
         $this->spaceurl = $attrs[0];
         $this->oldspaceid = $attrs[1];
     }
+
     function activate(SOM $som)
     {
         $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $this->spaceurl . '/chamber-groups', array()));
