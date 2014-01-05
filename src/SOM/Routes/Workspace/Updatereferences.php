@@ -27,6 +27,7 @@ class Updatereferences extends Route
             'required' => true
         );
         if (!$ret['description']) unset ($ret['description']);
+        var_dump($ret);
         return $ret;
     }
 
