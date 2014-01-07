@@ -5,9 +5,9 @@ class Changes extends Podio
 {
     const APP_ID = 6453745;
 
-    function getStudent()
+    function getStudent($noretrieve = false)
     {
-        $ret = $this->getRegistration()->getStudent();
+        $ret = $this->getRegistration()->getStudent($noretrieve = false);
         if ($ret) {
             $ret->setChanges($this);
         }

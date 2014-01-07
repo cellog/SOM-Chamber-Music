@@ -301,17 +301,17 @@ class Hook extends SOM
         $this->prepareChanges();
         $change = new Changes($itemid);
         $this->prepareRegistration();
-        $change->getRegistration(true);
-        $change->getRegistration()->getStudent(true);
+        $change->Registration();
         $this->prepareRegistered();
         try {
-            $change->getStudent();
+            $change->getStudent(true);
         } catch (\Exception $e) {
             $this->prepareNotRegistered();
-            $change->getStudent();
+            $change->getStudent(true);
         }
+        $this->preparePrimary();
+        $change->getStudent();
         $this->prepareChanges();
-        $change->log("here");
         $change->update();
     }
 
