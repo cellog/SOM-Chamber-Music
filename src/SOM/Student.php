@@ -39,7 +39,7 @@ class Student extends Podio
     function getIdNumber()
     {
         $id = $this->getFieldValue('id-number');
-        $id = $id['value'][0];
+        $id = $id['value'];
         $id += 0;
         $id = (int) $id;
         $id = '' . $id;
