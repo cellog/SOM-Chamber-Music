@@ -32,7 +32,7 @@ class Registration extends Podio
             return $this->changes;
         }
         $this->retrieve(null, true);
-        $info = $this->item->get_references($this->id);
+        $info = $this->getReferences();
         if (!isset($info[0]) || !isset($info[0]['items'][0])) {
             $this->changes = null;
             return false;
