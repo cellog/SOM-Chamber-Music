@@ -40,6 +40,18 @@ class Hook extends SOM
                 case 'updatestudent' :
                     $this->action = 'updatestudent';
                     break;
+                case 'newchange' :
+                    $this->action = 'newchange';
+                    break;
+                case 'updatechange' :
+                    $this->action = 'updatechange';
+                    break;
+                case 'newregistration' :
+                    $this->action = 'newregistration';
+                    break;
+                case 'updateregistration' :
+                    $this->action = 'updateregistration';
+                    break;
             }
         }
     }
