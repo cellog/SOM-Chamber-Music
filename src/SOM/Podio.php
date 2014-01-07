@@ -6,7 +6,6 @@ class Podio
     protected $item = null;
     function __construct($id = null)
     {
-        $this->id = $id;
         $this->retrieve($id);
     }
 
@@ -28,6 +27,6 @@ class Podio
     function dump()
     {
         echo '<pre>';
-        var_dump($this);
+        var_dump($this->item);
     }
 }
