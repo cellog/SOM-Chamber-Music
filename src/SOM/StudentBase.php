@@ -23,4 +23,9 @@ abstract class StudentBase extends Podio
         $this->changes = array_filter($ret);
         return $this->changes;
     }
+
+    function setChanges($changes)
+    {
+        $this->changes = $changes;
+    }
 }

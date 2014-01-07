@@ -4,14 +4,25 @@ use PodioItem;
 class Registration extends Podio
 {
     protected $changes = false;
+    protected $intermediate = false;
+    protected $student = false;
     const APP_ID = 6455277;
-    function getStudent()
+    function getStudent($noretrieve = false)
     {
+        if ($this->student) {
+            return $this->student;
+        }
         $this->retrieve(null, true);
-        $regid = $this->getFieldValue(50394170);
-        $intermediate = new Registration($regid['value']['item_id']); // dummy for registered/not registered students
+        if (!$this->intermediate) {
+            $regid = $this->getFieldValue(50394170);
+            $intermediate = new Registration($regid['value']['item_id'], $noretrieve); // dummy for registered/not registered students
+            $this->intermediate = $intermediate;
+            if ($noretrieve) return;
+        } else {
+            $intermediate = $this->intermediate;
+        }
         $student = $intermediate->getFieldValue('student');
-        return new Student($student['value']['item_id']); // here is the real student
+        return $this->student = new Student($student['value']['item_id'], $noretrieve); // here is the real student
     }
 
     function getRegistrations()
@@ -43,6 +54,11 @@ class Registration extends Podio
         return $changes;
     }
 
+    function setChanges($changes)
+    {
+        $this->changes = $changes;
+    }
+    
     function updateNewCallNumber()
     {
         $id = $this->getCallNumber();

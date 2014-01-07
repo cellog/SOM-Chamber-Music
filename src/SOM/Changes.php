@@ -7,14 +7,19 @@ class Changes extends Podio
 
     function getStudent()
     {
-        return $this->getRegistration()->getStudent();
+        $ret = $this->getRegistration()->getStudent();
+        if ($ret) {
+            $ret->setChanges($this);
+        }
+        return $ret;
     }
 
-    function getRegistration()
+    function getRegistration($noretrieve = false)
     {
         $this->retrieve(null, true);
         $regid = $this->getFieldValue(50175556);
-        return new Registration($regid['value']['item_id']);
+        $ret = new Registration($regid['value']['item_id'], $noretrieve);
+        $ret->setChanges($this);
     }
 
     function update()
