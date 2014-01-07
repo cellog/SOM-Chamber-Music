@@ -8,7 +8,7 @@ class Changes extends Podio
 
     function getStudent($noretrieve = false)
     {
-        $ret = $this->getRegistration()->getStudent($noretrieve = false);
+        $ret = $this->getRegistration()->getStudent($noretrieve);
         if ($ret) {
             $ret->setChanges($this);
         }
