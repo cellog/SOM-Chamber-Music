@@ -42,8 +42,8 @@ class Student extends Podio
         foreach ($this->getRegistrations() as $reg) {
             $ret[] = $reg->getChanges();
         }
-        $this->log(var_export($ret, 1));
         $this->changes = array_filter($ret);
+        $this->log(var_export($this->changes, 1));
         return $this->changes;
     }
 
