@@ -300,8 +300,8 @@ class Hook extends SOM
     {
         $this->prepareChanges();
         $change = new Changes($itemid);
-        $change->getRegistration(true);
         $this->prepareRegistration();
+        $change->getRegistration(true);
         $change->getRegistration()->getStudent(true);
         $this->prepareRegistered();
         try {
