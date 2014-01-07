@@ -6,7 +6,8 @@ class Podio
     const APP_ID = 0;
     protected $id = null;
     protected $item = null;
-    function __construct($id = null)
+    protected $references = false;
+    function __construct($id = null, $noretrieve = false)
     {
         $this->retrieve($id);
     }
@@ -17,9 +18,9 @@ class Podio
         $this->id = $item->id;
     }
 
-    function retrieve($id = null, $exception = false)
+    function retrieve($id = null, $exception = false, $noretrieve = false)
     {
-        if ($this->id) {
+        if ($this->id && $this->item) {
             return;
         }
         if (!$id) {
@@ -28,9 +29,21 @@ class Podio
             }
             return;
         }
-        $this->id = $id;
+        if ($id) {
+            $this->id = $id;
+        }
+        if ($noretrieve) return;
         $this->item = PodioItem::get($id);
     }
+
+    function getReferences()
+    {
+        if (!$this->references) {
+            $this->retrieve(null, true);
+            $this->references = $this->item->get_references($this->id);
+        }
+        return $this->references;
+    }    
 
     function getField($extname)
     {
@@ -40,12 +53,6 @@ class Podio
             }
         }
         return null;
-    }
-
-    function getReferences()
-    {
-        $this->retrieve(null, true);
-        return $this->item->get_references($this->id);
     }
 
     // this assumes we have a single value in this field
@@ -71,6 +78,11 @@ class Podio
                                    array(array('value' => $values[0])) :
                                    array(array('value' => $values)));
         }
+    }
+
+    function fromReference($info, $noretrieve = false)
+    {
+        $this->retrieve($info[0]['items'][0]['item_id'], false, $noretrieve);
     }
 
     static function getAll($app = null)

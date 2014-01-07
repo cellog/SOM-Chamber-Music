@@ -14,7 +14,16 @@ class Registration extends Podio
         return new Student($student['value']['item_id']); // here is the real student
     }
 
-    function getChanges($reset = false)
+    function getRegistrations()
+    {
+        $info = $this->getReferences();
+        foreach ($info[0]['items'] as $item) {
+            $ret[] = new Registration($item['item_id']);
+        }
+        return $ret;
+    }
+
+    function getChanges($noretrieve = false, $reset = false)
     {
         if ($reset) {
             $this->changes = false;
@@ -29,14 +38,9 @@ class Registration extends Podio
             return false;
         }
         $changes = new Changes;
-        $changes->fromReference($info);
+        $changes->fromReference($info, $noretrieve);
         $this->changes = $changes;
         return $changes;
-    }
-
-    function fromReference($info)
-    {
-        $this->retrieve($info[0]['items'][0]['item_id']);
     }
 
     function updateNewCallNumber()
@@ -46,6 +50,11 @@ class Registration extends Podio
         if ($change) {
             $change->setFieldValue(51102122, $id);
         }
+    }
+
+    function update()
+    {
+        $this->updateNewCallNumber();
     }
 
     function getCallNumber()

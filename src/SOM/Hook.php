@@ -1,6 +1,7 @@
 <?php
 namespace SOM;
-use SOM, Podio, PodioHook, PodioItem, PodioAppItemField, PodioItemDiff, PodioApp;
+use SOM, Podio, PodioHook, PodioItem, PodioAppItemField, PodioItemDiff, PodioApp,
+    SOM\Student, SOM\Registration, SOM\Changes, SOM\Group;
 class Hook extends SOM
 {
     protected $primary = array();
@@ -76,6 +77,30 @@ class Hook extends SOM
         Podio::shutdown();
         Podio::authenticate('app', array('app_id' => $this->secondary['id'],
                                          'app_token' => $this->secondary['token']));
+    }
+
+    function prepareRegistration()
+    {
+        Podio::authenticate('app', array('app_id' => 6455277,
+                                         'app_token' => '94134bebd883486d89bf21b304fa47a4'));
+    }
+
+    function prepareNotRegistered()
+    {
+        Podio::authenticate('app', array('app_id' => 6484201,
+                                         'app_token' => '6af09daee63944ccbae504e07dc0fa3f'));
+    }
+
+    function prepareRegistered()
+    {
+        Podio::authenticate('app', array('app_id' => 6484199,
+                                         'app_token' => '40c6b0aa766c4d70a58c5194a4c72b55'));
+    }
+
+    function prepareChanges()
+    {
+        Podio::authenticate('app', array('app_id' => 6453745,
+                                         'app_token' => '99b8aae086544bb29c729a16d46bf4d4'));
     }
 
     function retrieveMembers($itemid)
@@ -220,6 +245,29 @@ class Hook extends SOM
             }
             $groups->save(array('hook' => false));
         }
+    }
+
+    function updatestudent($itemid, $revisionid)
+    {
+        $this->preparePrimary();
+        $student = new Student($itemid);
+        $student->getReferences();
+        $this->prepareRegistered();
+        try {
+            $inbetween = $student->getRegistrations(true);
+        } catch (\Exception $e) {
+            $this->prepareNotRegistered();
+            $inbetween = $student->getRegistrations(true);
+        }
+        $inbetween->getReferences();
+        $this->prepareRegistration();
+        $registration = $inbetween->getRegistrations();
+        foreach ($registration as $i => $reg) {
+            $reg->getReferences();
+        }
+        $student->setRegistrations($registration);
+        $this->prepareChanges();
+        $student->update();
     }
 
     function act($itemid, $revision)

@@ -20,4 +20,10 @@ class Changes extends Podio
         $regid = $this->getFieldValue(50175556);
         return new Registration($regid['value']['item_id']);
     }
+
+    function update()
+    {
+        $this->getRegistration()->updateNewCallNumber();
+        $this->getStudent()->updateNewId();
+    }
 }

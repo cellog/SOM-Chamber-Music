@@ -3,15 +3,21 @@ namespace SOM;
 use PodioItem;
 class Student extends Podio
 {
+    protected $registrations = null;
     protected $changes = false;
-    function getRegistrations()
+    function getRegistrations($noretrieve = false)
     {
+        if ($this->registrations) {
+            return $this->registrations;
+        }
         $this->retrieve(null, true);
-        $info = $this->item->get_references($this->id);
-        foreach ($info as $reference) {
+        foreach ($this->getReferences() as $reference) {
             if ($reference['field']['external_id'] == 'student') {
-                $reg = new Registration($reference['items'][0]['item_id']); // dummy, for registered/not registered student
+                $reg = new Registration($reference['items'][0]['item_id'], $noretrieve); // dummy, for registered/not registered student
                 $ret = array();
+                if ($noretrieve) {
+                    return $reg;
+                }
                 $info = $reg->getReferences();
                 foreach ($info[0]['items'] as $item) {
                     $ret[] = new Registration($item['item_id']);
@@ -20,6 +26,11 @@ class Student extends Podio
             }
         }
         return array();
+    }
+
+    function setRegistrations(array $registrations)
+    {
+        $this->registrations = $registrations;
     }
 
     function getChanges()
@@ -43,9 +54,9 @@ class Student extends Podio
         }
     }
 
-    function getName()
+    function update()
     {
-        return $this->item->title;
+        $this->updateNewId();
     }
 
     function getIdNumber()
