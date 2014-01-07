@@ -4,7 +4,6 @@ use PodioItem, PodioItemField;
 class Podio
 {
     const APP_ID = 0;
-    public static $App = 0;
     protected $id = null;
     protected $item = null;
     function __construct($id = null)
@@ -73,8 +72,6 @@ class Podio
         if (!$app) {
             if (static::APP_ID) {
                 $app = static::APP_ID;
-            } elseif (static::$App) {
-                $app = static::$App;
             } else {
                 throw new \Exception('no app id set');
             }

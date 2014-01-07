@@ -3,7 +3,6 @@ namespace SOM;
 use PodioItem;
 class Student extends Podio
 {
-    static $App;
     function getRegistrations()
     {
         $this->retrieve(null, true);
