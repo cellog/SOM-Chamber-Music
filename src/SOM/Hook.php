@@ -50,6 +50,9 @@ class Hook extends SOM
                 case 'updateregistration' :
                     $this->action = 'updateregistration';
                     break;
+                case 'registrategroup' :
+                    $this->action = 'registrategroup';
+                    break;
             }
         }
     }
@@ -263,7 +266,6 @@ class Hook extends SOM
             $reg->getChanges(true);
         }
         $student->setRegistrations($registration);
-        $student->log("preparing changes");
         $this->prepareChanges();
         $student->update();
     }
@@ -275,6 +277,21 @@ class Hook extends SOM
         $registration->getChanges(true);
         $this->prepareChanges();
         $registration->update();
+    }
+
+    function registrategroup($itemid)
+    {
+        $this->preparePrimary();
+        $group = new Group($itemid);
+        $group->getReferences();
+        $this->prepareRegistered();
+        $registration = $group->getRegistrations();
+        foreach ($registration as $i => $reg) {
+            $reg->getChanges(true);
+        }
+        $group->setRegistrations($registration);
+        $this->prepareChanges();
+        $group->update();
     }
 
     function act($itemid, $revision)
