@@ -29,7 +29,7 @@ class Podio
     function getField($extname)
     {
         foreach ($this->item->fields as $field) {
-            if ($field->external_id == $extname) {
+            if ($field->external_id == $extname || $field->id == $extname) {
                 return $field;
             }
         }
