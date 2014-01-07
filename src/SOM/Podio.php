@@ -94,6 +94,11 @@ class Podio
         return $ret;
     }
 
+    function getName()
+    {
+        return $this->item->title;
+    }
+
     function dump()
     {
         echo '<pre>';

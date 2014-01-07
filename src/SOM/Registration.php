@@ -3,6 +3,7 @@ namespace SOM;
 use PodioItem;
 class Registration extends Podio
 {
+    protected $changes = false;
     const APP_ID = 50394170;
     function getStudent()
     {
@@ -13,21 +14,38 @@ class Registration extends Podio
         return new Student($student['value']['item_id']); // here is the real student
     }
 
-    function getChanges()
+    function getChanges($reset = false)
     {
+        if ($reset) {
+            $this->changes = false;
+        }
+        if (false !== $this->changes) {
+            return $this->changes;
+        }
         $this->retrieve(null, true);
         $info = $this->item->get_references($this->id);
         if (!isset($info[0]) || !isset($info[0]['items'][0])) {
+            $this->changes = null;
             return false;
         }
         $changes = new Changes;
         $changes->fromReference($info);
+        $this->changes = $changes;
         return $changes;
     }
 
     function fromReference($info)
     {
         $this->retrieve($info[0]['items'][0]['item_id']);
+    }
+
+    function updateNewCallNumber()
+    {
+        $id = $this->getCallNumber();
+        $change = $this->getChanges();
+        if ($change) {
+            $change->setFieldValue(51102122, $id);
+        }
     }
 
     function getCallNumber()

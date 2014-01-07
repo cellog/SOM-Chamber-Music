@@ -6,7 +6,17 @@ class Changes extends Route
     function activate(SOM $som)
     {
         set_time_limit(0);
-        $reg = new Registration(106472696);
-        var_dump($reg->getCallNumber());
+        $registration = new Registration(106472696);
+        $registration->updateNewCallNumber();
+        return;
+        $registration = Registration::getAll();
+        foreach ($registration as $reg) {
+            $reg->updateNewCallNumber();
+            if (!$reg->getChanges()) {
+                echo $reg->getName(), " has no changes<br>";
+            } else {
+                echo $reg->getName(), " done<br>";
+            }
+        }
     }
 }
