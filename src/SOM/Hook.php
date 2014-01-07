@@ -281,7 +281,7 @@ class Hook extends SOM
 
     function registrategroup($itemid)
     {
-        $this->log("starting");
+        $this->log("starting");exit;
         $this->preparePrimary();
         $this->log("getting group");
         $group = new Group($itemid);
