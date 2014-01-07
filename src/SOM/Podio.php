@@ -3,6 +3,7 @@ namespace SOM;
 use PodioItem;
 class Podio
 {
+    protected $id = null;
     protected $item = null;
     function __construct($id = null)
     {
