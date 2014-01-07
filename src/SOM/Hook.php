@@ -281,16 +281,22 @@ class Hook extends SOM
 
     function registrategroup($itemid)
     {
+        $this->log("starting");
         $this->preparePrimary();
+        $this->log("getting group");
         $group = new Group($itemid);
+        $this->log("getting references");
         $group->getReferences();
         $this->prepareRegistered();
+        $this->log("getting registration");
         $registration = $group->getRegistrations();
         foreach ($registration as $i => $reg) {
+            $this->log("getting registration change");
             $reg->getChanges(true);
         }
         $group->setRegistrations($registration);
         $this->prepareChanges();
+        $this->log("updating");
         $group->update();
     }
 
