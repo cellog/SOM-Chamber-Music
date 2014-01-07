@@ -29,4 +29,22 @@ class Student extends Podio
         }
         return $ret;
     }
+
+    function updateNewId()
+    {
+        $id = $this->getIdNumber();
+        $this->setFieldValue('id-number-2', $id);
+    }
+
+    function getIdNumber()
+    {
+        $id = $this->getFieldValue('id-number');
+        $id += 0;
+        $id = (int) $id;
+        $id = '' . $id;
+        if (strlen($id) == 8) {
+            $id = "0$id";
+        }
+        return $id;
+    }
 }
