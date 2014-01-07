@@ -11,6 +11,12 @@ class Podio
         $this->retrieve($id);
     }
 
+    function fromItem(PodioItem $item)
+    {
+        $this->item = $item;
+        $this->id = $item->id;
+    }
+
     function retrieve($id = null, $exception = false)
     {
         if ($this->id) {
@@ -79,7 +85,13 @@ class Podio
         $ret = PodioItem::filter($app, array(
             'limit' => 500,
         ));
-        return $ret['items'];
+        $ret = $ret['items'];
+        $class = get_called_class();
+        foreach ($ret as $i => $item) {
+            $ret[$i] = new $class();
+            $ret[$i]->fromItem($item);
+        }
+        return $ret;
     }
 
     function dump()
