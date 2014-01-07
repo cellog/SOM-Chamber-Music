@@ -5,8 +5,7 @@ class Changes extends Podio
 {
     function fromReference($info)
     {
-        var_dump($info);
-        $this->retrieve($info[0]['items']['item_id']);
+        $this->retrieve($info[0]['items'][0]['item_id']);
     }
 
     function getStudent()
