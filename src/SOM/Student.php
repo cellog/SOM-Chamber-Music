@@ -50,7 +50,6 @@ class Student extends Podio
     {
         $id = $this->getIdNumber();
         foreach ($this->getChanges() as $change) {
-            $this->log("here");
             $change->setFieldValue('student-id-3', $id);
         }
     }

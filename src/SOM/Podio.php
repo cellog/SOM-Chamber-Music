@@ -24,14 +24,15 @@ class Podio
             return;
         }
         if (!$id) {
+            $id = $this->id;
+        }
+        if (!$id) {
             if ($exception) {
                 throw new \Exception('Unknown id');
             }
             return;
         }
-        if ($id) {
-            $this->id = $id;
-        }
+        $this->id = $id;
         if ($noretrieve) return;
         $this->item = PodioItem::get($id);
     }
