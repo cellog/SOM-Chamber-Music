@@ -43,7 +43,6 @@ class Student extends Podio
             $ret[] = $reg->getChanges();
         }
         $this->changes = array_filter($ret);
-        $this->log(var_export($this->changes, 1));
         return $this->changes;
     }
 
@@ -51,6 +50,7 @@ class Student extends Podio
     {
         $id = $this->getIdNumber();
         foreach ($this->getChanges() as $change) {
+            $this->log("here");
             $change->setFieldValue('student-id-3', $id);
         }
     }
