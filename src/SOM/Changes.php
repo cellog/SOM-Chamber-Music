@@ -19,7 +19,7 @@ class Changes extends Podio
     {
         $regid = $this->getFieldValue(50175556);
         echo '<pre>';
-        var_dump($regid);
-        return new Registration($regid);
+        var_dump($regid['item_id']);
+        return new Registration($regid['item_id']);
     }
 }
