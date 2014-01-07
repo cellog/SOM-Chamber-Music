@@ -31,6 +31,6 @@ class Changes extends Podio
     function update()
     {
         $this->getRegistration()->updateNewCallNumber();
-        $this->getStudent()->updateNewId();
+        $this->setFieldValue('student-id-3', $this->getStudent()->getIdNumber());
     }
 }
