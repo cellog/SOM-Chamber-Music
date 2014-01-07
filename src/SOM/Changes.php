@@ -11,12 +11,12 @@ class Changes extends Podio
 
     function getStudent()
     {
-        $this->retrieve();
-        
+        return $this->getRegistration()->getStudent();
     }
 
     function getRegistration()
     {
+        $this->retrieve(null, true);
         $regid = $this->getFieldValue(50175556);
         return new Registration($regid['value']['item_id']);
     }
