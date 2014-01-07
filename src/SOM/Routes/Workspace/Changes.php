@@ -6,7 +6,7 @@ class Changes extends Route
     function activate(SOM $som)
     {
         set_time_limit(0);
-        $students = Registration::getAll();
+        $registration = Registration::getAll();
         foreach ($registration as $reg) {
             if (!$reg->getChanges()) {
                 echo $reg->getName(), " has no changes<br>";
