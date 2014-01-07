@@ -10,9 +10,7 @@ class Hook extends SOM
     function __construct()
     {
         parent::__construct(true);
-        Podio::$logger->log("starting");
         if (isset($_SERVER['PATH_INFO'])) {
-            Podio::$logger->log("processing");
             $info = explode('/', $_SERVER['PATH_INFO']);
             $action = $info[1];
             $this->primary['id'] = $info[2];
@@ -22,6 +20,7 @@ class Hook extends SOM
                 $this->secondary['id'] = $info[4];
                 $this->secondary['token'] = $info[5];
             }
+            Podio::$logger->log("processing action " . $action);
             switch ($action) {
                 case 'newgroup' :
                     $this->action = 'newgroup';
@@ -305,6 +304,8 @@ class Hook extends SOM
         if ($this->action) {
             $action = $this->action;
             $this->$action($itemid, $revision);
+        } else {
+            Podio::$logger->log("no action");
         }
     }
 
