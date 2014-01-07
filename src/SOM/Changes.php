@@ -4,10 +4,6 @@ use PodioItem;
 class Changes extends Podio
 {
     const APP_ID = 6453745;
-    function fromReference($info)
-    {
-        $this->retrieve($info[0]['items'][0]['item_id']);
-    }
 
     function getStudent()
     {
