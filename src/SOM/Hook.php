@@ -260,6 +260,7 @@ class Hook extends SOM
             $inbetween = $student->getRegistrations(true);
         }
         $inbetween->getReferences();
+        $student->log("preparing registration");
         $this->prepareRegistration();
         $registration = $inbetween->getRegistrations();
         foreach ($registration as $i => $reg) {
