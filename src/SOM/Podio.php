@@ -1,6 +1,6 @@
 <?php
 namespace SOM;
-use PodioItem, PodioItemField;
+use PodioItem, PodioItemField, Podio as p;
 class Podio
 {
     const APP_ID = 0;
@@ -115,5 +115,10 @@ class Podio
     {
         echo '<pre>';
         var_dump($this->item);
+    }
+
+    function log($text)
+    {
+        p::$logger->log($text);
     }
 }
