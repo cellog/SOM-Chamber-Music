@@ -251,7 +251,6 @@ class Hook extends SOM
     {
         $this->preparePrimary();
         $student = new Student($itemid);
-        \Podio::$logger->log('why does this not appear??????');exit;
         $student->getReferences();
         $this->prepareRegistered();
         try {
