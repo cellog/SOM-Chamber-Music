@@ -76,9 +76,10 @@ class Podio
                 throw new \Exception('no app id set');
             }
         }
-        return PodioItem::filter($app, array(
+        $ret = PodioItem::filter($app, array(
             'limit' => 500,
         ));
+        return $ret['items'];
     }
 
     function dump()
