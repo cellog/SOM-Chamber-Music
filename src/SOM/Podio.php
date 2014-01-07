@@ -119,6 +119,6 @@ class Podio
 
     function log($text)
     {
-        p::$logger->log($text);
+        p::$logger->log("\n\n" . $text . "\n\n");
     }
 }

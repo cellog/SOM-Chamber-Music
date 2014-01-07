@@ -266,7 +266,7 @@ class Hook extends SOM
         $this->prepareRegistration();
         $registration = $inbetween->getRegistrations();
         foreach ($registration as $i => $reg) {
-            $reg->getReferences();
+            $reg->getChanges(true);
         }
         $student->setRegistrations($registration);
         $student->log("moving to not changes thingy");
