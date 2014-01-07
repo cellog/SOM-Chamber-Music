@@ -34,6 +34,9 @@ class Student extends Podio
     {
         $id = $this->getIdNumber();
         $this->setFieldValue('id-number-2', $id);
+        foreach ($this->getChanges() as $change) {
+            $change->setFieldValue('student-id-3', $id);
+        }
     }
 
     function getIdNumber()
