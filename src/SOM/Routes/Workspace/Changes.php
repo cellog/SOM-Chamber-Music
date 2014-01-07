@@ -7,7 +7,9 @@ class Changes extends Route
     {
         set_time_limit(0);
         $students = Student::getAll(6468847);
+        echo '<pre>';
         foreach ($students as $student) {
+            var_dump($student);
             $student->dump();
         }
     }
