@@ -20,4 +20,13 @@ class Student extends Podio
         }
         return array();
     }
+
+    function getChanges()
+    {
+        $ret = array();
+        foreach ($this->getRegistrations() as $reg) {
+            $ret[] = $reg->getChanges();
+        }
+        return $ret;
+    }
 }
