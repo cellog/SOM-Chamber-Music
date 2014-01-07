@@ -17,6 +17,9 @@ class Registration extends Podio
     {
         $this->retrieve(null, true);
         $info = $this->item->get_references($this->id);
+        if (!isset($info[0]) || !isset($info[0]['items'][0])) {
+            return false;
+        }
         $changes = new Changes;
         $changes->fromReference($info);
         return $changes;
@@ -25,5 +28,18 @@ class Registration extends Podio
     function fromReference($info)
     {
         $this->retrieve($info[0]['items'][0]['item_id']);
+    }
+
+    function getCallNumber()
+    {
+        $id = $this->getFieldValue('call-number');
+        $id = $id['value'];
+        $id += 0;
+        $id = (int) $id;
+        $id = '' . $id;
+        if (strlen($id) == 7) {
+            $id = "0$id";
+        }
+        return $id;
     }
 }

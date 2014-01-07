@@ -9,7 +9,11 @@ class Changes extends Route
         $students = Student::getAll(6468847);
         foreach ($students as $student) {
             $student->updateNewId();
-            echo $student->getIdNumber(), " done<br>";
+            if (!count($student->getChanges())) {
+                echo $student->getName(), ' ', $student->getIdNumber(), " has no changes<br>";
+            } else {
+                echo $student->getIdNumber(), " done<br>";
+            }
         }
     }
 }

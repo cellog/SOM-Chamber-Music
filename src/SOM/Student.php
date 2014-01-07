@@ -3,6 +3,7 @@ namespace SOM;
 use PodioItem;
 class Student extends Podio
 {
+    protected $changes = false;
     function getRegistrations()
     {
         $this->retrieve(null, true);
@@ -23,11 +24,15 @@ class Student extends Podio
 
     function getChanges()
     {
+        if ($this->changes !== false) {
+            return $this->changes;
+        }
         $ret = array();
         foreach ($this->getRegistrations() as $reg) {
             $ret[] = $reg->getChanges();
         }
-        return $ret;
+        $this->changes = array_filter($ret);
+        return $this->changes;
     }
 
     function updateNewId()
@@ -36,6 +41,11 @@ class Student extends Podio
         foreach ($this->getChanges() as $change) {
             $change->setFieldValue('student-id-3', $id);
         }
+    }
+
+    function getName()
+    {
+        return $this->item->title;
     }
 
     function getIdNumber()
