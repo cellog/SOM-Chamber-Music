@@ -26,6 +26,7 @@ abstract class StudentBase extends Podio
 
     function setChanges($changes)
     {
+        settype($changes, 'array');
         $this->changes = $changes;
     }
 }
