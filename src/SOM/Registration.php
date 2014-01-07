@@ -32,14 +32,10 @@ class Registration extends Podio
 
     function getCallNumber()
     {
-        $id = $this->getFieldValue('call-number');
+        $id = $this->getFieldValue(50178337);
         $id = $id['value'];
         $id += 0;
         $id = (int) $id;
-        $id = '' . $id;
-        if (strlen($id) == 7) {
-            $id = "0$id";
-        }
-        return $id;
+        return "$id";
     }
 }
