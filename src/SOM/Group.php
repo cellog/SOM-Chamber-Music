@@ -13,7 +13,7 @@ class Group extends StudentBase
             if ($reference['field']['field_id'] == 50176892) {
                 $ret = array();
                 foreach ($reference['items'] as $item) {
-                    $ret[] = new Registration($reference['items'][0]['item_id'], $noretrieve);
+                    $ret[] = new Registration($item['item_id'], $noretrieve);
                 }
                 return $ret;
             }
