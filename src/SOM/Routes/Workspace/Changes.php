@@ -8,10 +8,10 @@ class Changes extends Route
         set_time_limit(0);
         $students = Registration::getAll();
         foreach ($registration as $reg) {
-            $reg->updateNewCallNumber();
             if (!$reg->getChanges()) {
                 echo $reg->getName(), " has no changes<br>";
             } else {
+                $reg->getChanges()->update();
                 echo $reg->getName(), " done<br>";
             }
         }

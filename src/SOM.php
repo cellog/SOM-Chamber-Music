@@ -66,7 +66,7 @@ class SOM
                          'clone' => 'SOM\\Routes\\Workspace\\Cloner',
                          'makehook' => 'SOM\\Routes\\Workspace\\Hooks',
                          'importstudents' => 'SOM\\Routes\\Workspace\\Studentimport',
-                         //'changes' => 'SOM\\Routes\\Workspace\Changes',
+                         'changes' => 'SOM\\Routes\\Workspace\Changes',
                          //'updatereferences' => 'SOM\\Routes\\Workspace\\Updatereferences',
                          //'test' => 'SOM\\Routes\\Test',
                          );
