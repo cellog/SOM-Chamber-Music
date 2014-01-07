@@ -1,6 +1,6 @@
 <?php
 namespace SOM;
-use PodioItem, PodioItemField, Podio as p;
+use PodioItem, PodioItemField, Podio as p, PodioLogger;
 class Podio
 {
     const APP_ID = 0;
@@ -119,6 +119,9 @@ class Podio
 
     function log($text)
     {
+        if (!p::$logger) {
+            p::$logger = new PodioLogger();
+        }
         p::$logger->log("\n\n" . $text . "\n\n");
     }
 }

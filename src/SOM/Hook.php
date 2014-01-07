@@ -251,25 +251,22 @@ class Hook extends SOM
     {
         $this->preparePrimary();
         $student = new Student($itemid);
+        \Podio::$logger->log('why does this not appear??????');exit;
         $student->getReferences();
-        $student->log("moving to registered thingy");
         $this->prepareRegistered();
         try {
             $inbetween = $student->getRegistrations(true);
         } catch (\Exception $e) {
-            $student->log("moving to not registered thingy");
             $this->prepareNotRegistered();
             $inbetween = $student->getRegistrations(true);
         }
         $inbetween->getReferences();
-        $student->log("moving to not registration thingy");
         $this->prepareRegistration();
         $registration = $inbetween->getRegistrations();
         foreach ($registration as $i => $reg) {
             $reg->getChanges(true);
         }
         $student->setRegistrations($registration);
-        $student->log("moving to not changes thingy");
         $this->prepareChanges();
         $student->update();
     }
