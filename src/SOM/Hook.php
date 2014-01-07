@@ -266,6 +266,7 @@ class Hook extends SOM
             $reg->getChanges(true);
         }
         $student->setRegistrations($registration);
+        $student->log("preparing changes");
         $this->prepareChanges();
         $student->update();
     }
