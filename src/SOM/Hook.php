@@ -280,22 +280,20 @@ class Hook extends SOM
 // http://chiaraquartet.net/SOM-Chamber-Music/hook.php/updategroup/6468849/0d4170fb05fa4de6aabd4abc8fe1e4e6/6468847/15ef97af8ba2472d8db44cabee3db5f4
     function registrategroup($itemid)
     {
-        $this->log("STARTING");
         $this->preparePrimary();
-        $this->log("getting group");
         $group = new Group($itemid);
-        $this->log("getting references");
+        $group->log("getting references");
         $group->getReferences();
         $this->prepareRegistered();
-        $this->log("getting registration");
+        $group->log("getting registration");
         $registration = $group->getRegistrations();
         foreach ($registration as $i => $reg) {
-            $this->log("getting registration change");
+            $group->log("getting registration change");
             $reg->getChanges(true);
         }
         $group->setRegistrations($registration);
         $this->prepareChanges();
-        $this->log("updating");
+        $group->log("updating");
         $group->update();
     }
 
