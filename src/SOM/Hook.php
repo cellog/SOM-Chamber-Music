@@ -311,6 +311,7 @@ class Hook extends SOM
             $change->getStudent();
         }
         $this->prepareChanges();
+        $change->log("here");
         $change->update();
     }
 
