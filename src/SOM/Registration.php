@@ -4,7 +4,7 @@ use PodioItem;
 class Registration extends Podio
 {
     protected $changes = false;
-    const APP_ID = 50394170;
+    const APP_ID = 6455277;
     function getStudent()
     {
         $this->retrieve(null, true);
