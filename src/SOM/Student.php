@@ -46,7 +46,7 @@ class Student extends Podio
         $id += 0;
         $id = (int) $id;
         $id = '' . $id;
-        if (strlen($id) == 8) {
+        if (strlen($id) == 7) {
             $id = "0$id";
         }
         return $id;
