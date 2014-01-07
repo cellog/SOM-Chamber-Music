@@ -5,7 +5,11 @@ class Changes extends Route
 {
     function activate(SOM $som)
     {
-        $reg = new Student(106446250);
-        $reg->updateNewId();
+        set_time_limit(0);
+        Student::$App == 6468847;
+        $students = Student::getAll();
+        foreach ($students as $student) {
+            $student->dump();
+        }
     }
 }

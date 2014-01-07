@@ -73,8 +73,8 @@ class Podio
         if (!$app) {
             if (static::APP_ID) {
                 $app = static::APP_ID;
-            } elseif (self::$App) {
-                $app = self::$App;
+            } elseif (static::$App) {
+                $app = static::$App;
             } else {
                 throw new \Exception('no app id set');
             }

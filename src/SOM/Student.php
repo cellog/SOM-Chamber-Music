@@ -3,6 +3,7 @@ namespace SOM;
 use PodioItem;
 class Student extends Podio
 {
+    static $App;
     function getRegistrations()
     {
         $this->retrieve(null, true);
@@ -50,5 +51,10 @@ class Student extends Podio
             $id = "0$id";
         }
         return $id;
+    }
+
+    function dump()
+    {
+        echo $this->getIdNumber() . '<br>';
     }
 }
