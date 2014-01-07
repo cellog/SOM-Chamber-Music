@@ -6,6 +6,6 @@ class Changes extends Route
     function activate(SOM $som)
     {
         $reg = new Registration(108764955);
-        $reg->getChanges()->getStudent()->dump();
+        foreach($reg->getChanges()->getStudent()->getRegistrations() as $r) $r->dump();
     }
 }

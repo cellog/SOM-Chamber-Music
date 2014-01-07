@@ -8,10 +8,9 @@ class Registration extends Podio
     {
         $this->retrieve(null, true);
         $regid = $this->getFieldValue(50394170);
-        $intermediate = new Registration($regid['value']['item_id']); // dummy
-        return $intermediate;
+        $intermediate = new Registration($regid['value']['item_id']); // dummy for registered/not registered students
         $student = $intermediate->getFieldValue('student');
-        return new Student($student['value']['item_id']);
+        return new Student($student['value']['item_id']); // here is the real student
     }
 
     function getChanges()
@@ -21,5 +20,10 @@ class Registration extends Podio
         $changes = new Changes;
         $changes->fromReference($info);
         return $changes;
+    }
+
+    function fromReference($info)
+    {
+        $this->retrieve($info[0]['items'][0]['item_id']);
     }
 }
