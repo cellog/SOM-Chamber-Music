@@ -25,7 +25,7 @@ class Group extends StudentBase
     {
         $reg = $this->getRegistrations();
         foreach ($reg as $r) {
-            $r->update();
+            $r->updateNewCallNumber();
         }
     }
 }

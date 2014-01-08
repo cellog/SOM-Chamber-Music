@@ -9,7 +9,7 @@ class Podio
     protected $references = false;
     function __construct($id = null, $noretrieve = false)
     {
-        $this->retrieve($id);
+        $this->retrieve($id, false, $noretrieve);
     }
 
     function fromItem(PodioItem $item)

@@ -6,6 +6,7 @@ class Registration extends Podio
     protected $changes = false;
     protected $intermediate = false;
     protected $student = false;
+    protected $registeredclass = false;
     const APP_ID = 6455277;
     function getStudent($noretrieve = false)
     {
@@ -13,16 +14,33 @@ class Registration extends Podio
             return $this->student;
         }
         $this->retrieve(null, true);
-        if (!$this->intermediate) {
-            $regid = $this->getFieldValue(50394170);
-            $intermediate = new Registration($regid['value']['item_id'], $noretrieve); // dummy for registered/not registered students
-            $this->intermediate = $intermediate;
-            if ($noretrieve) return;
-        } else {
-            $intermediate = $this->intermediate;
+        
+        $intermediate = $this->getRegisteredStudent();
+        if ($noretrieve) return;
+        return $this->student = $intermediate->getStudent($noretrieve);
+    }
+
+    function isStudentRegistered()
+    {
+        $this->retrieve(null, true);
+        $student = $this->getFieldValue('student');
+        return $student['app']['app_id'] == 6484199;
+    }
+
+    function getRegisteredStudent($noretrieve = false)
+    {
+        if ($this->intermediate) {
+            return $this->intermediate;
         }
-        $student = $intermediate->getFieldValue('student');
-        return $this->student = new Student($student['value']['item_id'], $noretrieve); // here is the real student
+        $this->retrieve(null, true);
+        if ($this->isStudentRegistered()) {
+            $class = __NAMESPACE__ . '\\RegisteredStudent';
+        } else {
+            $class = __NAMESPACE__ . '\\UnregisteredStudent';
+        }
+        $regid = $this->getFieldValue(50394170);
+        $this->intermediate = new $class($regid['value']['item_id'], $noretrieve);
+        return $this->intermediate;
     }
 
     function getRegistrations()
@@ -64,13 +82,23 @@ class Registration extends Podio
         $id = $this->getCallNumber();
         $change = $this->getChanges();
         if ($change) {
-            $change->setFieldValue(51102122, $id);
+            $change->setNewClass($id);
+        }
+    }
+
+    function updateCurrentClass()
+    {
+        $currentclass = $this->intermediate->getCurrentClass();
+        $change = $this->getChanges();
+        if ($change) {
+            $change->setCurrentClass($currentclass);
         }
     }
 
     function update()
     {
         $this->updateNewCallNumber();
+        $this->updateCurrentClass();
     }
 
     function getCallNumber()

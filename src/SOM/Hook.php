@@ -105,6 +105,12 @@ class Hook extends SOM
                                          'app_token' => '99b8aae086544bb29c729a16d46bf4d4'));
     }
 
+    function prepareNumbers()
+    {
+        Podio::authenticate('app', array('app_id' => 6454935,
+                                         'app_token' => '8991cd6ce353489e8327fb862bf2eaed'));
+    }
+
     function retrieveMembers($itemid)
     {
         // primary is Chamber Groups app
@@ -277,6 +283,12 @@ class Hook extends SOM
         $this->prepareRegistration();
         $registration = new Registration($itemid);
         $registration->getChanges(true);
+        if ($registration->isRegisteredStudent()) {
+            $this->prepareRegistered();
+        } else {
+            $this->prepareNotRegistered();
+        }
+        $registration->getRegisteredStudent();
         $this->prepareChanges();
         $registration->update();
     }
@@ -301,14 +313,13 @@ class Hook extends SOM
         $this->prepareChanges();
         $change = new Changes($itemid);
         $this->prepareRegistration();
-        $change->getRegistration();
-        $this->prepareRegistered();
-        try {
-            $change->getStudent(true);
-        } catch (\Exception $e) {
+        $reg = $change->getRegistration();
+        if ($reg->isRegisteredStudent()) {
+            $this->prepareRegistered();
+        } else {
             $this->prepareNotRegistered();
-            $change->getStudent(true);
         }
+        $reg->getRegisteredStudent();
         $this->preparePrimary();
         $change->getStudent();
         $this->prepareChanges();
