@@ -23,7 +23,7 @@ class Registration extends Podio
     function isRegisteredStudent()
     {
         $this->retrieve(null, true);
-        $student = $this->getFieldValue('student');
+        $student = $this->getFieldValue('raw-registration');
         $this->log(var_export($student, 1));
         return $student['app']['app_id'] == 6484199;
     }
