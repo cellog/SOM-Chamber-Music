@@ -20,7 +20,7 @@ class Registration extends Podio
         return $this->student = $intermediate->getStudent($noretrieve);
     }
 
-    function isStudentRegistered()
+    function isRegisteredStudent()
     {
         $this->retrieve(null, true);
         $student = $this->getFieldValue('student');
@@ -33,7 +33,7 @@ class Registration extends Podio
             return $this->intermediate;
         }
         $this->retrieve(null, true);
-        if ($this->isStudentRegistered()) {
+        if ($this->isRegisteredStudent()) {
             $class = __NAMESPACE__ . '\\RegisteredStudent';
         } else {
             $class = __NAMESPACE__ . '\\UnregisteredStudent';
