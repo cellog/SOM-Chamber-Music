@@ -24,8 +24,7 @@ class Registration extends Podio
     {
         $this->retrieve(null, true);
         $student = $this->getFieldValue('raw-registration');
-        $this->log(var_export($student, 1));
-        return $student['app']['app_id'] == 6484199;
+        return $student['value']['app']['app_id'] == 6484199;
     }
 
     function getRegisteredStudent($noretrieve = false)
