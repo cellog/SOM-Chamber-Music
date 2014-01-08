@@ -15,7 +15,7 @@ class RegisteredStudent extends Podio
         $this->retrieve(null, true);
         $course = $this->getFieldValue('registered-for-course-2');
         $number = $this->getFieldValue('call-number-2');
-        $this->classname = $course['value']['title'] . ' (' . $number['value'] . ')';
+        $this->classname = $course['value']['title'] . ' (' . ((int) $number['value']) . ')';
         return $this->classname;
     }
 
