@@ -77,7 +77,7 @@ class Podio
         } else {
             PodioItemField::update($this->id, $fieldname, is_array($values) ?
                                    array(array('value' => $values[0])) :
-                                   array(array('value' => $values)));
+                                   array(array('value' => $values)), array('hook' => false));
         }
     }
 
