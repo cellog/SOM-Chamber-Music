@@ -73,7 +73,7 @@ class Podio
         $field = $this->getField($fieldname);
         if ($field) {
             $field->set_value($values);
-            $field->save();
+            $field->save(array('hook' => false));
         } else {
             PodioItemField::update($this->id, $fieldname, is_array($values) ?
                                    array(array('value' => $values[0])) :
