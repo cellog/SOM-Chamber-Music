@@ -86,6 +86,7 @@ class Studentimport extends Route
         $field2 = PodioAppField::get(self::ID2, self::FIELD2);
         $field3 = PodioAppField::get(self::ATT_ID, self::ATT_FIELD);
         $field4 = PodioAppField::get(self::REH_ID, self::REH_FIELD);
+        // TODO: add syncing up for student IDs field
         
         PodioAppField::update(self::ID, self::FIELD, $this->getConfig($field));
         PodioAppField::update(self::ID2, self::FIELD2, $this->getConfig($field2));
