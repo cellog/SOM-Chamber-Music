@@ -81,6 +81,12 @@ class Hook extends SOM
                                          'app_token' => $this->secondary['token']));
     }
 
+    function prepareStudentIDs()
+    {
+        Podio::authenticate('app', array('app_id' => 6618817,
+                                         'app_token' => '1f0496f7e57f4d71826a407f6bddfa56'));
+    }
+
     function prepareRegistration()
     {
         Podio::authenticate('app', array('app_id' => 6455277,
@@ -257,7 +263,7 @@ class Hook extends SOM
 
     function updatestudent($itemid)
     {
-        $this->preparePrimary();
+        $this->prepareStudentIDs();
         $student = new Student($itemid);
         $student->getReferences();
         $this->prepareRegistered();
@@ -320,7 +326,7 @@ class Hook extends SOM
             $this->prepareNotRegistered();
         }
         $reg->getRegisteredStudent();
-        $this->preparePrimary();
+        $this->prepareStudentIDs();
         $change->getStudent();
         $this->prepareChanges();
         $change->update();

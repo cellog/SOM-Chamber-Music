@@ -3,6 +3,7 @@ namespace SOM;
 use PodioItem;
 class Student extends StudentBase
 {
+    const APP_ID = 6618817;
     function getRegistrations($noretrieve = false)
     {
         if ($this->registrations) {
@@ -30,7 +31,7 @@ class Student extends StudentBase
     {
         $id = $this->getIdNumber();
         foreach ($this->getChanges() as $change) {
-            $change->setFieldValue('student-id-3', $id);
+            $change->setFieldValue('id-2', $id);
         }
     }
 
