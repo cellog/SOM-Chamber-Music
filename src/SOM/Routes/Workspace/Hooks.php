@@ -30,6 +30,12 @@ class Hooks extends Route
             throw new \Exception('Invalid Request');
         }
 
+        echo "Installing create student hook for setting ID numbers: <br><strong>", $newgroup,
+             "</strong><br><pre>";
+        PodioHook::create('app', $students->app_id, array('url' => 'http://chiaraquartet.net/SOM-Chamber-Music/hook.php/newstudent',
+                                                          'type' => 'item.create'));
+        echo "</pre>done<br>";
+
         $newgroup = Hook::prepareUrl('newgroup', $chambergroups,
                                      $_POST['chamber'], $students,
                                      $_POST['student']);
