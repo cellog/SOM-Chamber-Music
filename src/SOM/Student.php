@@ -35,6 +35,15 @@ class Student extends StudentBase
         }
     }
 
+    function saveNew($id)
+    {
+        PodioItem::create(self::APP_ID, array('fields' =>
+                                              array(
+                                                        'student' => $id,
+                                                        'id-2' => 1
+                                                   )), array('hook' => false));
+    }
+
     function update()
     {
         $this->updateNewId();

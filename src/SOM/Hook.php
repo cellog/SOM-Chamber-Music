@@ -146,6 +146,13 @@ class Hook extends SOM
         $this->markStudentActive($member, false);
     }
 
+    function newstudent($itemid)
+    {
+        $this->prepareStudentIDs();
+        $student = new Student();
+        $student->saveNew($itemid);
+    }
+
     function newgroup($itemid)
     {
         // primary is Chamber Groups app
