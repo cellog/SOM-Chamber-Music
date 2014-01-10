@@ -39,7 +39,7 @@ class Student extends StudentBase
     {
         PodioItem::create(self::APP_ID, array('fields' =>
                                               array(
-                                                        'student' => $id,
+                                                        'student' => (int) $id,
                                                         'id-2' => 1
                                                    )), array('hook' => false));
     }
