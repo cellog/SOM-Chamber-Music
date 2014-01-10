@@ -88,10 +88,10 @@ class Registration extends Podio
 
     function updateStudentID()
     {
-        $id = $this->getIdNumber();
+        $id = $this->getIDNumber();
         $change = $this->getChanges();
         if ($change) {
-            $change->setNewClass($id);
+            $change->setIDNumber($id);
         }
     }
 
