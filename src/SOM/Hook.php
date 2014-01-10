@@ -333,8 +333,6 @@ class Hook extends SOM
             $this->prepareNotRegistered();
         }
         $reg->getRegisteredStudent();
-        $this->prepareStudentIDs();
-        $change->getStudent();
         $this->prepareChanges();
         $change->update();
     }

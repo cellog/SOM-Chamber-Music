@@ -76,10 +76,19 @@ class Registration extends Podio
     {
         $this->changes = $changes;
     }
-    
+
     function updateNewCallNumber()
     {
         $id = $this->getCallNumber();
+        $change = $this->getChanges();
+        if ($change) {
+            $change->setNewClass($id);
+        }
+    }
+
+    function updateStudentID()
+    {
+        $id = $this->getIdNumber();
         $change = $this->getChanges();
         if ($change) {
             $change->setNewClass($id);
@@ -99,6 +108,20 @@ class Registration extends Podio
     {
         $this->updateNewCallNumber();
         $this->updateCurrentClass();
+        $this->updateStudentID();
+    }
+
+    function getIdNumber()
+    {
+        $id = $this->getFieldValue('calculation');
+        $id = $id['value'];
+        $id += 0;
+        $id = (int) $id;
+        $id = '' . $id;
+        if (strlen($id) == 7) {
+            $id = "0$id";
+        }
+        return $id;
     }
 
     function getCallNumber()
