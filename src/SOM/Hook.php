@@ -7,8 +7,10 @@ class Hook extends SOM
     protected $primary = array();
     protected $secondary = array();
     protected $action = false;
+    protected $tokens = array();
     function __construct()
     {
+        $this->tokens = json_decode(file_get_contents($_SERVER['PWD'] . '/podiotokens.json'), 1);
         parent::__construct(true);
         if (isset($_SERVER['PATH_INFO'])) {
             $info = explode('/', $_SERVER['PATH_INFO']);
@@ -84,37 +86,37 @@ class Hook extends SOM
     function prepareStudentIDs()
     {
         Podio::authenticate('app', array('app_id' => 6618817,
-                                         'app_token' => '1f0496f7e57f4d71826a407f6bddfa56'));
+                                         'app_token' => $this->tokens['studentids']));
     }
 
     function prepareRegistration()
     {
         Podio::authenticate('app', array('app_id' => 6455277,
-                                         'app_token' => '94134bebd883486d89bf21b304fa47a4'));
+                                         'app_token' => $this->tokens['registration']));
     }
 
     function prepareNotRegistered()
     {
         Podio::authenticate('app', array('app_id' => 6484201,
-                                         'app_token' => '6af09daee63944ccbae504e07dc0fa3f'));
+                                         'app_token' => $this->tokens['notregistered']));
     }
 
     function prepareRegistered()
     {
         Podio::authenticate('app', array('app_id' => 6484199,
-                                         'app_token' => '40c6b0aa766c4d70a58c5194a4c72b55'));
+                                         'app_token' => $this->tokens['registered']));
     }
 
     function prepareChanges()
     {
         Podio::authenticate('app', array('app_id' => 6453745,
-                                         'app_token' => '99b8aae086544bb29c729a16d46bf4d4'));
+                                         'app_token' => $this->tokens['changes']));
     }
 
     function prepareNumbers()
     {
         Podio::authenticate('app', array('app_id' => 6454935,
-                                         'app_token' => '8991cd6ce353489e8327fb862bf2eaed'));
+                                         'app_token' => $this->tokens['numbers']));
     }
 
     function retrieveMembers($itemid)
