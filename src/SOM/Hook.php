@@ -62,6 +62,25 @@ class Hook extends SOM
         }
     }
 
+    function updateStudentAppInfo($appid, $token)
+    {
+        $this->tokens['students']['appid'] = (int) $appid;
+        $this->tokens['students']['token'] = (string) $token;
+        $this->saveTokens();
+    }
+
+    function updateChamberAppInfo($appid, $token)
+    {
+        $this->tokens['chamber']['appid'] = (int) $appid;
+        $this->tokens['chamber']['token'] = (string) $token;
+        $this->saveTokens();
+    }
+
+    protected function saveTokens()
+    {
+        file_put_contents('/home/chiaraqu/podiotoken.json', json_encode($this->tokens));
+    }
+
     static function prepareUrl($action, PodioApp $primary, $primarytoken, PodioApp $secondary = null, $secondarytoken = null)
     {
         return 'http://chiaraquartet.net/SOM-Chamber-Music/hook.php/' . $action . '/' .
@@ -71,17 +90,16 @@ class Hook extends SOM
             );
     }
 
-    function preparePrimary()
+    function prepareStudents()
     {
-        Podio::authenticate('app', array('app_id' => $this->primary['id'],
-                                         'app_token' => $this->primary['token']));
+        Podio::authenticate('app', array('app_id' => $this->tokens['students']['appid'],
+                                         'app_token' => $this->tokens['students']['token']));
     }
 
-    function prepareSecondary()
+    function prepareChamber()
     {
-        Podio::shutdown();
-        Podio::authenticate('app', array('app_id' => $this->secondary['id'],
-                                         'app_token' => $this->secondary['token']));
+        Podio::authenticate('app', array('app_id' => $this->tokens['chamber']['appid'],
+                                         'app_token' => $this->tokens['chamber']['token']));
     }
 
     function prepareStudentIDs()
@@ -122,9 +140,7 @@ class Hook extends SOM
 
     function retrieveMembers($itemid)
     {
-        // primary is Chamber Groups app
-        // secondary is Students app
-        $this->preparePrimary();
+        $this->prepareChamber();
         $group = PodioItem::get($itemid);
         $members = $group->field('members');
         $groupid = $group->item_id;
@@ -132,7 +148,7 @@ class Hook extends SOM
         foreach ($members->values as $value) {
             $ids[] = $value['value']['item_id'];
         }
-        $this->prepareSecondary();
+        $this->prepareStudents();
         return array($groupid, $ids);
     }
 
@@ -152,14 +168,12 @@ class Hook extends SOM
     function newstudent($itemid)
     {
         $this->prepareStudentIDs();
-        $student = new Student();
+        $student = new StudentID();
         $student->saveNew($itemid);
     }
 
     function newgroup($itemid)
     {
-        // primary is Chamber Groups app
-        // secondary is Students app
         $ret = $this->retrieveMembers($itemid);
         $groupid = $ret[0];
         $ids = $ret[1];
@@ -210,7 +224,7 @@ class Hook extends SOM
 
     function updategroup($itemid, $revisionid)
     {
-        $this->preparePrimary();
+        $this->prepareChamber();
         $diffs = PodioItemDiff::get_for($itemid, $revisionid - 1, $revisionid);
         foreach ($diffs as $diff) {
             if ($diff->label == 'Members') {
@@ -231,9 +245,7 @@ class Hook extends SOM
                 $remove = array_keys($ids);
             }
         }
-        // primary is Chamber Groups app
-        // secondary is Students app
-        $this->prepareSecondary();
+        $this->prepareStudents();
 
         foreach ($add as $id) {
             $member = PodioItem::get($id);
@@ -274,7 +286,7 @@ class Hook extends SOM
     function updatestudent($itemid)
     {
         $this->prepareStudentIDs();
-        $student = new Student($itemid);
+        $student = new StudentID($itemid);
         $student->getReferences();
         $this->prepareRegistered();
         try {
@@ -311,7 +323,7 @@ class Hook extends SOM
 
     function registrategroup($itemid)
     {
-        $this->preparePrimary();
+        $this->prepareChamber();
         $group = new Group($itemid);
         $group->getReferences();
         $this->prepareRegistered();

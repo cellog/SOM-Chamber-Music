@@ -3,25 +3,21 @@ namespace SOM\Routes\Workspace;
 use SOM\Route, SOM, SOM\Hook, PodioItem, PodioApp;
 class Studentimport extends Route
 {
-    // not registered
-    const ID = '6484201';
-    const FIELD = '50394180';
-
-    // registered
-    const ID2 = '6484199';
-    const FIELD2 = '50394162';
+    // student ids
+    const ID = 6618817;
+    const FIELD = 51410137;
     
     // attendance
-    const ATT_ID = '6505430';
-    const ATT_FIELD = '50553204';
+    const ATT_ID = 6505430;
+    const ATT_FIELD = 50553204;
 
     // rehearsal class
-    const REH_ID = '6521127';
-    const REH_FIELD = '50670796';
+    const REH_ID = 6521127;
+    const REH_FIELD = 50670796;
 
     // registration
-    const REG_ID = '6455277';
-    const REG_FIELD = '50176892';
+    const REG_ID = 6455277;
+    const REG_FIELD = 50176892;
 
     protected $studentapp;
     protected $oldspaceid;
@@ -60,10 +56,18 @@ class Studentimport extends Route
         // download all existing students
         echo "downloading students...<br>";
         $students = PodioItem::filter($oldapp->app_id, array('limit' => 500));
-        
+
+        // change the app that the student ids to point to new students thing
+        $field = PodioAppField::get(self::ID, self::FIELD);
+        PodioAppField::update(self::ID, self::FIELD, $this->getConfig($field));
+
+        $container = new Student();
         // prepare to upload
         foreach ($students['items'] as $student) {
             echo "Importing Student <strong>", $student->fields[0]->humanized_value(), '</strong><br>';
+            // retrieve the student ID record for this student
+            $container->fromItem($student);
+            $studentid = $container->getStudentID();
             // convert to new app, remove groups and set as inactive
             $student->app = $newapp;
             // reset item id
@@ -79,17 +83,15 @@ class Studentimport extends Route
                 }
             }
             $student->fields = $fields;
-            $student->save();
+            $info = $student->save();
+            $student->id = $info['item_id'];
+            echo "Updating Student ID link<br>";
+            $studentid->updateStudent($container);
         }
         echo "done, now updating references<br>";
-        $field = PodioAppField::get(self::ID, self::FIELD);
-        $field2 = PodioAppField::get(self::ID2, self::FIELD2);
         $field3 = PodioAppField::get(self::ATT_ID, self::ATT_FIELD);
         $field4 = PodioAppField::get(self::REH_ID, self::REH_FIELD);
-        // TODO: add syncing up for student IDs field
         
-        PodioAppField::update(self::ID, self::FIELD, $this->getConfig($field));
-        PodioAppField::update(self::ID2, self::FIELD2, $this->getConfig($field2));
         PodioAppField::update(self::ATT_ID, self::ATT_FIELD, $this->getConfig($field3, false));
         PodioAppField::update(self::REH_ID, self::REH_FIELD, $this->getConfig($field4, false));
         echo 'Updated references in the Chamber Music Admin and Chamber Music Setup workspace to point to the new workspace';

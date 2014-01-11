@@ -26,6 +26,6 @@ class RegisteredStudent extends Podio
         }
         $this->retrieve(null, true);
         $student = $this->getFieldValue('student');
-        return $this->student = new Student($student['value']['item_id'], $noretrieve);
+        return $this->student = new StudentID($student['value']['item_id'], $noretrieve);
     }
 }
