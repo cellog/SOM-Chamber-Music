@@ -11,7 +11,6 @@ class Hook extends SOM
     function __construct()
     {
         $this->tokens = json_decode(file_get_contents('/home/chiaraqu/podiotokens.json'), 1);
-        Podio::$logger->log(var_export($this->tokens, 1));
 
         parent::__construct(true);
         if (isset($_SERVER['PATH_INFO'])) {
