@@ -47,4 +47,12 @@ class Changes extends Podio
     {
         $this->setFieldValue(51102121, $number);
     }
+
+    function saveNew($regid)
+    {
+        PodioItem::create(self::APP_ID, array('fields' =>
+                                              array(
+                                                        'student' => (int) $id
+                                                   )));
+    }
 }

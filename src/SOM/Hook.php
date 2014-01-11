@@ -49,6 +49,9 @@ class Hook extends SOM
                 case 'updatechange' :
                     $this->action = 'updatechange';
                     break;
+                case 'newregistration' :
+                    $this->action = 'newregistration';
+                    break;
                 case 'updateregistration' :
                     $this->action = 'updateregistration';
                     break;
@@ -304,6 +307,13 @@ class Hook extends SOM
         $student->setRegistrations($registration);
         $this->prepareChanges();
         $student->update();
+    }
+
+    function newregistration($itemid)
+    {
+        $this->prepareChanges();
+        $change = new Changes();
+        $change->saveNew($itemid);
     }
 
     function updateregistration($itemid)
