@@ -52,7 +52,8 @@ class Changes extends Podio
     {
         PodioItem::create(self::APP_ID, array('fields' =>
                                               array(
-                                                        'student' => (int) $regid
+                                                        'student' => (int) $regid,
+                                                        'type' => 2,
                                                    )));
     }
 }
