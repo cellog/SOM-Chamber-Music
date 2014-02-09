@@ -1,3 +1,6 @@
 [submodule "podio"]
 	path = podio
 	url = https://github.com/podio/podio-php.git
+[submodule "chiara"]
+	path = chiara
+	url = https://github.com/cellog/ChiaraPodioPHP.git
