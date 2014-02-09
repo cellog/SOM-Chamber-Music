@@ -4,6 +4,14 @@ function myAutoload($class)
     if (0 !== strpos($class, 'SOM')) return;
     include __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
 }
+function ChiaraAutoload($class)
+{
+    static $d = false;
+    if (!$d) $d = dirname(__DIR__) . '/chiara/';
+    if (strpos($class, 'Chiara\\') === 0) {
+        include $d . str_replace('\\', '/', $class) . '.php';
+    }
+}
 $GLOBALS['___PODIO_MAP'] =
 array(
   'Podio' => 'lib/Podio.php',
@@ -85,4 +93,5 @@ function Podio_autoload($class)
     include dirname(__DIR__) . '/podio/' . $GLOBALS['___PODIO_MAP'][$class];
 }
 spl_autoload_register('myAutoload');
+spl_autoload_register('ChiaraAutoload');
 spl_autoload_register('Podio_autoload');
