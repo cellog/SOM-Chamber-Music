@@ -1,25 +1,19 @@
 <?php
-include 'autoload.php';
-$tokenmanager = new Chiara\AuthManager\File(__DIR__ . '/podiotokens.json', __DIR__ . '/somchamber.json', true);
-Chiara\AuthManager::setAuthMode(Chiara\AuthManager::APP);
-Chiara\AuthManager::setTokenManager($tokenmanager);
+include dirname(__DIR__) . '/autoload.php';
 
-foreach (array(
-    array(6618817,'StudentIDs'),
-    array(6455277,'Registration'),
-    array(6484201,'NotRegistered'),
-    array(6484199,'Registered'),
-    array(6454935,'Numbers'),
-    array(6453745,'Changes'),
-    array(6468847,'Students'),
-    array(6468849,'Chamber'),
-) as $appinfo) {
-    list ($appid, $class) = $appinfo;
-    $app = new Chiara\PodioApp($appid);
-    $structure = new Chiara\PodioApplicationStructure;
-    $structure->structureFromApp($app);
-    $structure->generateStructureClass($app->space_id, $appid, $class, 'SOM\Model', __DIR__ . '/SOM/Model/' . $class . '.php');
-    $item = new Chiara\PodioItem(array('app_id' => $appid));
-    $item->generateClass($class, $appid, 'SOM\Model\\' . $class, 'SOM\Model\Item', array(), __DIR__ . '/SOM/Model/Item/' . $class .
-                         '.php');
+// format {"client":"your-client-id","token":"your api token"}
+$config = json_decode(file_get_contents(__DIR__ . '/mylocaltest.json'), 1);
+
+$tokenmanager = new Chiara\AuthManager\File(__DIR__ . '/localtokens.json', __DIR__ . '/mylocaltest.json', true);
+Chiara\AuthManager::setTokenManager($tokenmanager);
+Chiara\AuthManager::attemptPasswordLogin();
+//Chiara\AuthManager::attemptServerLogin('http://localhost' . $_SERVER['PHP_SELF'], isset($_GET['logout']),
+//                                       isset($_GET['code']) ? $_GET['code'] : false);
+
+// This example shows how helper classes can be generated for a specific subset of workspaces
+// in 3 lines of code (the 4th is just for informational purposes)
+$myorganizations = Chiara\PodioOrganization::mine();
+foreach ($myorganizations['unledu']->workspaces->matching('^SOM: Chamber Music') as $space) {
+    $ret = $space->generateClasses(__DIR__ . '/SOM/Model', 'SOM\Model');
+    echo $space, " processed<br>\n";
 }
