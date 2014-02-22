@@ -2,17 +2,22 @@
 class SOM
 {
     private $org_id = 136384;
-    private $apikey;
-    private $appid;
+    private $tokenmanager;
     protected $key;
     function __construct($nologin = false)
     {
         $user = explode('/', $_SERVER['DOCUMENT_ROOT']);
         $user = $user[2];
-        $data = json_decode(file_get_contents('/home/' . $user . '/somchamber.json'));
-        $this->apikey = $data->key;
-        $this->appid = $data->client;
-        Podio::setup($this->appid, $this->apikey);
+        if (file_exists('/home/' . $user . '/somchamber.json')) {
+            $clientfile = '/home/' . $user . '/somchamber.json';
+        } else {
+            // local debugging
+            $clientfile = __DIR__ . '/somchamber.json';
+        }
+        $this->tokenmanager = new Chiara\AuthManager\File(__DIR__ . '/podiotokens.json', __DIR__ . '/somchamber.json', true);
+        Chiara\AuthManager::setAuthMode(Chiara\AuthManager::USER);
+        Chiara\AuthManager::setTokenManager($this->tokenmanager);
+        Chiara\AuthManager::prepareRemote();
         if (!$nologin) {
             if (!isset($_GET['logout']) && (Podio::$oauth->access_token || $this->authenticate())) {
                 $this->key = Podio::$oauth->access_token;
