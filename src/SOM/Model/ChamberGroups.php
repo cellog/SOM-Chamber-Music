@@ -24,4 +24,20 @@ class ChamberGroups extends \Chiara\PodioItem
     {
     }
     */
+
+    function updateMemberActive()
+    {
+        foreach ($this->fields['members'] as $member) {
+            $member->fields['active'] = 'Yes';
+        }
+    }
+
+    function updateMemberGroups()
+    {
+        foreach ($this->fields['members'] as $member) {
+            if (!$member->inGroup($this)) {
+                $member->fields['groups'][] = $this;
+            }
+        }
+    }
 }
