@@ -25,6 +25,35 @@ class ChamberGroups extends \Chiara\PodioItem
     }
     */
 
+    function onItemCreate($params)
+    {
+        $this->updateMemberActive();
+        $this->updateMemberGroups();
+        foreach ($this->fields['members'] as $member) {
+            $member->save();
+        }
+    }
+
+    function onItemUpdate($params)
+    {
+        $diff = $this->diff($params['revision_id'] - 1);
+        if (!isset($diff['members'])) return;
+        foreach ($diff['members']->added as $member) {
+            $member->fields['active'] = 'Yes';
+            if (!$member->inGroup($this)) {
+                $members->fields['groups']->value[] = $this;
+            }
+            $member->save();
+        }
+        foreach ($diff['members']->deleted as $member) {
+            unset($members->fields['groups']->value[$this->id]);
+            if (!count($member->fields['groups'])) {
+                $member->fields['active'] = 'No';
+            }
+            $member->save();
+        }
+    }
+
     function updateMemberActive()
     {
         foreach ($this->fields['members'] as $member) {
@@ -36,7 +65,7 @@ class ChamberGroups extends \Chiara\PodioItem
     {
         foreach ($this->fields['members'] as $member) {
             if (!$member->inGroup($this)) {
-                $member->fields['groups'][] = $this;
+                $member->fields['groups']->value[] = $this;
             }
         }
     }
