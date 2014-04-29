@@ -2,7 +2,7 @@
 ini_set('display_errors',1);
 error_reporting(-1);
 include __DIR__ . '/src/autoload.php'; ?>
-    <?php echo "1";
+    <?php
 $som = new SOM; ?>
 <html>
     
