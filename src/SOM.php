@@ -14,7 +14,13 @@ class SOM
             // local debugging
             $clientfile = __DIR__ . '/somchamber.json';
         }
-        $this->tokenmanager = new Chiara\AuthManager\File(__DIR__ . '/podiotokens.json', __DIR__ . '/somchamber.json', true);
+        if (file_exists('/home/' . $user . '/podiotokens.json')) {
+            $tokenfile = '/home/' . $user . '/podiotokens.json';
+        } else {
+            // local debugging
+            $tokenfile = __DIR__ . '/podiotokens.json';
+        }
+        $this->tokenmanager = new Chiara\AuthManager\File($tokenfile, $clientfile, true);
         Chiara\AuthManager::setAuthMode(Chiara\AuthManager::USER);
         Chiara\AuthManager::setTokenManager($this->tokenmanager);
         Chiara\AuthManager::prepareRemote();
