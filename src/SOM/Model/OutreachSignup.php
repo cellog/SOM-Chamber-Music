@@ -2,7 +2,7 @@
 namespace SOM\Model;
 class OutreachSignup extends \Chiara\PodioItem
 {
-    protected $MYAPPID=6468850;
+    protected $MYAPPID=7907979;
     function __construct($info = null, $retrieve = true)
     {
         parent::__construct($info, new \SOM\Model\Structure\OutreachSignup, $retrieve);

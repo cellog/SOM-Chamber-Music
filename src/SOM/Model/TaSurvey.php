@@ -2,7 +2,7 @@
 namespace SOM\Model;
 class TaSurvey extends \Chiara\PodioItem
 {
-    protected $MYAPPID=6646764;
+    protected $MYAPPID=7907981;
     function __construct($info = null, $retrieve = true)
     {
         parent::__construct($info, new \SOM\Model\Structure\TaSurvey, $retrieve);

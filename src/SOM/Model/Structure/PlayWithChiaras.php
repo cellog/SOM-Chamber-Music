@@ -2,165 +2,165 @@
 namespace SOM\Model\Structure;
 class PlayWithChiaras extends \Chiara\PodioApplicationStructure
 {
-    const APPNAME = "1737212/6498126";
+    const APPNAME = "2178086/7907974";
     protected $structure = array (
       'student' => 
       array (
         'type' => 'app',
         'name' => 'student',
-        'id' => 50499454,
+        'id' => 61298803,
         'config' => 
         array (
-          0 => 6468847,
+          0 => 7907975,
         ),
       ),
-      50499454 => 
+      61298803 => 
       array (
         'type' => 'app',
         'name' => 'student',
-        'id' => 50499454,
+        'id' => 61298803,
         'config' => 
         array (
-          0 => 6468847,
+          0 => 7907975,
         ),
-      ),
-      50499455 => 
-      array (
-        'type' => 'text',
-        'name' => 50499455,
-        'id' => 'phone-number',
-        'config' => NULL,
       ),
       'phone-number' => 
       array (
         'type' => 'text',
-        'name' => 50499455,
-        'id' => 'phone-number',
+        'name' => 'phone-number',
+        'id' => 61298804,
         'config' => NULL,
       ),
-      50499456 => 
+      61298804 => 
       array (
         'type' => 'text',
-        'name' => 50499456,
-        'id' => 'email',
+        'name' => 'phone-number',
+        'id' => 61298804,
         'config' => NULL,
       ),
       'email' => 
       array (
         'type' => 'text',
-        'name' => 50499456,
-        'id' => 'email',
+        'name' => 'email',
+        'id' => 61298805,
+        'config' => NULL,
+      ),
+      61298805 => 
+      array (
+        'type' => 'text',
+        'name' => 'email',
+        'id' => 61298805,
         'config' => NULL,
       ),
       'instrument' => 
       array (
         'type' => 'app',
         'name' => 'instrument',
-        'id' => 50499457,
+        'id' => 61298806,
         'config' => 
         array (
           0 => 6505423,
         ),
       ),
-      50499457 => 
+      61298806 => 
       array (
         'type' => 'app',
         'name' => 'instrument',
-        'id' => 50499457,
+        'id' => 61298806,
         'config' => 
         array (
           0 => 6505423,
         ),
-      ),
-      50499458 => 
-      array (
-        'type' => 'text',
-        'name' => 50499458,
-        'id' => 'composer-piece-1',
-        'config' => NULL,
       ),
       'composer-piece-1' => 
       array (
         'type' => 'text',
-        'name' => 50499458,
-        'id' => 'composer-piece-1',
+        'name' => 'composer-piece-1',
+        'id' => 61298807,
         'config' => NULL,
       ),
-      50499459 => 
+      61298807 => 
       array (
         'type' => 'text',
-        'name' => 50499459,
-        'id' => 'title-and-movements-piece-1',
+        'name' => 'composer-piece-1',
+        'id' => 61298807,
         'config' => NULL,
       ),
       'title-and-movements-piece-1' => 
       array (
         'type' => 'text',
-        'name' => 50499459,
-        'id' => 'title-and-movements-piece-1',
+        'name' => 'title-and-movements-piece-1',
+        'id' => 61298808,
         'config' => NULL,
       ),
-      50499460 => 
+      61298808 => 
       array (
-        'type' => 'duration',
-        'name' => 50499460,
-        'id' => 'approximate-length-piece-1',
+        'type' => 'text',
+        'name' => 'title-and-movements-piece-1',
+        'id' => 61298808,
         'config' => NULL,
       ),
       'approximate-length-piece-1' => 
       array (
         'type' => 'duration',
-        'name' => 50499460,
-        'id' => 'approximate-length-piece-1',
+        'name' => 'approximate-length-piece-1',
+        'id' => 61298809,
         'config' => NULL,
       ),
-      50499461 => 
+      61298809 => 
       array (
-        'type' => 'text',
-        'name' => 50499461,
-        'id' => 'composer-piece-2',
+        'type' => 'duration',
+        'name' => 'approximate-length-piece-1',
+        'id' => 61298809,
         'config' => NULL,
       ),
       'composer-piece-2' => 
       array (
         'type' => 'text',
-        'name' => 50499461,
-        'id' => 'composer-piece-2',
+        'name' => 'composer-piece-2',
+        'id' => 61298810,
         'config' => NULL,
       ),
-      50499462 => 
+      61298810 => 
       array (
         'type' => 'text',
-        'name' => 50499462,
-        'id' => 'title-and-movements-piece-2',
+        'name' => 'composer-piece-2',
+        'id' => 61298810,
         'config' => NULL,
       ),
       'title-and-movements-piece-2' => 
       array (
         'type' => 'text',
-        'name' => 50499462,
-        'id' => 'title-and-movements-piece-2',
+        'name' => 'title-and-movements-piece-2',
+        'id' => 61298811,
         'config' => NULL,
       ),
-      50499463 => 
+      61298811 => 
       array (
-        'type' => 'duration',
-        'name' => 50499463,
-        'id' => 'approximate-length-piece-2',
+        'type' => 'text',
+        'name' => 'title-and-movements-piece-2',
+        'id' => 61298811,
         'config' => NULL,
       ),
       'approximate-length-piece-2' => 
       array (
         'type' => 'duration',
-        'name' => 50499463,
-        'id' => 'approximate-length-piece-2',
+        'name' => 'approximate-length-piece-2',
+        'id' => 61298812,
+        'config' => NULL,
+      ),
+      61298812 => 
+      array (
+        'type' => 'duration',
+        'name' => 'approximate-length-piece-2',
+        'id' => 61298812,
         'config' => NULL,
       ),
       'round' => 
       array (
         'type' => 'category',
         'name' => 'round',
-        'id' => 50499464,
+        'id' => 61298813,
         'config' => 
         array (
           'options' => 
@@ -190,11 +190,11 @@ class PlayWithChiaras extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50499464 => 
+      61298813 => 
       array (
         'type' => 'category',
         'name' => 'round',
-        'id' => 50499464,
+        'id' => 61298813,
         'config' => 
         array (
           'options' => 
@@ -228,28 +228,28 @@ class PlayWithChiaras extends \Chiara\PodioApplicationStructure
       array (
         'type' => 'contact',
         'name' => 'teacher',
-        'id' => 53318915,
+        'id' => 61298814,
         'config' => 'all_users',
       ),
-      53318915 => 
+      61298814 => 
       array (
         'type' => 'contact',
         'name' => 'teacher',
-        'id' => 53318915,
+        'id' => 61298814,
         'config' => 'all_users',
-      ),
-      53318916 => 
-      array (
-        'type' => 'date',
-        'name' => 53318916,
-        'id' => 'audition-time-final-round',
-        'config' => NULL,
       ),
       'audition-time-final-round' => 
       array (
         'type' => 'date',
-        'name' => 53318916,
-        'id' => 'audition-time-final-round',
+        'name' => 'audition-time-final-round',
+        'id' => 61298815,
+        'config' => NULL,
+      ),
+      61298815 => 
+      array (
+        'type' => 'date',
+        'name' => 'audition-time-final-round',
+        'id' => 61298815,
         'config' => NULL,
       ),
     );

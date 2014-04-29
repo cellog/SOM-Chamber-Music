@@ -2,7 +2,7 @@
 namespace SOM\Model;
 class HonorsChamberfest extends \Chiara\PodioItem
 {
-    protected $MYAPPID=6498176;
+    protected $MYAPPID=7907973;
     function __construct($info = null, $retrieve = true)
     {
         parent::__construct($info, new \SOM\Model\Structure\HonorsChamberfest, $retrieve);

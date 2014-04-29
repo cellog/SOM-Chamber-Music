@@ -2,33 +2,33 @@
 namespace SOM\Model\Structure;
 class TaSurvey extends \Chiara\PodioApplicationStructure
 {
-    const APPNAME = "1737212/6646764";
+    const APPNAME = "2178086/7907981";
     protected $structure = array (
       'choose-your-group' => 
       array (
         'type' => 'app',
         'name' => 'choose-your-group',
-        'id' => 51621308,
+        'id' => 61298872,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
-      51621308 => 
+      61298872 => 
       array (
         'type' => 'app',
         'name' => 'choose-your-group',
-        'id' => 51621308,
+        'id' => 61298872,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
       'is-your-group-doing-the-teaching-artist-class-or-the-ma' => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'is-your-group-doing-the-teaching-artist-class-or-the-ma',
-        'id' => 51621309,
+        'id' => 61298873,
         'config' => 
         array (
           'options' => 
@@ -51,11 +51,11 @@ class TaSurvey extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      51621309 => 
+      61298873 => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'is-your-group-doing-the-teaching-artist-class-or-the-ma',
-        'id' => 51621309,
+        'id' => 61298873,
         'config' => 
         array (
           'options' => 

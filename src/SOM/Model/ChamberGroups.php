@@ -2,7 +2,7 @@
 namespace SOM\Model;
 class ChamberGroups extends \Chiara\PodioItem
 {
-    protected $MYAPPID=6468849;
+    protected $MYAPPID=7907978;
     function __construct($info = null, $retrieve = true)
     {
         parent::__construct($info, new \SOM\Model\Structure\ChamberGroups, $retrieve);

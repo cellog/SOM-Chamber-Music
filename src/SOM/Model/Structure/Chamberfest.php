@@ -2,141 +2,141 @@
 namespace SOM\Model\Structure;
 class Chamberfest extends \Chiara\PodioApplicationStructure
 {
-    const APPNAME = "1737212/6474712";
+    const APPNAME = "2178086/7907980";
     protected $structure = array (
       'group' => 
       array (
         'type' => 'app',
         'name' => 'group',
-        'id' => 50322205,
+        'id' => 61298860,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
-      50322205 => 
+      61298860 => 
       array (
         'type' => 'app',
         'name' => 'group',
-        'id' => 50322205,
+        'id' => 61298860,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
-      ),
-      50322206 => 
-      array (
-        'type' => 'text',
-        'name' => 50322206,
-        'id' => 'composer',
-        'config' => NULL,
       ),
       'composer' => 
       array (
         'type' => 'text',
-        'name' => 50322206,
-        'id' => 'composer',
+        'name' => 'composer',
+        'id' => 61298861,
         'config' => NULL,
       ),
-      54473144 => 
+      61298861 => 
       array (
         'type' => 'text',
-        'name' => 54473144,
-        'id' => 'when-was-your-composer-alive',
+        'name' => 'composer',
+        'id' => 61298861,
         'config' => NULL,
       ),
       'when-was-your-composer-alive' => 
       array (
         'type' => 'text',
-        'name' => 54473144,
-        'id' => 'when-was-your-composer-alive',
+        'name' => 'when-was-your-composer-alive',
+        'id' => 61298862,
         'config' => NULL,
       ),
-      50322207 => 
+      61298862 => 
       array (
         'type' => 'text',
-        'name' => 50322207,
-        'id' => 'piece',
+        'name' => 'when-was-your-composer-alive',
+        'id' => 61298862,
         'config' => NULL,
       ),
       'piece' => 
       array (
         'type' => 'text',
-        'name' => 50322207,
-        'id' => 'piece',
+        'name' => 'piece',
+        'id' => 61298863,
         'config' => NULL,
       ),
-      54473145 => 
+      61298863 => 
       array (
-        'type' => 'duration',
-        'name' => 54473145,
-        'id' => 'length-in-minutes',
+        'type' => 'text',
+        'name' => 'piece',
+        'id' => 61298863,
         'config' => NULL,
       ),
       'length-in-minutes' => 
       array (
         'type' => 'duration',
-        'name' => 54473145,
-        'id' => 'length-in-minutes',
+        'name' => 'length-in-minutes',
+        'id' => 61298864,
         'config' => NULL,
       ),
-      50322208 => 
+      61298864 => 
       array (
-        'type' => 'text',
-        'name' => 50322208,
-        'id' => 'movements',
+        'type' => 'duration',
+        'name' => 'length-in-minutes',
+        'id' => 61298864,
         'config' => NULL,
       ),
       'movements' => 
       array (
         'type' => 'text',
-        'name' => 50322208,
-        'id' => 'movements',
+        'name' => 'movements',
+        'id' => 61298865,
         'config' => NULL,
       ),
-      50322209 => 
+      61298865 => 
       array (
         'type' => 'text',
-        'name' => 50322209,
-        'id' => 'special-requests',
+        'name' => 'movements',
+        'id' => 61298865,
         'config' => NULL,
       ),
       'special-requests' => 
       array (
         'type' => 'text',
-        'name' => 50322209,
-        'id' => 'special-requests',
+        'name' => 'special-requests',
+        'id' => 61298866,
         'config' => NULL,
       ),
-      54473518 => 
+      61298866 => 
       array (
         'type' => 'text',
-        'name' => 54473518,
-        'id' => 'special-requests-conflicts-with-specific-chamberfest-da',
+        'name' => 'special-requests',
+        'id' => 61298866,
         'config' => NULL,
       ),
       'special-requests-conflicts-with-specific-chamberfest-da' => 
       array (
         'type' => 'text',
-        'name' => 54473518,
-        'id' => 'special-requests-conflicts-with-specific-chamberfest-da',
+        'name' => 'special-requests-conflicts-with-specific-chamberfest-da',
+        'id' => 61298867,
+        'config' => NULL,
+      ),
+      61298867 => 
+      array (
+        'type' => 'text',
+        'name' => 'special-requests-conflicts-with-specific-chamberfest-da',
+        'id' => 61298867,
         'config' => NULL,
       ),
       'chamberfest-program' => 
       array (
         'type' => 'app',
         'name' => 'chamberfest-program',
-        'id' => 50951243,
+        'id' => 61298868,
         'config' => 
         array (
           0 => 6558404,
         ),
       ),
-      50951243 => 
+      61298868 => 
       array (
         'type' => 'app',
         'name' => 'chamberfest-program',
-        'id' => 50951243,
+        'id' => 61298868,
         'config' => 
         array (
           0 => 6558404,
@@ -144,9 +144,9 @@ class Chamberfest extends \Chiara\PodioApplicationStructure
       ),
       'alternate-performance-informatin-if-you-are-playing-on-' => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'alternate-performance-informatin-if-you-are-playing-on-',
-        'id' => 54473146,
+        'id' => 61298869,
         'config' => 
         array (
           'options' => 
@@ -155,11 +155,11 @@ class Chamberfest extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      54473146 => 
+      61298869 => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'alternate-performance-informatin-if-you-are-playing-on-',
-        'id' => 54473146,
+        'id' => 61298869,
         'config' => 
         array (
           'options' => 
@@ -167,33 +167,33 @@ class Chamberfest extends \Chiara\PodioApplicationStructure
           ),
           'multiple' => false,
         ),
-      ),
-      54473147 => 
-      array (
-        'type' => 'date',
-        'name' => 54473147,
-        'id' => 'date-of-alternate-performance',
-        'config' => NULL,
       ),
       'date-of-alternate-performance' => 
       array (
         'type' => 'date',
-        'name' => 54473147,
-        'id' => 'date-of-alternate-performance',
+        'name' => 'date-of-alternate-performance',
+        'id' => 61298870,
         'config' => NULL,
       ),
-      54473148 => 
+      61298870 => 
       array (
-        'type' => 'text',
-        'name' => 54473148,
-        'id' => 'please-describe-the-venue-and-what-kind-of-performance-',
+        'type' => 'date',
+        'name' => 'date-of-alternate-performance',
+        'id' => 61298870,
         'config' => NULL,
       ),
       'please-describe-the-venue-and-what-kind-of-performance-' => 
       array (
         'type' => 'text',
-        'name' => 54473148,
-        'id' => 'please-describe-the-venue-and-what-kind-of-performance-',
+        'name' => 'please-describe-the-venue-and-what-kind-of-performance-',
+        'id' => 61298871,
+        'config' => NULL,
+      ),
+      61298871 => 
+      array (
+        'type' => 'text',
+        'name' => 'please-describe-the-venue-and-what-kind-of-performance-',
+        'id' => 61298871,
         'config' => NULL,
       ),
     );

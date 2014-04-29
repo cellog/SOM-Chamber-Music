@@ -2,60 +2,60 @@
 namespace SOM\Model\Structure;
 class OutreachSignup extends \Chiara\PodioApplicationStructure
 {
-    const APPNAME = "1737212/6468850";
+    const APPNAME = "2178086/7907979";
     protected $structure = array (
       'chamber-group' => 
       array (
         'type' => 'app',
         'name' => 'chamber-group',
-        'id' => 50279474,
+        'id' => 61298857,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
-      50279474 => 
+      61298857 => 
       array (
         'type' => 'app',
         'name' => 'chamber-group',
-        'id' => 50279474,
+        'id' => 61298857,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
       'outreach-event' => 
       array (
         'type' => 'app',
         'name' => 'outreach-event',
-        'id' => 50279475,
+        'id' => 61298858,
         'config' => 
         array (
           0 => 6505398,
         ),
       ),
-      50279475 => 
+      61298858 => 
       array (
         'type' => 'app',
         'name' => 'outreach-event',
-        'id' => 50279475,
+        'id' => 61298858,
         'config' => 
         array (
           0 => 6505398,
         ),
-      ),
-      50279476 => 
-      array (
-        'type' => 'text',
-        'name' => 50279476,
-        'id' => 'any-notes',
-        'config' => NULL,
       ),
       'any-notes' => 
       array (
         'type' => 'text',
-        'name' => 50279476,
-        'id' => 'any-notes',
+        'name' => 'any-notes',
+        'id' => 61298859,
+        'config' => NULL,
+      ),
+      61298859 => 
+      array (
+        'type' => 'text',
+        'name' => 'any-notes',
+        'id' => 61298859,
         'config' => NULL,
       ),
     );

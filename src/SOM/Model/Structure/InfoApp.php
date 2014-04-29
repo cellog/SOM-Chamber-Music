@@ -2,33 +2,33 @@
 namespace SOM\Model\Structure;
 class InfoApp extends \Chiara\PodioApplicationStructure
 {
-    const APPNAME = "1737212/6500683";
+    const APPNAME = "2178086/7907977";
     protected $structure = array (
       'choose-your-name' => 
       array (
         'type' => 'app',
         'name' => 'choose-your-name',
-        'id' => 50518429,
+        'id' => 61298833,
         'config' => 
         array (
-          0 => 6468847,
+          0 => 7907975,
         ),
       ),
-      50518429 => 
+      61298833 => 
       array (
         'type' => 'app',
         'name' => 'choose-your-name',
-        'id' => 50518429,
+        'id' => 61298833,
         'config' => 
         array (
-          0 => 6468847,
+          0 => 7907975,
         ),
       ),
       'status' => 
       array (
         'type' => 'category',
         'name' => 'status',
-        'id' => 50552797,
+        'id' => 61298834,
         'config' => 
         array (
           'options' => 
@@ -58,11 +58,11 @@ class InfoApp extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50552797 => 
+      61298834 => 
       array (
         'type' => 'category',
         'name' => 'status',
-        'id' => 50552797,
+        'id' => 61298834,
         'config' => 
         array (
           'options' => 
@@ -94,9 +94,9 @@ class InfoApp extends \Chiara\PodioApplicationStructure
       ),
       'if-your-name-is-not-found-please-enter-your-contact-inf' => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'if-your-name-is-not-found-please-enter-your-contact-inf',
-        'id' => 50518430,
+        'id' => 61298835,
         'config' => 
         array (
           'options' => 
@@ -105,11 +105,11 @@ class InfoApp extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50518430 => 
+      61298835 => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'if-your-name-is-not-found-please-enter-your-contact-inf',
-        'id' => 50518430,
+        'id' => 61298835,
         'config' => 
         array (
           'options' => 
@@ -122,31 +122,31 @@ class InfoApp extends \Chiara\PodioApplicationStructure
       array (
         'type' => 'contact',
         'name' => 'contact-information',
-        'id' => 50518431,
+        'id' => 61298836,
         'config' => 'space_contacts',
       ),
-      50518431 => 
+      61298836 => 
       array (
         'type' => 'contact',
         'name' => 'contact-information',
-        'id' => 50518431,
+        'id' => 61298836,
         'config' => 'space_contacts',
       ),
       'instrument' => 
       array (
         'type' => 'app',
         'name' => 'instrument',
-        'id' => 50518432,
+        'id' => 61298837,
         'config' => 
         array (
           0 => 6455730,
         ),
       ),
-      50518432 => 
+      61298837 => 
       array (
         'type' => 'app',
         'name' => 'instrument',
-        'id' => 50518432,
+        'id' => 61298837,
         'config' => 
         array (
           0 => 6455730,
@@ -154,9 +154,9 @@ class InfoApp extends \Chiara\PodioApplicationStructure
       ),
       'have-you-registered' => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'have-you-registered',
-        'id' => 50518433,
+        'id' => 61298838,
         'config' => 
         array (
           'options' => 
@@ -193,11 +193,11 @@ class InfoApp extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50518433 => 
+      61298838 => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'have-you-registered',
-        'id' => 50518433,
+        'id' => 61298838,
         'config' => 
         array (
           'options' => 
@@ -236,9 +236,9 @@ class InfoApp extends \Chiara\PodioApplicationStructure
       ),
       'if-you-have-not-registered-which-course-will-you-regist' => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'if-you-have-not-registered-which-course-will-you-regist',
-        'id' => 50518434,
+        'id' => 61298839,
         'config' => 
         array (
           'options' => 
@@ -275,11 +275,11 @@ class InfoApp extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50518434 => 
+      61298839 => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'if-you-have-not-registered-which-course-will-you-regist',
-        'id' => 50518434,
+        'id' => 61298839,
         'config' => 
         array (
           'options' => 
@@ -315,70 +315,70 @@ class InfoApp extends \Chiara\PodioApplicationStructure
           ),
           'multiple' => false,
         ),
-      ),
-      50518435 => 
-      array (
-        'type' => 'text',
-        'name' => 50518435,
-        'id' => 'do-you-have-a-preformed-group-please-enter-the-names-of',
-        'config' => NULL,
       ),
       'do-you-have-a-preformed-group-please-enter-the-names-of' => 
       array (
         'type' => 'text',
-        'name' => 50518435,
-        'id' => 'do-you-have-a-preformed-group-please-enter-the-names-of',
+        'name' => 'do-you-have-a-preformed-group-please-enter-the-names-of',
+        'id' => 61298840,
+        'config' => NULL,
+      ),
+      61298840 => 
+      array (
+        'type' => 'text',
+        'name' => 'do-you-have-a-preformed-group-please-enter-the-names-of',
+        'id' => 61298840,
         'config' => NULL,
       ),
       'pre-formed-group-type' => 
       array (
         'type' => 'app',
         'name' => 'pre-formed-group-type',
-        'id' => 50518436,
+        'id' => 61298841,
         'config' => 
         array (
           0 => 6500675,
         ),
       ),
-      50518436 => 
+      61298841 => 
       array (
         'type' => 'app',
         'name' => 'pre-formed-group-type',
-        'id' => 50518436,
+        'id' => 61298841,
         'config' => 
         array (
           0 => 6500675,
         ),
-      ),
-      50518437 => 
-      array (
-        'type' => 'text',
-        'name' => 50518437,
-        'id' => 'if-you-do-not-see-your-group-type-please-enter-its-inst',
-        'config' => NULL,
       ),
       'if-you-do-not-see-your-group-type-please-enter-its-inst' => 
       array (
         'type' => 'text',
-        'name' => 50518437,
-        'id' => 'if-you-do-not-see-your-group-type-please-enter-its-inst',
+        'name' => 'if-you-do-not-see-your-group-type-please-enter-its-inst',
+        'id' => 61298842,
+        'config' => NULL,
+      ),
+      61298842 => 
+      array (
+        'type' => 'text',
+        'name' => 'if-you-do-not-see-your-group-type-please-enter-its-inst',
+        'id' => 61298842,
         'config' => NULL,
       ),
       'coach-request-optional' => 
       array (
         'type' => 'app',
         'name' => 'coach-request-optional',
-        'id' => 50518438,
+        'id' => 61298843,
         'config' => 
         array (
           0 => 6455124,
         ),
       ),
-      50518438 => 
+      61298843 => 
       array (
         'type' => 'app',
         'name' => 'coach-request-optional',
-        'id' => 50518438,
+        'id' => 61298843,
         'config' => 
         array (
           0 => 6455124,
@@ -386,9 +386,9 @@ class InfoApp extends \Chiara\PodioApplicationStructure
       ),
       'if-you-are-stringswindskeyboardvoiceguitar-would-you-li' => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'if-you-are-stringswindskeyboardvoiceguitar-would-you-li',
-        'id' => 50650186,
+        'id' => 61298844,
         'config' => 
         array (
           'options' => 
@@ -411,11 +411,11 @@ class InfoApp extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50650186 => 
+      61298844 => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'if-you-are-stringswindskeyboardvoiceguitar-would-you-li',
-        'id' => 50650186,
+        'id' => 61298844,
         'config' => 
         array (
           'options' => 
@@ -437,19 +437,19 @@ class InfoApp extends \Chiara\PodioApplicationStructure
           ),
           'multiple' => false,
         ),
-      ),
-      50518439 => 
-      array (
-        'type' => 'text',
-        'name' => 50518439,
-        'id' => 'anything-else-we-should-know',
-        'config' => NULL,
       ),
       'anything-else-we-should-know' => 
       array (
         'type' => 'text',
-        'name' => 50518439,
-        'id' => 'anything-else-we-should-know',
+        'name' => 'anything-else-we-should-know',
+        'id' => 61298845,
+        'config' => NULL,
+      ),
+      61298845 => 
+      array (
+        'type' => 'text',
+        'name' => 'anything-else-we-should-know',
+        'id' => 61298845,
         'config' => NULL,
       ),
     );

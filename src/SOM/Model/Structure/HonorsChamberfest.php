@@ -2,61 +2,61 @@
 namespace SOM\Model\Structure;
 class HonorsChamberfest extends \Chiara\PodioApplicationStructure
 {
-    const APPNAME = "1737212/6498176";
+    const APPNAME = "2178086/7907973";
     protected $structure = array (
       'group' => 
       array (
         'type' => 'app',
         'name' => 'group',
-        'id' => 50499843,
+        'id' => 61298796,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
-      50499843 => 
+      61298796 => 
       array (
         'type' => 'app',
         'name' => 'group',
-        'id' => 50499843,
+        'id' => 61298796,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
       'coach' => 
       array (
         'type' => 'contact',
         'name' => 'coach',
-        'id' => 53318902,
+        'id' => 61298797,
         'config' => 'all_users',
       ),
-      53318902 => 
+      61298797 => 
       array (
         'type' => 'contact',
         'name' => 'coach',
-        'id' => 53318902,
+        'id' => 61298797,
         'config' => 'all_users',
-      ),
-      53318903 => 
-      array (
-        'type' => 'date',
-        'name' => 53318903,
-        'id' => 'audition-time',
-        'config' => NULL,
       ),
       'audition-time' => 
       array (
         'type' => 'date',
-        'name' => 53318903,
-        'id' => 'audition-time',
+        'name' => 'audition-time',
+        'id' => 61298798,
+        'config' => NULL,
+      ),
+      61298798 => 
+      array (
+        'type' => 'date',
+        'name' => 'audition-time',
+        'id' => 61298798,
         'config' => NULL,
       ),
       'the-audition-is-exactly-10-minutes-maximum' => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'the-audition-is-exactly-10-minutes-maximum',
-        'id' => 50499844,
+        'id' => 61298799,
         'config' => 
         array (
           'options' => 
@@ -65,11 +65,11 @@ class HonorsChamberfest extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50499844 => 
+      61298799 => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'the-audition-is-exactly-10-minutes-maximum',
-        'id' => 50499844,
+        'id' => 61298799,
         'config' => 
         array (
           'options' => 
@@ -77,40 +77,40 @@ class HonorsChamberfest extends \Chiara\PodioApplicationStructure
           ),
           'multiple' => false,
         ),
-      ),
-      50499845 => 
-      array (
-        'type' => 'text',
-        'name' => 50499845,
-        'id' => 'composer',
-        'config' => NULL,
       ),
       'composer' => 
       array (
         'type' => 'text',
-        'name' => 50499845,
-        'id' => 'composer',
+        'name' => 'composer',
+        'id' => 61298800,
         'config' => NULL,
       ),
-      50499846 => 
+      61298800 => 
       array (
         'type' => 'text',
-        'name' => 50499846,
-        'id' => 'piece-and-movements',
+        'name' => 'composer',
+        'id' => 61298800,
         'config' => NULL,
       ),
       'piece-and-movements' => 
       array (
         'type' => 'text',
-        'name' => 50499846,
-        'id' => 'piece-and-movements',
+        'name' => 'piece-and-movements',
+        'id' => 61298801,
+        'config' => NULL,
+      ),
+      61298801 => 
+      array (
+        'type' => 'text',
+        'name' => 'piece-and-movements',
+        'id' => 61298801,
         'config' => NULL,
       ),
       'status' => 
       array (
         'type' => 'category',
         'name' => 'status',
-        'id' => 50499847,
+        'id' => 61298802,
         'config' => 
         array (
           'options' => 
@@ -133,11 +133,11 @@ class HonorsChamberfest extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50499847 => 
+      61298802 => 
       array (
         'type' => 'category',
         'name' => 'status',
-        'id' => 50499847,
+        'id' => 61298802,
         'config' => 
         array (
           'options' => 

@@ -2,7 +2,7 @@
 namespace SOM\Model;
 class MasterclassSignup extends \Chiara\PodioItem
 {
-    protected $MYAPPID=6468848;
+    protected $MYAPPID=7907976;
     function __construct($info = null, $retrieve = true)
     {
         parent::__construct($info, new \SOM\Model\Structure\MasterclassSignup, $retrieve);

@@ -2,23 +2,23 @@
 namespace SOM\Model\Structure;
 class MasterclassSignup extends \Chiara\PodioApplicationStructure
 {
-    const APPNAME = "1737212/6468848";
+    const APPNAME = "2178086/7907976";
     protected $structure = array (
       'masterclass' => 
       array (
         'type' => 'app',
         'name' => 'masterclass',
-        'id' => 50279459,
+        'id' => 61298825,
         'config' => 
         array (
           0 => 6505403,
         ),
       ),
-      50279459 => 
+      61298825 => 
       array (
         'type' => 'app',
         'name' => 'masterclass',
-        'id' => 50279459,
+        'id' => 61298825,
         'config' => 
         array (
           0 => 6505403,
@@ -28,27 +28,27 @@ class MasterclassSignup extends \Chiara\PodioApplicationStructure
       array (
         'type' => 'app',
         'name' => 'chamber-group',
-        'id' => 50279460,
+        'id' => 61298826,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
-      50279460 => 
+      61298826 => 
       array (
         'type' => 'app',
         'name' => 'chamber-group',
-        'id' => 50279460,
+        'id' => 61298826,
         'config' => 
         array (
-          0 => 6468849,
+          0 => 7907978,
         ),
       ),
       'what-will-you-play' => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'what-will-you-play',
-        'id' => 50279461,
+        'id' => 61298827,
         'config' => 
         array (
           'options' => 
@@ -57,11 +57,11 @@ class MasterclassSignup extends \Chiara\PodioApplicationStructure
           'multiple' => false,
         ),
       ),
-      50279461 => 
+      61298827 => 
       array (
-        'type' => 'question',
+        'type' => 'category',
         'name' => 'what-will-you-play',
-        'id' => 50279461,
+        'id' => 61298827,
         'config' => 
         array (
           'options' => 
@@ -69,68 +69,68 @@ class MasterclassSignup extends \Chiara\PodioApplicationStructure
           ),
           'multiple' => false,
         ),
-      ),
-      50279462 => 
-      array (
-        'type' => 'text',
-        'name' => 50279462,
-        'id' => 'composer',
-        'config' => NULL,
       ),
       'composer' => 
       array (
         'type' => 'text',
-        'name' => 50279462,
-        'id' => 'composer',
+        'name' => 'composer',
+        'id' => 61298828,
         'config' => NULL,
       ),
-      50279463 => 
+      61298828 => 
       array (
         'type' => 'text',
-        'name' => 50279463,
-        'id' => 'piece',
+        'name' => 'composer',
+        'id' => 61298828,
         'config' => NULL,
       ),
       'piece' => 
       array (
         'type' => 'text',
-        'name' => 50279463,
-        'id' => 'piece',
+        'name' => 'piece',
+        'id' => 61298829,
         'config' => NULL,
       ),
-      50279464 => 
+      61298829 => 
       array (
         'type' => 'text',
-        'name' => 50279464,
-        'id' => 'movement-leave-blank-if-none',
+        'name' => 'piece',
+        'id' => 61298829,
         'config' => NULL,
       ),
       'movement-leave-blank-if-none' => 
       array (
         'type' => 'text',
-        'name' => 50279464,
-        'id' => 'movement-leave-blank-if-none',
+        'name' => 'movement-leave-blank-if-none',
+        'id' => 61298830,
         'config' => NULL,
       ),
-      50279465 => 
+      61298830 => 
       array (
-        'type' => 'duration',
-        'name' => 50279465,
-        'id' => 'length-of-performance',
+        'type' => 'text',
+        'name' => 'movement-leave-blank-if-none',
+        'id' => 61298830,
         'config' => NULL,
       ),
       'length-of-performance' => 
       array (
         'type' => 'duration',
-        'name' => 50279465,
-        'id' => 'length-of-performance',
+        'name' => 'length-of-performance',
+        'id' => 61298831,
+        'config' => NULL,
+      ),
+      61298831 => 
+      array (
+        'type' => 'duration',
+        'name' => 'length-of-performance',
+        'id' => 61298831,
         'config' => NULL,
       ),
       'processed-by-jonah' => 
       array (
         'type' => 'category',
         'name' => 'processed-by-jonah',
-        'id' => 51206902,
+        'id' => 61298832,
         'config' => 
         array (
           'options' => 
@@ -148,16 +148,23 @@ class MasterclassSignup extends \Chiara\PodioApplicationStructure
               'text' => 'Processed',
               'id' => 2,
               'color' => 'DCEBD8',
+            ),
+            2 => 
+            array (
+              'status' => 'active',
+              'text' => 'No room in class',
+              'id' => 3,
+              'color' => 'F7D1D0',
             ),
           ),
           'multiple' => false,
         ),
       ),
-      51206902 => 
+      61298832 => 
       array (
         'type' => 'category',
         'name' => 'processed-by-jonah',
-        'id' => 51206902,
+        'id' => 61298832,
         'config' => 
         array (
           'options' => 
@@ -175,6 +182,13 @@ class MasterclassSignup extends \Chiara\PodioApplicationStructure
               'text' => 'Processed',
               'id' => 2,
               'color' => 'DCEBD8',
+            ),
+            2 => 
+            array (
+              'status' => 'active',
+              'text' => 'No room in class',
+              'id' => 3,
+              'color' => 'F7D1D0',
             ),
           ),
           'multiple' => false,

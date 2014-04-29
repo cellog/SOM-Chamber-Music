@@ -2,7 +2,7 @@
 namespace SOM\Model;
 class Students extends \Chiara\PodioItem
 {
-    protected $MYAPPID=6468847;
+    protected $MYAPPID=7907975;
     function __construct($info = null, $retrieve = true)
     {
         parent::__construct($info, new \SOM\Model\Structure\Students, $retrieve);
