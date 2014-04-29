@@ -35,14 +35,10 @@ class SOM
         }
     }
 
-    function getAccessKey()
-    {
-        return $this->key;
-    }
-
     function login()
     {
-        header('Location: https://podio.com/oauth/authorize?client_id=' . $this->appid . '&redirect_uri=' .
+        $clientinfo = $this->tokenmanager->getAPIClient();
+        header('Location: https://podio.com/oauth/authorize?client_id=' . $clientinfo['client'] . '&redirect_uri=' .
                urlencode('http://chiaraquartet.net/SOM-Chamber-Music/'));
     }
 
