@@ -8,8 +8,10 @@ class SOM
     {
         $user = explode('/', $_SERVER['DOCUMENT_ROOT']);
         $user = $user[2];
+        $mapfile = __DIR__ . '/map.json';
         if (file_exists('/home/' . $user . '/somchamber.json')) {
             $clientfile = '/home/' . $user . '/somchamber.json';
+            $mapfile = '/home/' . $user . '/map.json';
         } else {
             // local debugging
             $clientfile = __DIR__ . '/somchamber.json';
@@ -20,7 +22,7 @@ class SOM
             // local debugging
             $tokenfile = __DIR__ . '/podiotokens.json';
         }
-        $this->tokenmanager = new Chiara\AuthManager\File($tokenfile, $clientfile, true);
+        $this->tokenmanager = new Chiara\AuthManager\File($tokenfile, $clientfile, $mapfile, true);
         Chiara\AuthManager::setAuthMode(Chiara\AuthManager::USER);
         Chiara\AuthManager::setTokenManager($this->tokenmanager);
         Chiara\AuthManager::prepareRemote();
