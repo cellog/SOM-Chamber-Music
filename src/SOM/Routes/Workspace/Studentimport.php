@@ -1,4 +1,5 @@
 <?php
+echo "0";
 namespace SOM\Routes\Workspace;
 use SOM\Route, SOM, SOM\Hook, PodioItem, PodioApp;
 class Studentimport extends Route
