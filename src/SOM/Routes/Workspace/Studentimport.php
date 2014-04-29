@@ -33,10 +33,12 @@ class Studentimport extends Route
     function activate(SOM $som)
     {
         set_time_limit(0);
-        error_reporting(E_ALL);
         // get old student app id
+        echo "1";
         $oldapp = PodioApp::get_for_url($this->oldspaceid, 'students', array('type' => 'micro'));
+        echo "2";
         $newapp = PodioApp::get($this->studentapp);
+        echo "3";
         $chamberapp = PodioApp::get($this->chamberapp);
         if ($newapp->url_label != 'students') {
             echo '<strong>ERROR</strong>: id passed in was not for a <strong>students</strong> app, but was for <strong>',
