@@ -1,6 +1,8 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM\Route, SOM, SOM\Hook, PodioHook, PodioApp, Podio;
+// this assumes we just successfully set up the model classes
+use SOM\Route, SOM, SOM\Hook, PodioHook, PodioApp, Podio, SOM\Model,
+    Chiara\HookServer;
 class Hooks extends Route
 {
     protected $spaceurl;
@@ -14,6 +16,13 @@ class Hooks extends Route
 
     function activate(SOM $som)
     {
+        $chambergroups = new Model\ChamberGroups;
+        $chambergroups = $chambergroups->app;
+        
+        $students = new Model\Students;
+        $students = $students->app;
+
+        /*
         $chambergroups = PodioApp::member(Podio::get('/app/org/unledu/space/' . $this->spaceurl . '/chamber-groups', array()));
         // find Students app
         $students = PodioApp::member(Podio::get('/app/org/unledu/space/' . $this->spaceurl . '/students', array()));
@@ -29,34 +38,55 @@ class Hooks extends Route
         if (!isset($_POST) || !isset($_POST['chamber']) || !isset($_POST['student'])) {
             throw new \Exception('Invalid Request');
         }
+        */
 
         echo "Installing create student hook for setting ID numbers: <br><strong>", $newgroup,
              "</strong><br><pre>";
+        HookServer::$hookserver->setBaseUrl('http://chiaraquartet.net/SOM-Chamber-Music/hook.php');
+        $students->createHook('item.create', 'newstudent');
+        $students->createHook('item.update', 'updatestudent');
+        /*
         PodioHook::create('app', $students->app_id, array('url' => 'http://chiaraquartet.net/SOM-Chamber-Music/hook.php/newstudent',
                                                           'type' => 'item.create'));
+        */
         echo "</pre>done<br>";
 
+        /*
         $newgroup = Hook::prepareUrl('newgroup', $chambergroups,
                                      $_POST['chamber'], $students,
                                      $_POST['student']);
+        */
         echo "Installing create group hook for chamber groups: <br><strong>", $newgroup,
              "</strong><br><pre>";
+        $chambergroups->createHook('item.create', 'newgroup');
+        /*
         PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.create'));
+        */
         echo "</pre>done<br>";
 
+        /*
         $newgroup = Hook::prepareUrl('updategroup', $chambergroups,
                                      $_POST['chamber'], $students,
                                      $_POST['student']);
+        */
         echo "Installing update group hook for chamber groups: <strong>", $newgroup,
              "</strong><br>";
 
+        $chambergroups->createHook('item.update', 'updategroup');
+        /*
         PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.update'));
+        */
         echo "done<br>";
 
+        /*
         $newgroup = Hook::prepareUrl('registrategroup', $chambergroups, $_POST['chamber']);
-        echo "Installing update group hook for chamber groups: <strong>", $newgroup,
+        */
+        echo "Installing update group hook for chamber groups registration: <strong>", $newgroup,
              "</strong><br>";
+        $chambergroups->createHook('item.update', 'registrategroup');
+        /*
         PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.update'));
+        */
         echo "done<br>";
 
         echo '<a href="/SOM-Chamber-Music/index.php/importstudents/', $students->app_id,
