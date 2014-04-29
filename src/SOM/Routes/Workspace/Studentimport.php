@@ -33,6 +33,7 @@ class Studentimport extends Route
     function activate(SOM $som)
     {
         set_time_limit(0);
+        error_reporting(E_ALL);
         // get old student app id
         $oldapp = PodioApp::get_for_url($this->oldspaceid, 'students', array('type' => 'micro'));
         $newapp = PodioApp::get($this->studentapp);
