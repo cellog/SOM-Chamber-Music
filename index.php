@@ -1,4 +1,5 @@
-<?php include __DIR__ . '/src/autoload.php'; ?>
+<?php error_reporting(E_ALL);
+include __DIR__ . '/src/autoload.php'; ?>
     <?php $som = new SOM; ?>
 <html>
     
