@@ -42,6 +42,8 @@ class Cloner extends Route
         foreach ($spaceobj->apps as $app) {
             $tm->saveToken($app->id, $app->token);
         }
+        // generate classes
+        $spaceobj->generateClasses(realpath(__DIR__ . '/../../Model'), 'SOM\Model');
 
         echo '<form name="hook" action="/SOM-Chamber-Music/index.php/makehook/',
              htmlspecialchars($spaceurl), '/', $this->params['id'], '" method="post">';
