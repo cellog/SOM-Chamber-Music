@@ -25,7 +25,6 @@ class SOM
         $this->tokenmanager = new Chiara\AuthManager\File($tokenfile, $clientfile, $mapfile, true);
         Chiara\AuthManager::setAuthMode(Chiara\AuthManager::USER);
         Chiara\AuthManager::setTokenManager($this->tokenmanager);
-        Chiara\AuthManager::prepareRemote();
         if (!$nologin) {
             if (!isset($_GET['logout']) && (Podio::$oauth->access_token || $this->authenticate())) {
                 $this->key = Podio::$oauth->access_token;
