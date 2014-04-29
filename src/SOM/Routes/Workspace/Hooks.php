@@ -40,7 +40,7 @@ class Hooks extends Route
         }
         */
 
-        echo "Installing create student hook for setting ID numbers: <br><strong>", $newgroup,
+        echo "Installing create student hook for setting ID numbers: <br><strong>", 
              "</strong><br><pre>";
         HookServer::$hookserver->setBaseUrl('http://chiaraquartet.net/SOM-Chamber-Music/hook.php');
         $students->createHook('item.create', 'newstudent');
@@ -56,11 +56,11 @@ class Hooks extends Route
                                      $_POST['chamber'], $students,
                                      $_POST['student']);
         */
-        echo "Installing create group hook for chamber groups: <br><strong>", $newgroup,
+        echo "Installing create group hook for chamber groups: <br><strong>", 
              "</strong><br><pre>";
         $chambergroups->createHook('item.create', 'newgroup');
         /*
-        PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.create'));
+        PodioHook::create('app', $chambergroups->app_id, array('url' =>  'type' => 'item.create'));
         */
         echo "</pre>done<br>";
 
@@ -69,23 +69,23 @@ class Hooks extends Route
                                      $_POST['chamber'], $students,
                                      $_POST['student']);
         */
-        echo "Installing update group hook for chamber groups: <strong>", $newgroup,
+        echo "Installing update group hook for chamber groups: <strong>", 
              "</strong><br>";
 
         $chambergroups->createHook('item.update', 'updategroup');
         /*
-        PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.update'));
+        PodioHook::create('app', $chambergroups->app_id, array('url' =>  'type' => 'item.update'));
         */
         echo "done<br>";
 
         /*
         $newgroup = Hook::prepareUrl('registrategroup', $chambergroups, $_POST['chamber']);
         */
-        echo "Installing update group hook for chamber groups registration: <strong>", $newgroup,
+        echo "Installing update group hook for chamber groups registration: <strong>", 
              "</strong><br>";
         $chambergroups->createHook('item.update', 'registrategroup');
         /*
-        PodioHook::create('app', $chambergroups->app_id, array('url' => $newgroup, 'type' => 'item.update'));
+        PodioHook::create('app', $chambergroups->app_id, array('url' =>  'type' => 'item.update'));
         */
         echo "done<br>";
 
