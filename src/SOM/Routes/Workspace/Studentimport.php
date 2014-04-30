@@ -34,6 +34,7 @@ class Studentimport extends Route
         $field = $idapp->fields['student'];
 
         // change the app that the student ids to point to new students thing
+        var_dump($this->getConfig($field));
         PodioAppField::update($id->app->id, $field->id, $this->getConfig($field));
 
         // download all existing students
