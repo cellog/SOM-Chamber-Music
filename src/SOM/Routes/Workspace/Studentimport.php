@@ -60,7 +60,9 @@ class Studentimport extends Route
                 echo "Student already exists, skipping<br>";
             }
             echo "Updating Student ID link<br>";
-            foreach ($idapp->search($student->fields['name']->value) as $match) {
+            $matches = $idapp->search($student->fields['name']);
+            var_dump($matches, (string) $student->fields['name']);exit;
+            foreach ($matches as $match) {
                 $number = $match['id'];
                 break;
             }
