@@ -49,7 +49,8 @@ class Studentimport extends Route
         foreach ($s->app->filter->limit(500) as $student) {
             echo "Importing Student <strong>", $student->fields['name'], '</strong><br>';
             $student->app_id = $this->studentapp;
-            if (!count($sapp->search($student->fields['name']))) {
+            $existing = $sapp->search($student->fields['name']);
+            if (!count($existing)) {
                 // reset item id
                 $student->id = null;
                 // remove groups and set as inactive
@@ -57,6 +58,7 @@ class Studentimport extends Route
                 $student->fields['active'] = 2;
                 $student->save(array('hook' => false), true);
             } else {
+                $student->id = $existing[0]['id'];
                 echo "Student already exists, skipping<br>";
             }
             echo "Updating Student ID link<br>";
