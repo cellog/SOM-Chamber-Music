@@ -50,7 +50,7 @@ class Studentimport extends Route
             // remove groups and set as inactive
             $student->fields['groups'] = array();
             $student->fields['active'] = 2;
-            $student->save();
+            $student->save(array(), true);
             echo "Updating Student ID link<br>";
             $studentid->fields['student'] = $student;
             $studentid->save();
