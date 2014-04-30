@@ -44,7 +44,6 @@ class Studentimport extends Route
         foreach ($s->app->filter->limit(500) as $student) {
             echo "Importing Student <strong>", $student->fields['name'], '</strong><br>';
             $student->app_id = $this->studentapp;
-            $studentid = $student->references['student-id-numbers'][0]->retrieve();
             // reset item id
             $student->id = null;
             // remove groups and set as inactive
@@ -52,6 +51,11 @@ class Studentimport extends Route
             $student->fields['active'] = 2;
             $student->save(array(), true);
             echo "Updating Student ID link<br>";
+            foreach ($idapp->search($student->fields['name']->value) as $match) {
+                $number = $match['id'];
+                break;
+            }
+            $studentid = new Model\StudentIdNumbers($number);
             $studentid->fields['student'] = $student;
             $studentid->save();
         }
@@ -61,7 +65,7 @@ class Studentimport extends Route
         $attapp = $attendance->app;
         $attapp->retrieve();
         
-        $absentstudent = $attendance->fields['student'];
+        $absentstudent = $attapp->fields['student'];
 
         $rehearsalclass = new Model\RehearsalClass;
         $rehapp = $rehearsalclass->app;
