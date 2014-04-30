@@ -41,7 +41,7 @@ class Studentimport extends Route
         $s = new Chiara\PodioItem(array('app' => array('app_id' => $oldapp->id)));
 
         // prepare to upload
-        foreach ($s->filter->limit(500) as $student) {
+        foreach ($s->app->filter->limit(500) as $student) {
             echo "Importing Student <strong>", $student->fields['name'], '</strong><br>';
             $student->app_id = $this->studentapp;
             $studentid = $student->fields['student-id']->value;
