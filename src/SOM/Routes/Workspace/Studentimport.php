@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM\Route, SOM, SOM\Hook, PodioItem, PodioApp, SOM\Model, PodioAppField;
+use SOM\Route, SOM, SOM\Hook, PodioItem, PodioApp, SOM\Model, PodioAppField, Chiara;
 class Studentimport extends Route
 {
     protected $studentapp;
@@ -34,12 +34,11 @@ class Studentimport extends Route
         $field = $idapp->fields['student'];
 
         // change the app that the student ids to point to new students thing
-        var_dump($this->getConfig($field));
         PodioAppField::update($id->app->id, $field->id, $this->getConfig($field));
 
         // download all existing students
         echo "downloading students...<br>";
-        $s = new Model\Students(array('app' => array('app_id' => $oldapp->id)));
+        $s = new Chiara\PodioItem(array('app' => array('app_id' => $oldapp->id)));
 
         // prepare to upload
         foreach ($s->filter->limit(500) as $student) {
