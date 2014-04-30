@@ -33,6 +33,10 @@ class Studentimport extends Route
         $idapp->retrieve();
         $field = $idapp->fields['student'];
 
+        $sapp = new Model\Students;
+        $sapp = $sapp->app->retrieve();
+
+
         // change the app that the student ids to point to new students thing
         PodioAppField::update($id->app->id, $field->id, $this->getConfig($field));
 
@@ -44,12 +48,16 @@ class Studentimport extends Route
         foreach ($s->app->filter->limit(500) as $student) {
             echo "Importing Student <strong>", $student->fields['name'], '</strong><br>';
             $student->app_id = $this->studentapp;
-            // reset item id
-            $student->id = null;
-            // remove groups and set as inactive
-            $student->fields['groups'] = array();
-            $student->fields['active'] = 2;
-            $student->save(array(), true);
+            if (!count($sapp->search($student->fields['name']))) {
+                // reset item id
+                $student->id = null;
+                // remove groups and set as inactive
+                $student->fields['groups'] = array();
+                $student->fields['active'] = 2;
+                $student->save(array('hook' => false), true);
+            } else {
+                echo "Student already exists, skipping<br>";
+            }
             echo "Updating Student ID link<br>";
             foreach ($idapp->search($student->fields['name']->value) as $match) {
                 $number = $match['id'];
@@ -57,7 +65,7 @@ class Studentimport extends Route
             }
             $studentid = new Model\StudentIdNumbers($number);
             $studentid->fields['student'] = $student;
-            $studentid->save();
+            $studentid->save(array('hook' => false));
         }
         echo "done, now updating references<br>";
         
