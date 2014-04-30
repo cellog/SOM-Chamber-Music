@@ -13,7 +13,7 @@ class Studentimport extends Route
         $this->studentapp = $s->app->id;
         $s = new Model\ChamberGroups;
         $this->chamberapp = $s->app->id;
-        $this->oldspaceid = $attrs[1];
+        $this->oldspaceid = $attrs[0];
     }
 
     function activate(SOM $som)

@@ -89,8 +89,7 @@ class Hooks extends Route
         */
         echo "done<br>";
 
-        echo '<a href="/SOM-Chamber-Music/index.php/importstudents/', $students->app_id,
-             '/', $this->oldspaceid, '/', $chambergroups->app_id,
+        echo '<a href="/SOM-Chamber-Music/index.php/importstudents/', $this->oldspaceid,
              '">Continue (Student import)</a>';
     }
 }
