@@ -32,9 +32,19 @@ class Studentimport extends Route
         $idapp = $id->app;
         $idapp->retrieve();
         $field = $idapp->fields['student'];
+        
+        $idindices = array();
+        foreach ($idapp->filter->limit(500) as $id) {
+            $idindices[$id['title']] = $id;
+        }
 
         $sapp = new Model\Students;
         $sapp = $sapp->app;
+        
+        $existing = array();
+        foreach ($sapp->filter->limit(500) as $st) {
+            $existing[$id['title']] = $st;
+        }
         $sapp->retrieve();
 
 
@@ -49,8 +59,8 @@ class Studentimport extends Route
         foreach ($s->app->filter->limit(500) as $student) {
             echo "Importing Student <strong>", $student->fields['name'], '</strong><br>';
             $student->app_id = $this->studentapp;
-            $existing = $sapp->search($student->fields['name']);
-            if (!count($existing)) {
+            $name = (string) $student->fields['name'];
+            if (!isset($existing[$name])) {
                 // reset item id
                 $student->id = null;
                 // remove groups and set as inactive
@@ -58,16 +68,16 @@ class Studentimport extends Route
                 $student->fields['active'] = 2;
                 $student->save(array('hook' => false), true);
             } else {
-                $student->id = $existing[0]['id'];
+                $student->id = $existing[(string) $student->fields['name']]['id'];
                 echo "Student already exists, skipping<br>";
             }
             echo "Updating Student ID link<br>";
-            $matches = $idapp->search($student->fields['name']);
-            foreach ($matches as $match) {
-                $number = $match['id'];
-                break;
+            $studentid = new Model\StudentIdNumbers;
+            if (isset($idindices[$name])) {
+                $studentid->id = $idindices[$name]['id'];
+            } else {
+                $studentid->fields['id-2'] = 1;
             }
-            $studentid = new Model\StudentIdNumbers($number);
             $studentid->fields['student'] = $student;
             $studentid->save(array('hook' => false));
         }
