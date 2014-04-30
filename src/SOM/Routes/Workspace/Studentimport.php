@@ -1,6 +1,6 @@
 <?php
 namespace SOM\Routes\Workspace;
-use SOM\Route, SOM, SOM\Hook, PodioItem, PodioApp, SOM\Model;
+use SOM\Route, SOM, SOM\Hook, PodioItem, PodioApp, SOM\Model, PodioAppField;
 class Studentimport extends Route
 {
     protected $studentapp;
