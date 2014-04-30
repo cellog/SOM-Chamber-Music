@@ -46,7 +46,7 @@ class Cloner extends Route
         $spaceobj->generateClasses(realpath(__DIR__ . '/../../Model'), 'SOM\Model');
 
         echo '<form name="hook" action="/SOM-Chamber-Music/index.php/makehook/',
-             htmlspecialchars($spaceurl), '/', $this->params['id'], '" method="post">';
+             $this->params['id'], '" method="post">';
         echo '<input type="submit" value="Click to Create Hooks">';
         echo '</form>';
     }
