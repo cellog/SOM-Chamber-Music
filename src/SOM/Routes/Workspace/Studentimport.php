@@ -34,7 +34,8 @@ class Studentimport extends Route
         $field = $idapp->fields['student'];
 
         $sapp = new Model\Students;
-        $sapp = $sapp->app->retrieve();
+        $sapp = $sapp->app;
+        $sapp->retrieve();
 
 
         // change the app that the student ids to point to new students thing
