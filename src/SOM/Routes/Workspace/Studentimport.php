@@ -44,7 +44,7 @@ class Studentimport extends Route
         foreach ($s->app->filter->limit(500) as $student) {
             echo "Importing Student <strong>", $student->fields['name'], '</strong><br>';
             $student->app_id = $this->studentapp;
-            $studentid = $student->references['student-id-numbers']->retrieve();
+            $studentid = $student->references['student-id-numbers'][0]->retrieve();
             // reset item id
             $student->id = null;
             // remove groups and set as inactive
