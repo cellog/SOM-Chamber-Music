@@ -30,7 +30,6 @@ class Studentimport extends Route
         
         $id = new Model\StudentIdNumbers;
         $idapp = $id->app;
-        var_dump($idapp->search('Abshier'));exit;
         $idapp->retrieve();
         $field = $idapp->fields['student'];
 
