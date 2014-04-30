@@ -79,9 +79,9 @@ class Studentimport extends Route
     function getConfig($field, $student = true)
     {
         $ret = array(
-            'label' => $field->info['config']['label'],
-            'description' => $field->info['config']['description'],
-            'delta' => $field->info['config']['delta'],
+            'label' => $field->config['label'],
+            'description' => $field->config['description'],
+            'delta' => $field->config['delta'],
             'settings' => array(
                 'referenceable_types' => array($student ? $this->studentapp : $this->chamberapp)
             ),
