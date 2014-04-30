@@ -61,7 +61,6 @@ class Studentimport extends Route
             }
             echo "Updating Student ID link<br>";
             $matches = $idapp->search($student->fields['name']);
-            var_dump($matches, (string) $student->fields['name']);exit;
             foreach ($matches as $match) {
                 $number = $match['id'];
                 break;
