@@ -30,6 +30,7 @@ class Studentimport extends Route
         
         $id = new Model\StudentIdNumbers;
         $idapp = $id->app;
+        $idapp->retrieve();
         $field = $idapp->fields['student'];
 
         // change the app that the student ids to point to new students thing
@@ -58,11 +59,13 @@ class Studentimport extends Route
         
         $attendance = new Model\Attendance;
         $attapp = $attendance->app;
+        $attapp->retrieve();
         
         $absentstudent = $attendance->fields['student'];
 
         $rehearsalclass = new Model\RehearsalClass;
         $rehapp = $rehearsalclass->app;
+        $rehapp->retrieve();
 
         $group = $rehapp->fields['group'];
         
