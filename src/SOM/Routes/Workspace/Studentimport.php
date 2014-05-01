@@ -56,10 +56,8 @@ class Studentimport extends Route
         $s = new Chiara\PodioItem(array('app' => array('app_id' => $oldapp->id)));
 
         // prepare to upload
-        $struc = new Model\Structure\Students;
         foreach ($s->app->filter->limit(500) as $student) {
             echo "Importing Student <strong>", $student->fields['name'], '</strong><br>';
-            $student->setStructure($struc);
             $student->app_id = $this->studentapp;
             $name = (string) $student->fields['name'];
             if (!isset($existing[$name])) {
