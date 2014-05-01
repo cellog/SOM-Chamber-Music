@@ -93,7 +93,7 @@ class Studentimport extends Route
             'description' => null,
             'delta' => 0,
             'settings' => array(
-                'referenceable_types' => $this->chamberapp
+                'referenceable_types' => array($this->chamberapp)
             ),
             'required' => true
         ));
@@ -103,7 +103,7 @@ class Studentimport extends Route
             'description' => null,
             'delta' => 0,
             'settings' => array(
-                'referenceable_types' => $this->chamberapp
+                'referenceable_types' => array($this->chamberapp)
             ),
             'required' => true
         ));
