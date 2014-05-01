@@ -43,7 +43,7 @@ class Studentimport extends Route
         
         $existing = array();
         foreach ($sapp->filter->limit(500) as $st) {
-            $existing[$id->title] = $st;
+            $existing[$st->title] = $st;
         }
         $sapp->retrieve();
 
