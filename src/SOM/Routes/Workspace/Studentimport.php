@@ -64,7 +64,9 @@ class Studentimport extends Route
                 // reset item id
                 $student->id = null;
                 // remove groups and set as inactive
-                $student->fields['groups'] = array();
+                if (isset($student->fields['groups'])) {
+                    $student->fields['groups'] = array();
+                }
                 $student->fields['active'] = 2;
                 $student->save(array('hook' => false), true);
             } else {
