@@ -7,15 +7,15 @@ class Instruments extends \Chiara\PodioApplicationStructure
       50180296 => 
       array (
         'type' => 'text',
-        'name' => 50180296,
-        'id' => 'name',
+        'name' => 'name',
+        'id' => 50180296,
         'config' => NULL,
       ),
       'name' => 
       array (
         'type' => 'text',
-        'name' => 50180296,
-        'id' => 'name',
+        'name' => 'name',
+        'id' => 50180296,
         'config' => NULL,
       ),
     );

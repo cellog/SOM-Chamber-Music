@@ -7,29 +7,29 @@ class ChamberfestDates extends \Chiara\PodioApplicationStructure
       50951197 => 
       array (
         'type' => 'text',
-        'name' => 50951197,
-        'id' => 'title',
+        'name' => 'title',
+        'id' => 50951197,
         'config' => NULL,
       ),
       'title' => 
       array (
         'type' => 'text',
-        'name' => 50951197,
-        'id' => 'title',
+        'name' => 'title',
+        'id' => 50951197,
         'config' => NULL,
       ),
       50951198 => 
       array (
         'type' => 'date',
-        'name' => 50951198,
-        'id' => 'date',
+        'name' => 'date',
+        'id' => 50951198,
         'config' => NULL,
       ),
       'date' => 
       array (
         'type' => 'date',
-        'name' => 50951198,
-        'id' => 'date',
+        'name' => 'date',
+        'id' => 50951198,
         'config' => NULL,
       ),
     );

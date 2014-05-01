@@ -47,15 +47,15 @@ class GroupsRehearsalClass extends \Chiara\PodioApplicationStructure
       50670798 => 
       array (
         'type' => 'number',
-        'name' => 50670798,
-        'id' => 'order',
+        'name' => 'order',
+        'id' => 50670798,
         'config' => NULL,
       ),
       'order' => 
       array (
         'type' => 'number',
-        'name' => 50670798,
-        'id' => 'order',
+        'name' => 'order',
+        'id' => 50670798,
         'config' => NULL,
       ),
       'category' => 

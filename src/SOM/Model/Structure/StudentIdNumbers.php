@@ -27,29 +27,29 @@ class StudentIdNumbers extends \Chiara\PodioApplicationStructure
       51410566 => 
       array (
         'type' => 'number',
-        'name' => 51410566,
-        'id' => 'id-2',
+        'name' => 'id-2',
+        'id' => 51410566,
         'config' => NULL,
       ),
       'id-2' => 
       array (
         'type' => 'number',
-        'name' => 51410566,
-        'id' => 'id-2',
+        'name' => 'id-2',
+        'id' => 51410566,
         'config' => NULL,
       ),
       51410138 => 
       array (
         'type' => 'text',
-        'name' => 51410138,
-        'id' => 'id',
+        'name' => 'id',
+        'id' => 51410138,
         'config' => NULL,
       ),
       'id' => 
       array (
         'type' => 'text',
-        'name' => 51410138,
-        'id' => 'id',
+        'name' => 'id',
+        'id' => 51410138,
         'config' => NULL,
       ),
     );

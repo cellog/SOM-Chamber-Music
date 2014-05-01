@@ -7,43 +7,43 @@ class Masterclasses extends \Chiara\PodioApplicationStructure
       50552993 => 
       array (
         'type' => 'text',
-        'name' => 50552993,
-        'id' => 'title',
+        'name' => 'title',
+        'id' => 50552993,
         'config' => NULL,
       ),
       'title' => 
       array (
         'type' => 'text',
-        'name' => 50552993,
-        'id' => 'title',
+        'name' => 'title',
+        'id' => 50552993,
         'config' => NULL,
       ),
       50552995 => 
       array (
         'type' => 'date',
-        'name' => 50552995,
-        'id' => 'date',
+        'name' => 'date',
+        'id' => 50552995,
         'config' => NULL,
       ),
       'date' => 
       array (
         'type' => 'date',
-        'name' => 50552995,
-        'id' => 'date',
+        'name' => 'date',
+        'id' => 50552995,
         'config' => NULL,
       ),
       50552994 => 
       array (
         'type' => 'text',
-        'name' => 50552994,
-        'id' => 'master-teacher-2',
+        'name' => 'master-teacher-2',
+        'id' => 50552994,
         'config' => NULL,
       ),
       'master-teacher-2' => 
       array (
         'type' => 'text',
-        'name' => 50552994,
-        'id' => 'master-teacher-2',
+        'name' => 'master-teacher-2',
+        'id' => 50552994,
         'config' => NULL,
       ),
       'location' => 

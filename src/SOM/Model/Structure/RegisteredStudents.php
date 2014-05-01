@@ -47,29 +47,29 @@ class RegisteredStudents extends \Chiara\PodioApplicationStructure
       50394169 => 
       array (
         'type' => 'calculation',
-        'name' => 50394169,
-        'id' => 'student-id',
+        'name' => 'student-id',
+        'id' => 50394169,
         'config' => NULL,
       ),
       'student-id' => 
       array (
         'type' => 'calculation',
-        'name' => 50394169,
-        'id' => 'student-id',
+        'name' => 'student-id',
+        'id' => 50394169,
         'config' => NULL,
       ),
       50394171 => 
       array (
         'type' => 'calculation',
-        'name' => 50394171,
-        'id' => 'call-number-2',
+        'name' => 'call-number-2',
+        'id' => 50394171,
         'config' => NULL,
       ),
       'call-number-2' => 
       array (
         'type' => 'calculation',
-        'name' => 50394171,
-        'id' => 'call-number-2',
+        'name' => 'call-number-2',
+        'id' => 50394171,
         'config' => NULL,
       ),
       'course' => 

@@ -7,29 +7,29 @@ class EnsembleTypes extends \Chiara\PodioApplicationStructure
       50518364 => 
       array (
         'type' => 'text',
-        'name' => 50518364,
-        'id' => 'name',
+        'id' => 50518364,
+        'name' => 'name',
         'config' => NULL,
       ),
       'name' => 
       array (
         'type' => 'text',
-        'name' => 50518364,
-        'id' => 'name',
+        'id' => 50518364,
+        'name' => 'name',
         'config' => NULL,
       ),
       50697173 => 
       array (
         'type' => 'number',
-        'name' => 50697173,
-        'id' => 'number-of-members',
+        'id' => 50697173,
+        'name' => 'number-of-members',
         'config' => NULL,
       ),
       'number-of-members' => 
       array (
         'type' => 'number',
-        'name' => 50697173,
-        'id' => 'number-of-members',
+        'id' => 50697173,
+        'name' => 'number-of-members',
         'config' => NULL,
       ),
     );

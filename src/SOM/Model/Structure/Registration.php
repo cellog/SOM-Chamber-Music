@@ -29,22 +29,22 @@ class Registration extends \Chiara\PodioApplicationStructure
       50176888 => 
       array (
         'type' => 'calculation',
-        'name' => 50176888,
-        'id' => 'calculation',
+        'name' => 'calculation',
+        'id' => 50176888,
         'config' => NULL,
       ),
       'calculation' => 
       array (
         'type' => 'calculation',
-        'name' => 50176888,
-        'id' => 'calculation',
+        'name' => 'calculation',
+        'id' => 50176888,
         'config' => NULL,
       ),
       'student' => 
       array (
         'type' => 'app',
-        'name' => 'student',
-        'id' => 50176856,
+        'name' => 50176856,
+        'id' => 'student',
         'config' => 
         array (
           0 => 6468847,
@@ -63,29 +63,29 @@ class Registration extends \Chiara\PodioApplicationStructure
       50181411 => 
       array (
         'type' => 'text',
-        'name' => 50181411,
-        'id' => 'registered-for-course',
+        'name' => 'registered-for-course',
+        'id' => 50181411,
         'config' => NULL,
       ),
       'registered-for-course' => 
       array (
         'type' => 'text',
-        'name' => 50181411,
-        'id' => 'registered-for-course',
+        'name' => 'registered-for-course',
+        'id' => 50181411,
         'config' => NULL,
       ),
       50178337 => 
       array (
         'type' => 'calculation',
-        'name' => 50178337,
-        'id' => 'call-number',
+        'name' => 'call-number',
+        'id' => 50178337,
         'config' => NULL,
       ),
       'call-number' => 
       array (
         'type' => 'calculation',
-        'name' => 50178337,
-        'id' => 'call-number',
+        'name' => 'call-number',
+        'id' => 50178337,
         'config' => NULL,
       ),
       'registered-for-course-2' => 
@@ -185,15 +185,15 @@ class Registration extends \Chiara\PodioApplicationStructure
       50618324 => 
       array (
         'type' => 'calculation',
-        'name' => 50618324,
-        'id' => 'ignore-2',
+        'name' => 'ignore-2',
+        'id' => 50618324,
         'config' => NULL,
       ),
       'ignore-2' => 
       array (
         'type' => 'calculation',
-        'name' => 50618324,
-        'id' => 'ignore-2',
+        'name' => 'ignore-2',
+        'id' => 50618324,
         'config' => NULL,
       ),
       'group' => 
@@ -219,43 +219,43 @@ class Registration extends \Chiara\PodioApplicationStructure
       50178261 => 
       array (
         'type' => 'calculation',
-        'name' => 50178261,
-        'id' => 'calculation-2',
+        'name' => 'calculation-2',
+        'id' => 50178261,
         'config' => NULL,
       ),
       'calculation-2' => 
       array (
         'type' => 'calculation',
-        'name' => 50178261,
-        'id' => 'calculation-2',
+        'name' => 'calculation-2',
+        'id' => 50178261,
         'config' => NULL,
       ),
       50618445 => 
       array (
         'type' => 'calculation',
-        'name' => 50618445,
-        'id' => 'ignore-this-field-2-2',
+        'name' => 'ignore-this-field-2-2',
+        'id' => 50618445,
         'config' => NULL,
       ),
       'ignore-this-field-2-2' => 
       array (
         'type' => 'calculation',
-        'name' => 50618445,
-        'id' => 'ignore-this-field-2-2',
+        'name' => 'ignore-this-field-2-2',
+        'id' => 50618445,
         'config' => NULL,
       ),
       50394241 => 
       array (
         'type' => 'calculation',
-        'name' => 50394241,
-        'id' => 'ignore-this-field-2',
+        'name' => 'ignore-this-field-2',
+        'id' => 50394241,
         'config' => NULL,
       ),
       'ignore-this-field-2' => 
       array (
         'type' => 'calculation',
-        'name' => 50394241,
-        'id' => 'ignore-this-field-2',
+        'name' => 'ignore-this-field-2',
+        'id' => 50394241,
         'config' => NULL,
       ),
       'category-2' => 

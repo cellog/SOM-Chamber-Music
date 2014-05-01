@@ -7,29 +7,29 @@ class VenuesOutreach extends \Chiara\PodioApplicationStructure
       50552970 => 
       array (
         'type' => 'text',
-        'name' => 50552970,
-        'id' => 'location',
+        'name' => 'location',
+        'id' => 50552970,
         'config' => NULL,
       ),
       'location' => 
       array (
         'type' => 'text',
-        'name' => 50552970,
-        'id' => 'location',
+        'name' => 'location',
+        'id' => 50552970,
         'config' => NULL,
       ),
       50552971 => 
       array (
         'type' => 'location',
-        'name' => 50552971,
-        'id' => 'address',
+        'name' => 'address',
+        'id' => 50552971,
         'config' => NULL,
       ),
       'address' => 
       array (
         'type' => 'location',
-        'name' => 50552971,
-        'id' => 'address',
+        'name' => 'address',
+        'id' => 50552971,
         'config' => NULL,
       ),
       'has-piano' => 

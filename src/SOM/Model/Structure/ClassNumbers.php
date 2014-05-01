@@ -7,29 +7,29 @@ class ClassNumbers extends \Chiara\PodioApplicationStructure
       50174348 => 
       array (
         'type' => 'text',
-        'name' => 50174348,
-        'id' => 'course',
+        'name' => 'course',
+        'id' => 50174348,
         'config' => NULL,
       ),
       'course' => 
       array (
         'type' => 'text',
-        'name' => 50174348,
-        'id' => 'course',
+        'name' => 'course',
+        'id' => 50174348,
         'config' => NULL,
       ),
       50174347 => 
       array (
         'type' => 'number',
-        'name' => 50174347,
-        'id' => 'base-number',
+        'name' => 'base-number',
+        'id' => 50174347,
         'config' => NULL,
       ),
       'base-number' => 
       array (
         'type' => 'number',
-        'name' => 50174347,
-        'id' => 'base-number',
+        'name' => 'base-number',
+        'id' => 50174347,
         'config' => NULL,
       ),
       'correction' => 
@@ -151,29 +151,29 @@ class ClassNumbers extends \Chiara\PodioApplicationStructure
       50177559 => 
       array (
         'type' => 'calculation',
-        'name' => 50177559,
-        'id' => 'actual-number-step-1',
+        'name' => 'actual-number-step-1',
+        'id' => 50177559,
         'config' => NULL,
       ),
       'actual-number-step-1' => 
       array (
         'type' => 'calculation',
-        'name' => 50177559,
-        'id' => 'actual-number-step-1',
+        'name' => 'actual-number-step-1',
+        'id' => 50177559,
         'config' => NULL,
       ),
       50177613 => 
       array (
         'type' => 'calculation',
-        'name' => 50177613,
-        'id' => 'final-number',
+        'name' => 'final-number',
+        'id' => 50177613,
         'config' => NULL,
       ),
       'final-number' => 
       array (
         'type' => 'calculation',
-        'name' => 50177613,
-        'id' => 'final-number',
+        'name' => 'final-number',
+        'id' => 50177613,
         'config' => NULL,
       ),
     );

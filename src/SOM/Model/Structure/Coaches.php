@@ -21,22 +21,22 @@ class Coaches extends \Chiara\PodioApplicationStructure
       50175723 => 
       array (
         'type' => 'number',
-        'name' => 50175723,
-        'id' => 'section',
+        'name' => 'section',
+        'id' => 50175723,
         'config' => NULL,
       ),
       'section' => 
       array (
         'type' => 'number',
-        'name' => 50175723,
-        'id' => 'section',
+        'name' => 'section',
+        'id' => 50175723,
         'config' => NULL,
       ),
       'podio-link-to-coach' => 
       array (
         'type' => 'contact',
-        'name' => 'podio-link-to-coach',
-        'id' => 50175722,
+        'id' => 'podio-link-to-coach',
+        'name' => 50175722,
         'config' => 'space_users',
       ),
       50175722 => 

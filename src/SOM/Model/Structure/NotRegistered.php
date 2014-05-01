@@ -47,29 +47,29 @@ class NotRegistered extends \Chiara\PodioApplicationStructure
       50394339 => 
       array (
         'type' => 'calculation',
-        'name' => 50394339,
-        'id' => 'student-id-2',
+        'name' => 'student-id-2',
+        'id' => 50394339,
         'config' => NULL,
       ),
       'student-id-2' => 
       array (
         'type' => 'calculation',
-        'name' => 50394339,
-        'id' => 'student-id-2',
+        'name' => 'student-id-2',
+        'id' => 50394339,
         'config' => NULL,
       ),
       50394340 => 
       array (
         'type' => 'calculation',
-        'name' => 50394340,
-        'id' => 'call-number',
+        'name' => 'call-number',
+        'id' => 50394340,
         'config' => NULL,
       ),
       'call-number' => 
       array (
         'type' => 'calculation',
-        'name' => 50394340,
-        'id' => 'call-number',
+        'name' => 'call-number',
+        'id' => 50394340,
         'config' => NULL,
       ),
     );

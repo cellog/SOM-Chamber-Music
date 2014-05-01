@@ -7,29 +7,29 @@ class Dates extends \Chiara\PodioApplicationStructure
       50668948 => 
       array (
         'type' => 'text',
-        'name' => 50668948,
-        'id' => 'title',
+        'name' => 'title',
+        'id' => 50668948,
         'config' => NULL,
       ),
       'title' => 
       array (
         'type' => 'text',
-        'name' => 50668948,
-        'id' => 'title',
+        'name' => 'title',
+        'id' => 50668948,
         'config' => NULL,
       ),
       50668949 => 
       array (
         'type' => 'date',
-        'name' => 50668949,
-        'id' => 'date',
+        'name' => 'date',
+        'id' => 50668949,
         'config' => NULL,
       ),
       'date' => 
       array (
         'type' => 'date',
-        'name' => 50668949,
-        'id' => 'date',
+        'name' => 'date',
+        'id' => 50668949,
         'config' => NULL,
       ),
     );
