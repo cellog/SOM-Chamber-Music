@@ -71,11 +71,12 @@ class Studentimport extends Route
                 $student->id = $existing[$name]->id;
                 echo "Student already exists, skipping<br>";
             }
-            echo "Updating Student ID link<br>";
             $studentid = new Model\StudentIdNumbers;
             if (isset($idindices[$name])) {
+                echo "Updating Student ID link<br>";
                 $studentid->id = $idindices[$name]->id;
             } else {
+                echo "Creating Student ID link<br>";
                 $studentid->fields['id-2'] = 1;
             }
             $studentid->fields['student'] = $student;
