@@ -72,7 +72,6 @@ class Studentimport extends Route
                 echo "Student already exists, skipping<br>";
             }
             $studentid = new Model\StudentIdNumbers;
-            var_dump($studentid);exit;
             if (isset($idindices[$name])) {
                 echo "Updating Student ID link<br>";
                 $studentid->id = $idindices[$name]->id;
