@@ -67,7 +67,6 @@ class Studentimport extends Route
                 $student->fields['groups'] = array();
                 $student->fields['active'] = 2;
                 $student->save(array('hook' => false), true);
-                exit;
             } else {
                 $student->id = $existing[$name]->id;
                 echo "Student already exists, skipping<br>";
