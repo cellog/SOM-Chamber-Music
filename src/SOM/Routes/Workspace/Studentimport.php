@@ -34,8 +34,8 @@ class Studentimport extends Route
         $field = $idapp->fields['student'];
         
         $idindices = array();
-        foreach ($idapp->filter->limit(500) as $id) {
-            $idindices[$id->title] = $id;
+        foreach ($idapp->filter->limit(500) as $sid) {
+            $idindices[$sid->title] = $sid;
         }
 
         $sapp = new Model\Students;
@@ -49,7 +49,7 @@ class Studentimport extends Route
 
 
         // change the app that the student ids to point to new students thing
-        PodioAppField::update($id->app->id, $field->id, $this->getConfig($field));
+        PodioAppField::update($idapp->id, $field->id, $this->getConfig($field));
 
         // download all existing students
         echo "downloading students...<br>";
@@ -68,13 +68,13 @@ class Studentimport extends Route
                 $student->fields['active'] = 2;
                 $student->save(array('hook' => false), true);
             } else {
-                $student->id = $existing[(string) $student->fields['name']]['id'];
+                $student->id = $existing[$name]->id;
                 echo "Student already exists, skipping<br>";
             }
             echo "Updating Student ID link<br>";
             $studentid = new Model\StudentIdNumbers;
             if (isset($idindices[$name])) {
-                $studentid->id = $idindices[$name]['id'];
+                $studentid->id = $idindices[$name]->id;
             } else {
                 $studentid->fields['id-2'] = 1;
             }
