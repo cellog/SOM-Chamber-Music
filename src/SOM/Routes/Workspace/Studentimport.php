@@ -35,7 +35,7 @@ class Studentimport extends Route
         
         $idindices = array();
         foreach ($idapp->filter->limit(500) as $id) {
-            $idindices[$id['title']] = $id;
+            $idindices[$id->title] = $id;
         }
 
         $sapp = new Model\Students;
@@ -43,7 +43,7 @@ class Studentimport extends Route
         
         $existing = array();
         foreach ($sapp->filter->limit(500) as $st) {
-            $existing[$id['title']] = $st;
+            $existing[$id->title] = $st;
         }
         $sapp->retrieve();
 
