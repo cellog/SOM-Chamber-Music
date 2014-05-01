@@ -87,21 +87,26 @@ class Studentimport extends Route
         }
         echo "done, now updating references<br>";
         
-        $attendance = new Model\Attendance;
-        $attapp = $attendance->app;
-        $attapp->retrieve();
-        
-        $absentstudent = $attapp->fields['student'];
-
-        $rehearsalclass = new Model\RehearsalClass;
-        $rehapp = $rehearsalclass->app;
-        $rehapp->retrieve();
-
-        $group = $rehapp->fields['group'];
-        
-        
-        PodioAppField::update($attapp->id, $absentstudent->id, $this->getConfig($absentstudent, false));
-        PodioAppField::update($rehapp->id, $group->id, $this->getConfig($group, false));
+        // attendance app
+        PodioAppField::update(6505430, 50553204, array(
+            'label' => "Absent student",
+            'description' => null,
+            'delta' => 0,
+            'settings' => array(
+                'referenceable_types' => $this->chamberapp
+            ),
+            'required' => true
+        ));
+        // groups rehearsal class
+        PodioAppField::update(6521127, 50670796, array(
+            'label' => "Group",
+            'description' => null,
+            'delta' => 0,
+            'settings' => array(
+                'referenceable_types' => $this->chamberapp
+            ),
+            'required' => true
+        ));
         echo 'Updated references in the Chamber Music Admin and Chamber Music Setup workspace to point to the new workspace';
     }
 
