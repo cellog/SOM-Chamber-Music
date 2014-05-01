@@ -61,6 +61,7 @@ class Studentimport extends Route
             $student->app_id = $this->studentapp;
             $name = (string) $student->fields['name'];
             if (!isset($existing[$name])) {
+                var_dump($name, array_keys($existing));exit;
                 // reset item id
                 $student->id = null;
                 // remove groups and set as inactive
