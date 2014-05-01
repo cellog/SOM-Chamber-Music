@@ -75,6 +75,7 @@ class Studentimport extends Route
             if (isset($idindices[$name])) {
                 echo "Updating Student ID link<br>";
                 $studentid->id = $idindices[$name]->id;
+                $studentid->retrieve();
             } else {
                 echo "Creating Student ID link<br>";
                 $studentid->fields['id-2'] = 1;
