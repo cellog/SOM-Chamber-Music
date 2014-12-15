@@ -35,7 +35,7 @@ class Cloner extends Route
         $spaceobj = new Space($space);
         echo "Created space <strong>", htmlspecialchars($name), "</strong><br>";
         // 66742 is the current chamber music pack.  This needs to be a constant in SOM class
-        $installed = PodioAppMarketShare::install(66742, array('space_id' => $space['space_id']));
+        $installed = PodioAppMarketShare::install(90923, array('space_id' => $space['space_id']));
         echo "Installed <strong>Chamber Music</strong> app market pack<br>";
         // map tokens
         $tm = Auth::getTokenManager();
