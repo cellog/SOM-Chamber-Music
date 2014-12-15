@@ -184,23 +184,23 @@ class Hook extends SOM
         foreach ($ids as $id) {
             $member = PodioItem::get($id);
             $this->markStudentActive($member);
-            $groups = $member->field('groups');
-            if (!$groups) {
-                $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
-                $groups = $member->field('groups');
-                $groups->set_value($groupid);
-            } else {
-                foreach ($groups->values as $value) {
-                    if ($value['value']['item_id'] == $groupid) {
-                        // member already in the group
-                        continue 2;
-                    }
-                }
-                $newval = $groups->api_friendly_values();
-                $newval[] = $groupid;
-                $groups->set_value($newval);
-            }
-            $groups->save(array('hook' => false));
+            //$groups = $member->field('groups');
+            //if (!$groups) {
+            //    $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
+            //    $groups = $member->field('groups');
+            //    $groups->set_value($groupid);
+            //} else {
+            //    foreach ($groups->values as $value) {
+            //        if ($value['value']['item_id'] == $groupid) {
+            //            // member already in the group
+            //            continue 2;
+            //        }
+            //    }
+            //    $newval = $groups->api_friendly_values();
+            //    $newval[] = $groupid;
+            //    $groups->set_value($newval);
+            //}
+            //$groups->save(array('hook' => false));
         }
     }
 
@@ -253,36 +253,32 @@ class Hook extends SOM
         foreach ($add as $id) {
             $member = PodioItem::get($id);
             $this->markStudentActive($member);
-            $groups = $member->field('groups');
-            if (!$groups) {
-                $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
-                $groups = $member->field('groups');
-                $groups->set_value($itemid);
-            } else {
-                foreach ($groups->values as $value) {
-                    if ($value['value']['item_id'] == $itemid) {
-                        // member already in the group
-                        continue 2;
-                    }
-                }
-                $newval = $groups->api_friendly_values();
-                $newval[] = $itemid;
-                $groups->set_value($newval);
-            }
-            $groups->save(array('hook' => false));
+            //$groups = $member->field('groups');
+            //if (!$groups) {
+            //    $member->add_field(new PodioAppItemField(array('external_id' => 'groups')));
+            //    $groups = $member->field('groups');
+            //    $groups->set_value($itemid);
+            //} else {
+            //    foreach ($groups->values as $value) {
+            //        if ($value['value']['item_id'] == $itemid) {
+            //            // member already in the group
+            //            continue 2;
+            //        }
+            //    }
+            //    $newval = $groups->api_friendly_values();
+            //    $newval[] = $itemid;
+            //    $groups->set_value($newval);
+            //}
+            //$groups->save(array('hook' => false));
         }
         foreach ($remove as $id) {
             $member = PodioItem::get($id);
-            $groups = $member->field('groups');
-            if (!$groups) {
+            $groups = $member->field('group-count');
+            if ($groups > 1) {
                 continue;
             } else {
-                $newval = array_flip($groups->api_friendly_values());
-                unset($newval[$itemid]);
-                $this->markStudentActive($member, count($newval));
-                $groups->set_value(array_keys($newval));
+                $this->markStudentActive($member, false);
             }
-            $groups->save(array('hook' => false));
         }
     }
 
