@@ -4,3 +4,6 @@
 [submodule "chiara"]
 	path = chiara
 	url = https://github.com/cellog/ChiaraPodioPHP.git
+[submodule "d3"]
+	path = d3
+	url = https://github.com/mbostock/d3.git
