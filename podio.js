@@ -21,10 +21,11 @@ podio.prototype = {
   }
  },
  parseHash: function(hash) {
-  var ret = hash.slice(1).split('&')
-  for (var i = 0; i < ret.length; i++) {
-   ret[i] = ret[i].split('=')
+  var ret = {}, info = hash.slice(1).split('&')
+  for (var i = 0; i < info.length; i++) {
+   ret[info[i].split('=')[0]] = info[i].split('=')[1]
   }
+  return ret
  },
  retrieveTokeninfo: function() {
   this.tokeninfo = {}
