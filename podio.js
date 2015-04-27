@@ -41,12 +41,11 @@ podio.prototype = {
   }, this.displayStudents)
  },
  getThisSemesterMasterclasses: function() {
-  this.post('/item/app/6505403/filter/24263446/', this.collectMasterclasses())
+  this.post('/item/app/6505403/filter/24263446/', {}, this.collectMasterclasses())
  },
  collectMasterclasses: function() {
   var self = this
   return function(error, data) {
-   console.log('returned')
    if (error) {
     d3.select('#info').text('ERROR: ' + error.responseText)
    } else {
