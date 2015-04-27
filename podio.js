@@ -32,6 +32,7 @@ podio.prototype = {
  },
  post: function(api, body, callback) {
   d3.xhr('https://api.podio.com' + api, 'application/json')
+    .header('Authorization', 'OAuth2 ' + this.tokeninfo.access_token)
     .post(JSON.stringify(body), callback)
  },
  getStringsStudents: function() {
