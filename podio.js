@@ -48,9 +48,7 @@ podio.prototype = {
    d3.select('tbody').selectAll('tr')
     .data(json.items)
     .enter().append('tr')
-    
-    .selectAll('td')
-    .enter().append('td')
+    .append('td')
     .text(function(d) {
       var t = {
        //id: d.item_id,
