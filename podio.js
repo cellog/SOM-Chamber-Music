@@ -15,10 +15,12 @@ podio.prototype = {
   var url = "https://podio.com/oauth/authorize?response_type=token&client_id=" +
    this.id + "&redirect_uri=" + encodeURI(this.url)
   if (location.hash.length) {
+   console.log("parsing hash")
     // parse the hash for token
     this.tokeninfo = this.parseHash(location.hash)
     return true
   } else {
+   console.log("no hash")
    location.href = url
   }
  },
