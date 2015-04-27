@@ -44,7 +44,28 @@ podio.prototype = {
   if (error) {
    d3.select('#info').text('ERROR: ' + error.responseText)
   } else {
-   d3.select('#info').text(data.responseText)
+   var json = JSON.parse(data.responseText)
+   d3.select('tbody').selectAll('tr')
+    .data(json.items)
+    .enter().append('tr')
+    
+    .selectAll('td')
+    .data(function(d) {
+      return {
+       id: d.item_id,
+       name: d.fields[0].values[0].name,
+       instruments: d.fields[1].values
+      }
+     })
+    .enter().append('td')
+    .text(function(d) {
+      return d.name + d.instruments.reduce(function(p, s) {
+       if (p) {
+        p += ', '
+       }
+       return p + s.value.title
+      }, '')
+     })
   }
  }
 }
