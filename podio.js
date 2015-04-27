@@ -4,7 +4,6 @@ function podio(clientid, redirecturi) {
  this.tokeninfo = {
   access_token: false
  }
- this.authenticate()
 }
 podio.prototype = {
  constructor: podio,
