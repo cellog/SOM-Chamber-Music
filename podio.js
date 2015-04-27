@@ -46,6 +46,7 @@ podio.prototype = {
  collectMasterclasses: function() {
   var self = this
   return function(error, data) {
+   console.log('returned')
    if (error) {
     d3.select('#info').text('ERROR: ' + error.responseText)
    } else {
