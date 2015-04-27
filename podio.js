@@ -50,21 +50,19 @@ podio.prototype = {
     .enter().append('tr')
     
     .selectAll('td')
-    .data(function(d) {
-      return {
-       id: d.item_id,
-       name: d.fields[0].values[0].name,
-       instruments: d.fields[1].values
-      }
-     })
     .enter().append('td')
     .text(function(d) {
-      return d.name + d.instruments.reduce(function(p, s) {
-       if (p) {
-        p += ', '
-       }
-       return p + s.value.title
-      }, '')
+      var t = {
+       //id: d.item_id,
+       name: d.title,
+       instruments: d.fields[1].values.reduce(function(p, s) {
+        if (p) {
+         p += ', '
+        }
+        return p + s.value.title
+       })
+      }
+      return t.name + '(' + t.instruments + ')'
      })
   }
  }
