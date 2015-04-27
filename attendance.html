@@ -4,11 +4,14 @@
         
     </head>
     <body>
+        <div id="info"></div>
         <script src="d3/d3.min.js"></script>
         <script src="podio.js"></script>
         <script>
             var p = new podio('gksom-chamber-music-attendance',
                               'http://chiaraquartet.net/SOM-Chamber-Music/attendance.html')
+            p.authenticate()
+            p.getStringsStudents()
         </script>
     </body>
 </html>
