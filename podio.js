@@ -8,7 +8,7 @@ function podio(clientid, redirecturi) {
 }
 podio.prototype = {
  constructor: podio,
- authenticate: function() {
+ authenticate: function(location) {
   if (this.tokeninfo.access_token) {
     return
   }
