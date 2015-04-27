@@ -51,12 +51,16 @@ podio.prototype = {
     .append('td')
     .text(function(d) {
       var i = d.fields[1].values
-      i = i.reduce(function(p, s) {
-        if (p) {
-         p += ', '
-        }
-        return p + s.value.title
-       })
+      if (i.length == 1) {
+        i = i.value.title
+      } else {
+       i = i.reduce(function(p, s) {
+         if (p) {
+          p += ', '
+         }
+         return p + s.value.title
+        })
+      }
       var t = {
        //id: d.item_id,
        name: d.title,
