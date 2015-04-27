@@ -1,7 +1,9 @@
 function podio(clientid, redirecturi) {
  this.id = clientid
  this.url = redirecturi
- this.s = 
+ this.tokeninfo = {
+  access_token: false
+ }
  this.authenticate()
 }
 podio.prototype = {
