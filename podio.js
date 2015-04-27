@@ -17,6 +17,7 @@ podio.prototype = {
   if (location.hash.length) {
     // parse the hash for token
     this.tokeninfo = this.parseHash(location.hash)
+    return true
   } else {
    location.href = url
   }
