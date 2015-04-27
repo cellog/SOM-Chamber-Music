@@ -40,6 +40,27 @@ podio.prototype = {
    limit: 200
   }, this.displayStudents)
  },
+ getThisSemesterMasterclasses: function() {
+  this.post('/item/app/6505403/filter/24263446/', this.collectMasterclasses())
+ },
+ collectMasterclasses: function() {
+  var self = this
+  return function(error, data) {
+   if (error) {
+    d3.select('#info').text('ERROR: ' + error.responseText)
+   } else {
+    self.setMasterclasses(JSON.parse(data.responseText))
+   }
+  }
+ },
+ setMasterclasses: function(data) {
+  d3.select('thead').selectAll('tr.date')
+   .data(data)
+   .enter().append('th').append('tr')
+   .text(function(d) {
+    return d.title
+   })
+ },
  displayStudents: function(error, data) {
   if (error) {
    d3.select('#info').text('ERROR: ' + error.responseText)
