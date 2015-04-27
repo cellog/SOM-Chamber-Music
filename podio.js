@@ -52,7 +52,7 @@ podio.prototype = {
     .text(function(d) {
       var i = d.fields[1].values
       if (i.length == 1) {
-        i = i.value.title
+        i = i[0].value.title
       } else {
        i = i.reduce(function(p, s) {
          if (p) {
@@ -66,7 +66,7 @@ podio.prototype = {
        name: d.title,
        instruments: i
       }
-      return t.name + '(' + t.instruments + ')'
+      return t.name + ' (' + t.instruments + ')'
      })
   }
  }
