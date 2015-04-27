@@ -50,15 +50,17 @@ podio.prototype = {
     .enter().append('tr')
     .append('td')
     .text(function(d) {
-      var t = {
-       //id: d.item_id,
-       name: d.title,
-       instruments: d.fields[1].values.reduce(function(p, s) {
+      var i = d.fields[1].values
+      i = i.reduce(function(p, s) {
         if (p) {
          p += ', '
         }
         return p + s.value.title
        })
+      var t = {
+       //id: d.item_id,
+       name: d.title,
+       instruments: i
       }
       return t.name + '(' + t.instruments + ')'
      })
