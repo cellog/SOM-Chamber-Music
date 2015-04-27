@@ -54,9 +54,9 @@ podio.prototype = {
   }
  },
  setMasterclasses: function(data) {
-  d3.select('thead').selectAll('th')
+  d3.select('thead').selectAll('tr')
    .data(data.items)
-   .enter().append('tr').append('th')
+   .enter().append('th')
    .text(function(d) {
     return d.title
    })
