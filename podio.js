@@ -21,7 +21,7 @@ podio.prototype = {
     return true
   } else {
    console.log("no hash " + location.href)
-   location.href = url
+   window.location.replace(url)
   }
  },
  parseHash: function(hash) {
@@ -41,6 +41,10 @@ podio.prototype = {
   }, this.displayStudents)
  },
  displayStudents: function(error, data) {
-  d3.select('#info').text(data)
+  if (error) {
+   d3.select('#info').text('ERROR: ' + error.responseText)
+  } else {
+   d3.select('#info').text(data)
+  }
  }
 }
