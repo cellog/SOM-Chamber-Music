@@ -44,7 +44,7 @@ podio.prototype = {
   if (error) {
    d3.select('#info').text('ERROR: ' + error.responseText)
   } else {
-   d3.select('#info').text(data)
+   d3.select('#info').text(data.responseText)
   }
  }
 }
