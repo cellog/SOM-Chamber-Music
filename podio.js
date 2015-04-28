@@ -35,7 +35,7 @@ podio.prototype = {
     .header('Authorization', 'OAuth2 ' + this.tokeninfo.access_token)
     .post(JSON.stringify(body), callback)
  },
- getStringsStudents: function() {
+ getStudents: function() {
   this.post('/item/app/10468839/filter/22482207/', {
    limit: 200
   }, done)
