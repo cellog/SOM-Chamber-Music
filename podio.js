@@ -83,6 +83,7 @@ podio.prototype = {
   this.getData(this.displayStudents)
  },
  getData: function(callback) {
+  var self = this;
   var c = function(data) {
    data.forEach(function(m) {
     if (m instanceof Array) {
@@ -90,7 +91,7 @@ podio.prototype = {
      throw new Error(m[0])
     }
    })
-   callback(data)
+   callback.call(self, data)
   }
   this.collectXhr(c, this.getStudents, this.getMasterclasses,
                   this.getTeachingArtistClasses, this.getOtherClasses, this.getAbsences)
@@ -107,7 +108,7 @@ podio.prototype = {
      ret[i] = JSON.parse(data.responseText)
     }
     if (++done == args.length) {
-     finalcallback.call(this, ret)
+     finalcallback(ret)
     }
    }
   }
