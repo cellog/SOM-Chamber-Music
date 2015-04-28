@@ -54,10 +54,10 @@ podio.prototype = {
   }
  },
  setMasterclasses: function(data) {
-  d3.select('thead').select('tr').selectAll('th.date')
+  d3.select('thead').select('tr').selectAll('th.masterclass')
    .data(data.items)
    .enter().append('th')
-   .attr('class', 'date')
+   .attr('class', 'masterclass')
    .text(function(d) {
     return d.fields[3].values[0].start_date
    })

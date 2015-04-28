@@ -4,3 +4,15 @@ table {
 body {
     width: 100%
 }
+.masterclass {
+    background-color: red
+}
+.teaching-artist {
+    background-color: green
+}
+.rehearsal-class {
+    background-color: blue
+}
+thead {
+    position: fixed
+}
