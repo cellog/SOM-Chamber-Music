@@ -111,6 +111,5 @@ podio.prototype = {
         .attr('type', 'checkbox')
       })
      })
-  }
  }
 }
