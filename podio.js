@@ -172,9 +172,9 @@ podio.prototype = {
       })
      .append('input')
      .attr('type', 'checkbox')
-     .data(function(d, i) {
-            return {student: this[i].__data__.item_id, class:m.item_id}
-           })
+     .on('change', function(e) {
+      alert('clicked')
+     })
    })
    teaching.items.forEach(function (m) {
     s.append('td')
@@ -184,9 +184,6 @@ podio.prototype = {
       })
      .append('input')
      .attr('type', 'checkbox')
-     .data(function(d, i) {
-            return {student: this[i].__data__.item_id, class:m.item_id}
-           })
    })
    other.items.forEach(function (m) {
     s.append('td')
@@ -196,11 +193,8 @@ podio.prototype = {
       })
      .append('input')
      .attr('type', 'checkbox')
-     .data(function(d, i) {
-            return {student: this[i].__data__.item_id, class:m.item_id}
-           })
    })
-   rehearsal.items.forEach(function (m) {
+   rehearsalclass.items.forEach(function (m) {
     s.append('td')
      .attr('class', 's_attendance rehearsal-class')
      .attr('id', function(d) {
@@ -208,9 +202,6 @@ podio.prototype = {
       })
      .append('input')
      .attr('type', 'checkbox')
-     .data(function(d, i) {
-            return {student: this[i].__data__.item_id, class:m.item_id}
-           })
    })
   })
  }
