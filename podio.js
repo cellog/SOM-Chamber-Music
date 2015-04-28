@@ -112,7 +112,7 @@ podio.prototype = {
    }
   }
   for (var i = 0; i < args.length; i++) {
-    args[i](makeCallback(i))
+    args[i].call(this, makeCallback(i))
   }
  },
  displayStudents: function(data)
