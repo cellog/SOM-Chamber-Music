@@ -98,16 +98,16 @@ podio.prototype = {
  collectXhr: function() {
   var args = Array.prototype.slice.call(arguments)
   var finalcallback = args.shift()
-  var data = [], done = 0
+  var ret = [], done = 0
   var makeCallback = function(i) {
    return function(error, data) {
     if (error) {
-     data[i] = [error.responseText]
+     ret[i] = [error.responseText]
     } else {
-     data[i] = JSON.parse(data.responseText)
+     ret[i] = JSON.parse(data.responseText)
     }
     if (++done == args.length) {
-     finalcallback(data)
+     finalcallback(ret)
     }
    }
   }
