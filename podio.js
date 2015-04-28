@@ -107,7 +107,7 @@ podio.prototype = {
      ret[i] = JSON.parse(data.responseText)
     }
     if (++done == args.length) {
-     finalcallback(ret)
+     finalcallback.call(this, ret)
     }
    }
   }
