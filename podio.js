@@ -96,7 +96,7 @@ podio.prototype = {
                   this.getTeachingArtistClasses, this.getOtherClasses, this.getAbsences)
  },
  collectXhr: function(finalcallback) {
-  var args = Array.prototype.slice(arguments, 1)
+  var args = Array.prototype.slice.call(arguments, 1)
   var data = [], done = 0
   var makeCallback = function(i) {
    return function(error, data) {
