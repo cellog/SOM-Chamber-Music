@@ -173,7 +173,7 @@ podio.prototype = {
      .append('input')
      .attr('type', 'checkbox')
      .data(//{student: d.item_id, class: m.item_id})
-           function(d) {
+           function(d, i) {
             return d
            })
    })
