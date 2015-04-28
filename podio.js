@@ -173,7 +173,7 @@ podio.prototype = {
      .append('input')
      .attr('type', 'checkbox')
      .data(function(d, i) {
-            return {student: this[i].item_id, class:m.item_id}
+            return {student: this[i].__data__.item_id, class:m.item_id}
            })
    })
    teaching.items.forEach(function (m) {
@@ -185,7 +185,7 @@ podio.prototype = {
      .append('input')
      .attr('type', 'checkbox')
      .data(function(d, i) {
-            return {student: this[i].item_id, class:m.item_id}
+            return {student: this[i].__data__.item_id, class:m.item_id}
            })
    })
    other.items.forEach(function (m) {
@@ -197,7 +197,7 @@ podio.prototype = {
      .append('input')
      .attr('type', 'checkbox')
      .data(function(d, i) {
-            return {student: this[i].item_id, class:m.item_id}
+            return {student: this[i].__data__.item_id, class:m.item_id}
            })
    })
    rehearsal.items.forEach(function (m) {
@@ -209,7 +209,7 @@ podio.prototype = {
      .append('input')
      .attr('type', 'checkbox')
      .data(function(d, i) {
-            return {student: this[i].item_id, class:m.item_id}
+            return {student: this[i].__data__.item_id, class:m.item_id}
            })
    })
   })
