@@ -104,7 +104,7 @@ podio.prototype = {
       return t.name + ' (' + t.instruments + ')'
      })
    tr.call(function(s) {
-      masterclasses.items.each(function (m) {
+      masterclasses.items.forEach(function (m) {
        s.append('td')
         .attr('class', 's_attendance masterclass')
         .attr('id', function(d) {
