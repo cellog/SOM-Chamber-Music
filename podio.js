@@ -49,6 +49,9 @@ podio.prototype = {
  getOtherClasses: function(done) {
   this.post('/item/app/12110848/filter/24263454/', {}, done)
  },
+ getRehearsalClasses: function(done) {
+  this.post('/item/app/6521115/filter/24263447/', {}, done)
+ },
  getAbsences: function(done) {
   this.post('/item/app/6505430/filter/all_by_date/', {}, done)
  },
@@ -79,6 +82,15 @@ podio.prototype = {
     return d.fields[1].values[0].start_date
    })
  },
+ setRehearsalClasses: function(data) {
+  d3.select('thead').select('tr').selectAll('th.rehearsal-class')
+   .data(data.items)
+   .enter().append('th')
+   .attr('class', 'rehearsal-class')
+   .text(function(d) {
+    return d.fields[3].values[0].start_date
+   })
+ },
  showStudents: function() {
   this.getData(this.displayStudents)
  },
@@ -94,7 +106,8 @@ podio.prototype = {
    callback.call(self, data)
   }
   this.collectXhr(c, this.getStudents, this.getMasterclasses,
-                  this.getTeachingArtistClasses, this.getOtherClasses, this.getAbsences)
+                  this.getTeachingArtistClasses, this.getOtherClasses, this.getAbsences,
+                  this.getRehearsalClasses)
  },
  collectXhr: function() {
   var args = Array.prototype.slice.call(arguments)
@@ -119,7 +132,7 @@ podio.prototype = {
  displayStudents: function(data)
  {
   var students = data[0], masterclasses = data[1], teaching = data[2], other = data[3],
-      absences = data[4]
+      rehearsalclass = data[4], absences = data[5]
   this.setMasterclasses(masterclasses)
   this.setTeachingArtistClasses(teaching)
   this.setOtherClasses(other)
@@ -159,6 +172,7 @@ podio.prototype = {
       })
      .append('input')
      .attr('type', 'checkbox')
+     .data({student: d.item_id, class: m.item_id})
    })
    teaching.items.forEach(function (m) {
     s.append('td')
@@ -168,15 +182,27 @@ podio.prototype = {
       })
      .append('input')
      .attr('type', 'checkbox')
+     .data({student: d.item_id, class: m.item_id})
    })
    other.items.forEach(function (m) {
     s.append('td')
-     .attr('class', 's_attendance teaching-artist')
+     .attr('class', 's_attendance other-class')
      .attr('id', function(d) {
        return 's_' + d.item_id + '_' + m.item_id
       })
      .append('input')
      .attr('type', 'checkbox')
+     .data({student: d.item_id, class: m.item_id})
+   })
+   rehearsal.items.forEach(function (m) {
+    s.append('td')
+     .attr('class', 's_attendance rehearsal-class')
+     .attr('id', function(d) {
+       return 's_' + d.item_id + '_' + m.item_id
+      })
+     .append('input')
+     .attr('type', 'checkbox')
+     .data({student: d.item_id, class: m.item_id})
    })
   })
  }
