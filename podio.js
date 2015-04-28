@@ -119,6 +119,9 @@ podio.prototype = {
  {
   var students = data[0], masterclasses = data[1], teaching = data[2], other = data[3],
       absences = data[4]
+  this.setMasterclasses(masterclasses)
+  this.setTeachingArtistClasses(teaching)
+  this.setOtherClasses(other)
   var tr = d3.select('tbody').selectAll('tr')
    .data(students.items)
    .enter().append('tr')
