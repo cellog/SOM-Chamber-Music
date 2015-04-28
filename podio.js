@@ -38,7 +38,7 @@ podio.prototype = {
  getStringsStudents: function() {
   this.post('/item/app/10468839/filter/22482207/', {
    limit: 200
-  }, this.collectStudents)
+  }, this.collectStudents())
  },
  getThisSemesterMasterclasses: function(s) {
   this.post('/item/app/6505403/filter/24263446/', {}, this.collectMasterclasses(s))
@@ -63,11 +63,14 @@ podio.prototype = {
    })
   this.displayStudents(s, data)
  },
- collectStudents: function(error, data) {
-  if (error) {
-   d3.select('#info').text('ERROR: ' + error.responseText)
-  } else {
-   this.getThisSemesterMasterclasses(data)
+ collectStudents: function() {
+  var self = this
+  return function(error, data) {
+   if (error) {
+    d3.select('#info').text('ERROR: ' + error.responseText)
+   } else {
+    self.getThisSemesterMasterclasses(data)
+   }
   }
  },
  displayStudents: function(data, masterclasses)
