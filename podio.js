@@ -54,11 +54,12 @@ podio.prototype = {
   }
  },
  setMasterclasses: function(data) {
-  d3.select('thead').selectAll('tr')
+  d3.select('thead').select('tr').selectAll('th.date')
    .data(data.items)
    .enter().append('th')
+   .attr('class', 'date')
    .text(function(d) {
-    return d.title
+    return d.fields[3].values[0].start_date
    })
  },
  displayStudents: function(error, data) {
