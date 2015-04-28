@@ -17,7 +17,6 @@
             var p = new podio('gksom-chamber-music-attendance',
                               'http://chiaraquartet.net/SOM-Chamber-Music/attendance.html')
             if (p.authenticate(location)) {
-                p.getThisSemesterMasterclasses()
                 p.getStringsStudents()
             }
         </script>

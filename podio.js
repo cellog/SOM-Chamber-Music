@@ -38,22 +38,22 @@ podio.prototype = {
  getStringsStudents: function() {
   this.post('/item/app/10468839/filter/22482207/', {
    limit: 200
-  }, this.displayStudents)
+  }, this.collectStudents)
  },
  getThisSemesterMasterclasses: function() {
   this.post('/item/app/6505403/filter/24263446/', {}, this.collectMasterclasses())
  },
- collectMasterclasses: function() {
+ collectMasterclasses: function(s) {
   var self = this
   return function(error, data) {
    if (error) {
     d3.select('#info').text('ERROR: ' + error.responseText)
    } else {
-    self.setMasterclasses(JSON.parse(data.responseText))
+    self.setMasterclasses(JSON.parse(data.responseText), s)
    }
   }
  },
- setMasterclasses: function(data) {
+ setMasterclasses: function(data, s) {
   d3.select('thead').select('tr').selectAll('th.masterclass')
    .data(data.items)
    .enter().append('th')
@@ -61,18 +61,26 @@ podio.prototype = {
    .text(function(d) {
     return d.fields[3].values[0].start_date
    })
+  this.displayStudents(s, data)
  },
- displayStudents: function(error, data) {
+ collectStudents: function(error, data) {
   if (error) {
    d3.select('#info').text('ERROR: ' + error.responseText)
   } else {
+   this.collectMasterclasses(data)
+  }
+ },
+ displayStudents: function(data, masterclasses)
+ {
    var json = JSON.parse(data.responseText)
-   d3.select('tbody').selectAll('tr')
+   var tr = d3.select('tbody').selectAll('tr')
     .data(json.items)
     .enter().append('tr')
     .attr('class', 'student')
     .attr('id', function(d) {return 's_' + d.item_id})
-    .append('td')
+   
+   tr.append('td')
+    .attr('class', 'student_name')
     .text(function(d) {
       var i = d.fields[1].values
       if (i.length == 1) {
@@ -91,6 +99,17 @@ podio.prototype = {
        instruments: i
       }
       return t.name + ' (' + t.instruments + ')'
+     })
+   tr.call(function(s) {
+      masterclasses.items.each(function (m) {
+       s.append('td')
+        .attr('class', 's_attendance masterclass')
+        .attr('id', function(d) {
+          return 's_' + d.item_id + '_' + m.item_id
+         })
+        .append('input')
+        .attr('type', 'checkbox')
+      })
      })
   }
  }
