@@ -70,6 +70,8 @@ podio.prototype = {
    d3.select('tbody').selectAll('tr')
     .data(json.items)
     .enter().append('tr')
+    .attr('class', 'student')
+    .attr('id', function(d) {return 's_' + d.item_id})
     .append('td')
     .text(function(d) {
       var i = d.fields[1].values
