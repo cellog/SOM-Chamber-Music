@@ -132,7 +132,7 @@ podio.prototype = {
  displayStudents: function(data)
  {
   var students = data[0], masterclasses = data[1], teaching = data[2], other = data[3],
-      rehearsalclass = data[4], absences = data[5]
+      rehearsalclass = data[4], absences = data[5], self = this
   this.setMasterclasses(masterclasses)
   this.setTeachingArtistClasses(teaching)
   this.setOtherClasses(other)
@@ -173,7 +173,7 @@ podio.prototype = {
      .append('input')
      .attr('type', 'checkbox')
      .on('change', function(e) {
-      alert('clicked')
+      self.updateAbsence(d3.select(this).data().item_id, m.item_id, this.checked)
      })
    })
    teaching.items.forEach(function (m) {
@@ -204,5 +204,8 @@ podio.prototype = {
      .attr('type', 'checkbox')
    })
   })
+ },
+ updateAbsence: function(student, missed_class, is_absent) {
+  alert('student ' + student + ', class ' + missed_class + (is_absent ? 'absent' : 'present'))
  }
 }
