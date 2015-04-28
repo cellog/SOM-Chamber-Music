@@ -67,7 +67,7 @@ podio.prototype = {
    .enter().append('th')
    .attr('class', 'teaching-artist')
    .text(function(d) {
-    return d.fields[3].values[0].start_date
+    return d.fields[2].values[0].start_date
    })
  },
  setOtherClasses: function(data) {
@@ -76,7 +76,7 @@ podio.prototype = {
    .enter().append('th')
    .attr('class', 'other-class')
    .text(function(d) {
-    return d.fields[3].values[0].start_date
+    return d.fields[1].values[0].start_date
    })
  },
  showStudents: function() {
