@@ -40,10 +40,10 @@ podio.prototype = {
    limit: 200
   }, done)
  },
- getThisSemesterTeachingArtistClasses: function(done) {
+ getTeachingArtistClasses: function(done) {
   this.post('/item/app/6558188/filter/24263448/', {}, done)
  },
- getThisSemesterMasterclasses: function(done) {
+ getMasterclasses: function(done) {
   this.post('/item/app/6505403/filter/24263446/', {}, done)
  },
  getOtherClasses: function(done) {
