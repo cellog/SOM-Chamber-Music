@@ -206,7 +206,7 @@ podio.prototype = {
    })
   })
   absences.items.forEach(function(a) {
-   var id = 's_' + a.fields[0].values[0].item_id + '_' + a.fields[1].values[0].item_id
+   var id = 's_' + a.fields[0].values[0].value.item_id + '_' + a.fields[1].values[0].value.item_id
    var box = d3.select(document.getElementById(id).firstChild)
    box.property('checked', true)
    if (a.fields[2].values[0].value.id == 2) {
