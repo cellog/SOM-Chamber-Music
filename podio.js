@@ -173,7 +173,7 @@ podio.prototype = {
      .append('input')
      .attr('type', 'checkbox')
      .on('change', function(e) {
-      self.updateAbsence(d3.select(this).data().item_id, m.item_id, this.checked)
+      self.updateAbsence(this.__data__.item_id, m.item_id, this.checked)
      })
    })
    teaching.items.forEach(function (m) {
@@ -206,6 +206,6 @@ podio.prototype = {
   })
  },
  updateAbsence: function(student, missed_class, is_absent) {
-  alert('student ' + student + ', class ' + missed_class + (is_absent ? 'absent' : 'present'))
+  alert('student ' + student + ', class ' + missed_class + (is_absent ? ' absent' : ' present'))
  }
 }
