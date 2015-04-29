@@ -35,6 +35,11 @@ podio.prototype = {
     .header('Authorization', 'OAuth2 ' + this.tokeninfo.access_token)
     .post(JSON.stringify(body), callback)
  },
+ deletehttp: function(api, callback) {
+  d3.xhr('https://api.podio.com' + api)
+    .header('Authorization', 'OAuth2 ' + this.tokeninfo.access_token)
+    .send('DELETE', '', callback)
+ },
  getStudents: function(done) {
   this.post('/item/app/10468839/filter/22482207/', {
    limit: 200
@@ -211,7 +216,7 @@ podio.prototype = {
     alert('Saving absence failed, try again')
     checkbox.checked = false
    } else {
-    checkbox.__absence__ = data.item_id
+    checkbox.__absence__ = JSON.parse(data.responseText).item_id
    }
   })
  },
