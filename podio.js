@@ -112,13 +112,13 @@ podio.prototype = {
  collectXhr: function() {
   var args = Array.prototype.slice.call(arguments)
   var finalcallback = args.shift()
-  var ret = [], done = 0
+  var ret = [], done = 0, self = this
   var makeCallback = function(i) {
    return function(error, data) {
     if (error) {
      if (error.status == 401) {
-        this.tokeninfo.access_token = false
-        this.authorize()
+        self.tokeninfo.access_token = false
+        self.authorize()
      }
      ret[i] = [error.responseText]
     } else {
