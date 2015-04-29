@@ -357,7 +357,7 @@ podio.prototype = {
   var self = this
   d3.select("#letters").selectAll('div.letter')
    .each(function(d) {
-    d3.select(this).text(self.renderLetter(d))
+    d3.select(this).select('textarea').text(self.renderLetter(d))
    })
  },
  renderLetter: function(data) {
