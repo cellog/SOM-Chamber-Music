@@ -167,7 +167,10 @@ podio.prototype = {
    .attr('id', function(d) {return 's_' + d.item_id})
   
   tr.append('td')
-   .attr('class', 'student_name')
+   .attr('class', function(d) {
+    return 'student_name ' + d.fields[11].values[0].value.title == 'Masterclass' ?
+     'masterclass' : 'teaching-artist'
+   })
    .text(function(d) {
      var i = d.fields[1].values
      if (i.length == 1) {
