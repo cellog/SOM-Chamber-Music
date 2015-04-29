@@ -118,7 +118,7 @@ podio.prototype = {
     if (error) {
      if (error.status == 401) {
         self.tokeninfo.access_token = false
-        self.authenticate()
+        self.authenticate({hash:''})
      }
      ret[i] = [error.responseText]
     } else {
