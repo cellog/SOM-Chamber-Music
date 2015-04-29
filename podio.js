@@ -278,7 +278,7 @@ podio.prototype = {
       console.log(error) 
      } else {
       self.absences.items.push(JSON.parse(data.responseText))
-      this.updateAbsenceLetters()
+      self.updateAbsenceLetters()
      }
     })
    }
@@ -297,7 +297,7 @@ podio.prototype = {
      if (self.absences.items[i].item_id == checkbox.__absence__) {
         self.absences.items[i] = undefined
         self.absences.items = self.absences.items.filter()
-        this.updateAbsenceLetters()
+        self.updateAbsenceLetters()
         break;
      }
     }
@@ -346,7 +346,6 @@ podio.prototype = {
  },
  renderAbsenceLetters: function() {
   var self = this;
-  this.letters.data([])
   this.letters.data(function (d) {
    return self.renderLetter(d)
   })
