@@ -258,8 +258,22 @@ podio.prototype = {
    } else {
     var ret = JSON.parse(data.responseText)
     checkbox.__absence__ = ret.item_id
-    self.absences.items.push(ret)
-    self.parseAbsencesByCoach()
+    if (ret.fields[3] != undefined) {
+     self.absences.items.push(ret)
+     self.parseAbsencesByCoach()
+    } else {
+     setTimeout(function() {
+      this.get('/item/' + ret.item_id, '', function(error, data) {
+       if (error) {
+        d3.select('#info', 'ERROR: ' + error.responseText)
+       } else {
+        ret = JSON.parse(data.responseText)
+        self.absences.items.push(ret)
+        self.parseAbsencesByCoach()
+       }
+      })
+     }, 1000)
+    }
    }
   })
  },
