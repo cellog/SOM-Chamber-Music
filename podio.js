@@ -155,6 +155,7 @@ podio.prototype = {
  {
   var students = data[0], masterclasses = data[1], teaching = data[2], other = data[3],
       rehearsalclass = data[4], absences = data[5], self = this
+  d3.select('#loading').style('display', 'none')
   this.setMasterclasses(masterclasses)
   this.setTeachingArtistClasses(teaching)
   this.setOtherClasses(other)
