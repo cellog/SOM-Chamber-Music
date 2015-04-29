@@ -346,7 +346,8 @@ podio.prototype = {
  renderLetter: function(data) {
   var text = d3.select('#formletter').text()
   for (var i in data) {
-   text = text.replace('[[professor]]', i.split(' ')[0])
+   var prof = i.split(' ')
+   text = text.replace('[[professor]]', prof[0])
    text = text.replace('[[absences]]', data[i])
   }
   return text
