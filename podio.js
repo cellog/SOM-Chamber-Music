@@ -12,13 +12,12 @@ function podio(clientid, redirecturi) {
  this.absences = []
  this.absencesbycoach = []
  var self = this
- this.letters = d3.select('#letters').selectAll('div.letter')
-  var letterUpdate = function(e) {
-   self.renderAbsencesLetters()
-  }
-  d3.select('#formletter')
-   .on('input', letterUpdate)
-   .on('keyup', letterUpdate)
+ var letterUpdate = function(e) {
+  self.renderAbsenceLetters()
+ }
+ d3.select('#formletter')
+  .on('input', letterUpdate)
+  .on('keyup', letterUpdate)
 }
 podio.prototype = {
  constructor: podio,
@@ -342,16 +341,17 @@ podio.prototype = {
  },
  bindAbsences: function(data) {
   var self = this
-  var a = this.letters.data(this.absencesbycoach, function(d) {for (var i in d) { return i }})
-    a.exit()
-    .remove()
-    a.enter()
-    .append('div')
-    .attr('class', 'letter')
-    .append('textarea')
-    .text(function (d) {
-     return self.renderLetter(d)
-    })
+  var a = d3.select('#letters').selectAll('div.letter')
+   .data(this.absencesbycoach, function(d) {for (var i in d) { return i }})
+  a.exit()
+  .remove()
+  a.enter()
+  .append('div')
+  .attr('class', 'letter')
+  .append('textarea')
+  .text(function (d) {
+   return self.renderLetter(d)
+  })
  },
  renderLetter: function(data) {
   var text = d3.select('#formletter').text()
