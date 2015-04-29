@@ -133,6 +133,7 @@ podio.prototype = {
  },
  setAbsences: function(data) {
   this.absences = data
+  this.letters.data(data)
   this.updateAbsenceLetters()
  },
  showStudents: function() {
