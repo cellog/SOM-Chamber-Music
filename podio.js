@@ -276,7 +276,7 @@ podio.prototype = {
      if (error) {
       console.log(error) 
      } else {
-      self.absences.push(JSON.parse(data.responseText))
+      self.absences.items.push(JSON.parse(data.responseText))
       this.updateAbsenceLetters()
      }
     })
@@ -293,9 +293,9 @@ podio.prototype = {
     checkbox.checked = true
    } else {
     for (var i = 0; i < self.absences.length; i++) {
-     if (self.absences[i].item_id == checkbox.__absence__) {
-        self.absences[i] = undefined
-        self.absences = self.absences.filter()
+     if (self.absences.items[i].item_id == checkbox.__absence__) {
+        self.absences.items[i] = undefined
+        self.absences.items = self.absences.items.filter()
         this.updateAbsenceLetters()
         break;
      }
@@ -313,7 +313,7 @@ podio.prototype = {
  },
  parseAbsencesByCoach: function() {
   var self = this, r = {}, students = {}
-  this.absences.forEach(function(a) {
+  this.absences.items.forEach(function(a) {
    // first student
    students[a.title] ? students[a.title]++ : (students[a.title] = 1)
    // then absence by coach
