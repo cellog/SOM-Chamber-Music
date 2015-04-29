@@ -12,18 +12,7 @@ function podio(clientid, redirecturi) {
  this.absences = []
  this.absencesbycoach = []
  var self = this
- this.letters = d3.select('#letters').selectAll('div.letter').data([])
- this.letters
-   .exit()
-   .remove()
- this.letters
-   .enter()
-   .append('div')
-   .attr('class', 'letter')
-   .append('textarea')
-   .text(function (d) {
-    return self.renderLetter(d)
-   })
+ this.letters = d3.select('#letters').selectAll('div.letter')
   var letterUpdate = function(e) {
    self.renderAbsencesLetters()
   }
@@ -33,6 +22,18 @@ function podio(clientid, redirecturi) {
 }
 podio.prototype = {
  constructor: podio,
+ bindAbsence: function(data) {
+  var a = this.letters.data(data)
+    a.exit()
+    .remove()
+    a.enter()
+    .append('div')
+    .attr('class', 'letter')
+    .append('textarea')
+    .text(function (d) {
+     return self.renderLetter(d)
+    })
+ },
  authenticate: function(location) {
   if (this.tokeninfo.access_token) {
     return
@@ -133,8 +134,7 @@ podio.prototype = {
  },
  setAbsences: function(data) {
   this.absences = data
-  this.letters.data(data)
-  this.updateAbsenceLetters()
+  this.bindAbsences(data)
  },
  showStudents: function() {
   this.getData(this.displayStudents)
