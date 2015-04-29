@@ -315,7 +315,7 @@ podio.prototype = {
   var self = this, r = {}, students = {}
   this.absences.items.forEach(function(a) {
    if (a.fields[2].values[0].value.id == 2) {
-    continue; // excused absence
+    return; // excused absence
    }
    // first student
    students[a.title] ? students[a.title]++ : (students[a.title] = 1)
