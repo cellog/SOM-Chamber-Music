@@ -9,10 +9,10 @@ textarea {
     height: 20em
 }
 .masterclass {
-    background-color: red
+    background-color: rgb(255,95,95)
 }
 .teaching-artist {
-    background-color: green
+    background-color: rgb(87,208,91)
 }
 .rehearsal-class {
     background-color: blue
