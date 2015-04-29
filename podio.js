@@ -347,7 +347,15 @@ podio.prototype = {
   var a = d3.select('#letters').selectAll('div.letter')
    .data(this.absencesbycoach)
    .enter()
-   .append('div')
+   
+   a.append('h5')
+   .text(function(d) {
+    for (var i in d) {
+     return 'Coach: ' + i
+    }
+   })
+   
+   a.append('div')
    .attr('class', 'letter')
    .append('textarea')
    .text(function (d) {
