@@ -12,7 +12,7 @@ function podio(clientid, redirecturi) {
  this.absences = []
  this.absencesbycoach = []
  var self = this
- this.letters = d3.select('#letters').selectAll('div.letter')
+ this.letters = d3.select('#letters').selectAll('div.letter').data([])
  this.letters
    .exit()
    .remove()
