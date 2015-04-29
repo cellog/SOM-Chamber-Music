@@ -23,7 +23,7 @@ function podio(clientid, redirecturi) {
 podio.prototype = {
  constructor: podio,
  bindAbsences: function(data) {
-  var a = this.letters.data(data)
+  var a = this.letters.data(data.items)
     a.exit()
     .remove()
     a.enter()
