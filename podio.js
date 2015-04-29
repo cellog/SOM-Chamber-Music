@@ -314,6 +314,9 @@ podio.prototype = {
  parseAbsencesByCoach: function() {
   var self = this, r = {}, students = {}
   this.absences.items.forEach(function(a) {
+   if (a.fields[2].values[0].value.id == 2) {
+    continue; // excused absence
+   }
    // first student
    students[a.title] ? students[a.title]++ : (students[a.title] = 1)
    // then absence by coach
@@ -335,7 +338,8 @@ podio.prototype = {
     function(a, b, c) {
      return c.indexOf(a) == b
     }).map(function(student) {
-     return student + ": " + students[student] + " absences"
+     return student + ": " + students[student] + " absence" +
+      (students[student] > 1 ? 's' : '')
     }).join("\n")})
   }
  },
