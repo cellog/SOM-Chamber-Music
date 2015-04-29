@@ -22,19 +22,6 @@ function podio(clientid, redirecturi) {
 }
 podio.prototype = {
  constructor: podio,
- bindAbsences: function(data) {
-  var self = this
-  var a = this.letters.data(data.items)
-    a.exit()
-    .remove()
-    a.enter()
-    .append('div')
-    .attr('class', 'letter')
-    .append('textarea')
-    .text(function (d) {
-     return self.renderLetter(d)
-    })
- },
  authenticate: function(location) {
   if (this.tokeninfo.access_token) {
     return
@@ -135,7 +122,7 @@ podio.prototype = {
  },
  setAbsences: function(data) {
   this.absences = data
-  this.bindAbsences(data)
+  this.parseAbsencesByCoach()
  },
  showStudents: function() {
   this.getData(this.displayStudents)
@@ -254,10 +241,6 @@ podio.prototype = {
    }
   })
  },
- updateAbsenceLetters: function() {
-  this.parseAbsencesByCoach()
-  this.renderAbsenceLetters()
- },
  newAbsence: function(checkbox, student, missed_class) {
   checkbox.disabled = true
   var self = this
@@ -280,7 +263,7 @@ podio.prototype = {
       console.log(error) 
      } else {
       self.absences.items.push(JSON.parse(data.responseText))
-      self.updateAbsenceLetters()
+      self.parseAbsencesByCoach()
      }
     })
    }
@@ -299,7 +282,7 @@ podio.prototype = {
      if (self.absences.items[i].item_id == checkbox.__absence__) {
         self.absences.items[i] = undefined
         self.absences.items = self.absences.items.filter()
-        self.updateAbsenceLetters()
+        self.parseAbsencesByCoach()
         break;
      }
     }
@@ -345,12 +328,20 @@ podio.prototype = {
       (students[student] > 1 ? 's' : '')
     }).join("\n")})
   }
+  this.bindAbsences()
  },
- renderAbsenceLetters: function() {
-  var self = this;
-  this.letters.data(function (d) {
-   return self.renderLetter(d)
-  })
+ bindAbsences: function(data) {
+  var self = this
+  var a = this.letters.data(this.absencesbycoach)
+    a.exit()
+    .remove()
+    a.enter()
+    .append('div')
+    .attr('class', 'letter')
+    .append('textarea')
+    .text(function (d) {
+     return self.renderLetter(d)
+    })
  },
  renderLetter: function(data) {
   var text = d3.select('#formletter').text()
