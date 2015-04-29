@@ -169,8 +169,8 @@ podio.prototype = {
   tr.append('td')
    .attr('class', function(d) {
     try {
-     return 'student_name ' + d.fields[11].values[0].value == 'Masterclass' ?
-      'masterclass' : 'teaching-artist'
+     return 'student_name ' + (d.fields[11].values[0].value == 'Masterclass' ?
+      'masterclass' : 'teaching-artist')
     } catch(e) {
      console.log('Student ' + d.title + ' does not have the calculation for teaching artist class')
      return 'student_name masterclass'
