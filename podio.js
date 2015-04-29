@@ -10,6 +10,26 @@ function podio(clientid, redirecturi) {
  this.other = []
  this.rehearsal = []
  this.absences = []
+ this.absencesbycoach = []
+ var self = this
+ this.letters = d3.select('#letters').selectAll('div.letter')
+ this.letters
+   .exit()
+   .remove()
+ this.letters
+   .enter()
+   .append('div')
+   .attr('class', 'letter')
+   .append('textarea')
+   .text(function (d) {
+    return self.renderLetter(d)
+   })
+  var letterUpdate = function(e) {
+   self.renderAbsencesLetters()
+  }
+  d3.select('#formletter')
+   .on('input', letterUpdate)
+   .on('keyup', letterUpdate)
 }
 podio.prototype = {
  constructor: podio,
@@ -40,6 +60,11 @@ podio.prototype = {
   d3.xhr('https://api.podio.com' + api, 'application/json')
     .header('Authorization', 'OAuth2 ' + this.tokeninfo.access_token)
     .post(JSON.stringify(body), callback)
+ },
+ get: function(api, body, callback) {
+  d3.xhr('https://api.podio.com' + api, 'application/json')
+    .header('Authorization', 'OAuth2 ' + this.tokeninfo.access_token)
+    .get(JSON.stringify(body), callback)
  },
  deletehttp: function(api, callback) {
   d3.xhr('https://api.podio.com' + api)
@@ -108,6 +133,7 @@ podio.prototype = {
  },
  setAbsences: function(data) {
   this.absences = data
+  this.updateAbsenceLetters()
  },
  showStudents: function() {
   this.getData(this.displayStudents)
@@ -225,8 +251,13 @@ podio.prototype = {
    }
   })
  },
+ updateAbsencesLetters: function() {
+  this.parseAbsencesByCoach()
+  this.renderAbsenceLetters()
+ },
  newAbsence: function(checkbox, student, missed_class) {
   checkbox.disabled = true
+  var self = this
   this.post('/item/app/6505430/', {
    fields: {
     'absent-student': student,
@@ -239,18 +270,36 @@ podio.prototype = {
     alert('Saving absence failed, try again')
     checkbox.checked = false
    } else {
-    checkbox.__absence__ = JSON.parse(data.responseText).item_id
+    var ret = JSON.parse(data.responseText)
+    checkbox.__absence__ = ret.item_id
+    self.get('/item/' + ret.item_id, '', function(error, data) {
+     if (error) {
+      console.log(error) 
+     } else {
+      self.absences.push(JSON.parse(data.responseText))
+      this.updateAbsencesLetters()
+     }
+    })
    }
   })
  },
  removeAbsence: function(checkbox) {
   checkbox.disabled = true
+  var self = this
   this.deletehttp('/item/' + checkbox.__absence__, function(error, data) {
    checkbox.disabled = false
    if (error) {
     alert('Deleting absence failed, try again')
     checkbox.checked = true
    } else {
+    for (var i = 0; i < self.absences.length; i++) {
+     if (self.absences[i].item_id == checkbox.__absence__) {
+        self.absences[i] = undefined
+        self.absences = self.absences.filter()
+        this.updateAbsenceLetters()
+        break;
+     }
+    }
     checkbox.__absence__ = null
    }
   })
@@ -262,7 +311,49 @@ podio.prototype = {
    this.removeAbsence(box)
   }
  },
- 
+ parseAbsencesByCoach: function() {
+  var self = this, r = {}, students = {}
+  this.absences.forEach(function(a) {
+   // first student
+   students[a.title] ? students[a.title]++ : (students[a.title] = 1)
+   // then absence by coach
+   var coaches = a.fields[3].values[0].value.split(';')
+   if (!r[coaches[0]]) {
+    r[coaches[0]] = []
+   }
+   r[coaches[0]] = a.title
+   if (coaches[1]) {
+    if (!r[coaches[1]]) {
+     r[coaches[1]] = []
+    }
+    r[coaches[1]] = a.title
+   }
+  })
+  self.absencesbycoach = []
+  for (var i in r) {
+   self.absencesbycoach.push({i: r[i].filter(
+    function(a, b, c) {
+     return c.indexOf(a) == b
+    }).map(function(student) {
+     return student + ": " + students[student] + " absences"
+    }).join("\n")})
+  }
+ },
+ renderAbsenceLetters: function() {
+  var self = d;
+  this.letters.data([])
+  this.letters.data(function (d) {
+   return self.renderLetter(d)
+  })
+ },
+ renderLetter: function(data) {
+  var text = d3.select('#formletter').text()
+  for (var i in data) {
+   text.replace('[[professor]]', i.split(' ')[0])
+   text.replace('[[absences]]', data[i])
+  }
+  return text
+ },
  setFormText: function() {
   d3.select('#reportbutton').on('click', function() {
    d3.select('#form')
