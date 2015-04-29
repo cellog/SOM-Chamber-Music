@@ -172,7 +172,7 @@ podio.prototype = {
    var classes = ['masterclass', 'teaching-artist', 'other-class', 'rehearsal-class']
    var things = [masterclasses, teaching, other, rehearsalclass]
    things.forEach(function(cb, i) {
-    cb.forEach(function(m) {
+    cb.items.forEach(function(m) {
      s.append('td')
       .attr('class', 's_attendance ' + classes[i])
       .attr('id', function(d) {
