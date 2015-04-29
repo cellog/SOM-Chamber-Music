@@ -321,12 +321,12 @@ podio.prototype = {
    if (!r[coaches[0]]) {
     r[coaches[0]] = []
    }
-   r[coaches[0]] = a.title
+   r[coaches[0]].push(a.title)
    if (coaches[1]) {
     if (!r[coaches[1]]) {
      r[coaches[1]] = []
     }
-    r[coaches[1]] = a.title
+    r[coaches[1]].push(a.title)
    }
   })
   self.absencesbycoach = []
