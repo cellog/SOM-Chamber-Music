@@ -320,13 +320,15 @@ podio.prototype = {
   })
   self.absencesbycoach = []
   for (var i in r) {
-   self.absencesbycoach.push({i: r[i].filter(
+   var coachinfo = {}
+   coachinfo[i] = r[i].filter(
     function(a, b, c) {
      return c.indexOf(a) == b
     }).map(function(student) {
      return student + ": " + students[student] + " absence" +
       (students[student] > 1 ? 's' : '')
-    }).join("\n")})
+    }).join("\n")
+   self.absencesbycoach.push(coachinfo)
   }
   this.bindAbsences()
  },
