@@ -346,18 +346,18 @@ podio.prototype = {
   // make the new ones
   var a = d3.select('#letters').selectAll('div.letter')
    .data(this.absencesbycoach)
-   .enter()
+   .enter()   
    
-   a.append('h5')
+   var div = a.append('div')
+   .attr('class', 'letter')
+
+   div.append('h5')
    .text(function(d) {
     for (var i in d) {
      return 'Coach: ' + i
     }
    })
-   
-   a.append('div')
-   .attr('class', 'letter')
-   .append('textarea')
+   div.append('textarea')
    .text(function (d) {
     return self.renderLetter(d)
    })
