@@ -258,14 +258,8 @@ podio.prototype = {
    } else {
     var ret = JSON.parse(data.responseText)
     checkbox.__absence__ = ret.item_id
-    self.get('/item/' + ret.item_id, '', function(error, data) {
-     if (error) {
-      console.log(error) 
-     } else {
-      self.absences.items.push(JSON.parse(data.responseText))
-      self.parseAbsencesByCoach()
-     }
-    })
+    self.absences.items.push(ret)
+    self.parseAbsencesByCoach()
    }
   })
  },
