@@ -281,7 +281,7 @@ podio.prototype = {
     for (var i = 0; i < self.absences.items.length; i++) {
      if (self.absences.items[i].item_id == checkbox.__absence__) {
         self.absences.items[i] = undefined
-        self.absences.items = self.absences.items.filter()
+        self.absences.items = self.absences.items.filter(function(s){return s})
         self.parseAbsencesByCoach()
         break;
      }
