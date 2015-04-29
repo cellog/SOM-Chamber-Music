@@ -263,7 +263,7 @@ podio.prototype = {
      self.parseAbsencesByCoach()
     } else {
      setTimeout(function() {
-      this.get('/item/' + ret.item_id, '', function(error, data) {
+      self.get('/item/' + ret.item_id, '', function(error, data) {
        if (error) {
         d3.select('#info', 'ERROR: ' + error.responseText)
        } else {
