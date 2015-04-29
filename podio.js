@@ -116,6 +116,10 @@ podio.prototype = {
   var makeCallback = function(i) {
    return function(error, data) {
     if (error) {
+     if (error.status == 401) {
+        this.tokeninfo.access_token = false
+        this.authorize()
+     }
      ret[i] = [error.responseText]
     } else {
      ret[i] = JSON.parse(data.responseText)
