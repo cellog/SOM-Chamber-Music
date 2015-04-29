@@ -344,7 +344,7 @@ podio.prototype = {
   }
  },
  renderAbsenceLetters: function() {
-  var self = d;
+  var self = this;
   this.letters.data([])
   this.letters.data(function (d) {
    return self.renderLetter(d)
