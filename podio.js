@@ -13,7 +13,7 @@ function podio(clientid, redirecturi) {
  this.absencesbycoach = []
  var self = this
  var letterUpdate = function(e) {
-  self.renderAbsenceLetters()
+  self.bindAbsences()
  }
  d3.select('#formletter')
   .on('input', letterUpdate)
@@ -339,7 +339,7 @@ podio.prototype = {
   }
   this.bindAbsences()
  },
- bindAbsences: function(data) {
+ bindAbsences: function() {
   var self = this
   var a = d3.select('#letters').selectAll('div.letter')
    .data(this.absencesbycoach, function(d) {for (var i in d) { return i }})
