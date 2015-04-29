@@ -33,6 +33,16 @@ button {
     border: 1px solid;
     border-radius: 4px;
 }
+button.active.focus,button.active:focus,button.focus,button:active.focus,button:active:focus,button:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
+button.focus,button:focus,button:hover {
+    color: #333;
+    text-decoration: none
+}
 
 .masterclass {
     background-color: red
