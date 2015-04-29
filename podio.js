@@ -328,7 +328,7 @@ podio.prototype = {
  },
  bindAbsences: function(data) {
   var self = this
-  var a = this.letters.data(this.absencesbycoach)
+  var a = this.letters.data(this.absencesbycoach, function(d) {for (var i in d) { return i }})
     a.exit()
     .remove()
     a.enter()
