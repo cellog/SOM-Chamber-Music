@@ -251,7 +251,7 @@ podio.prototype = {
    }
   })
  },
- updateAbsencesLetters: function() {
+ updateAbsenceLetters: function() {
   this.parseAbsencesByCoach()
   this.renderAbsenceLetters()
  },
@@ -277,7 +277,7 @@ podio.prototype = {
       console.log(error) 
      } else {
       self.absences.push(JSON.parse(data.responseText))
-      this.updateAbsencesLetters()
+      this.updateAbsenceLetters()
      }
     })
    }
