@@ -172,16 +172,18 @@ podio.prototype = {
    var classes = ['masterclass', 'teaching-artist', 'other-class', 'rehearsal-class']
    var things = [masterclasses, teaching, other, rehearsalclass]
    things.forEach(function(cb, i) {
-    s.append('td')
-     .attr('class', 's_attendance ' + classes[i])
-     .attr('id', function(d) {
-      return 's_' + d.item_id + '_' + cb.item_id
-     })
-     .append('input')
-     .attr('type', 'checkbox')
-     .on('change', function(e) {
-      self.updateAbsence(this, this.__data__.item_id, m.item_id, this.checked)
-     })
+    cb.forEach(function(m) {
+     s.append('td')
+      .attr('class', 's_attendance ' + classes[i])
+      .attr('id', function(d) {
+       return 's_' + d.item_id + '_' + m.item_id
+      })
+      .append('input')
+      .attr('type', 'checkbox')
+      .on('change', function(e) {
+       self.updateAbsence(this, this.__data__.item_id, m.item_id, this.checked)
+      })
+    })
    })
   })
   absences.items.forEach(function(a) {
