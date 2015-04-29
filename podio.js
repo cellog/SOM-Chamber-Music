@@ -197,11 +197,41 @@ podio.prototype = {
    }
   })
  },
+ newAbsence: function(checkbox, student, missed_class) {
+  checkbox.disabled = true
+  this.post('/item/app/6505430/', {
+   fields: {
+    'absent-student': student,
+    'masterclass': missed_class,
+    'excused-2': 1
+   }
+  }, function(error, data) {
+   checkbox.disabled = false
+   if (error) {
+    alert('Saving absence failed, try again')
+    checkbox.checked = false
+   } else {
+    checkbox.__absence__ = data.item_id
+   }
+  })
+ },
+ removeAbsence: function(checkbox) {
+  checkbox.disabled = true
+  this.deletehttp('/item/' + checkbox.__absence__, function(error, data) {
+   checkbox.disabled = false
+   if (error) {
+    alert('Deleting absence failed, try again')
+    checkbox.checked = true
+   } else {
+    checkbox.__absence__ = null
+   }
+  })
+ },
  updateAbsence: function(box, student, missed_class, is_absent) {
-  var z = '';
-  if (box.__absence__) {
-    z = 'existing absence ' + box.__absence__ + ' '
+  if (is_absent) {
+   this.newAbsence(box, student, missed_class)
+  } else {
+   this.removeAbsence(box)
   }
-  alert(z + 'student ' + student + ', class ' + missed_class + (is_absent ? ' absent' : ' present'))
  }
 }
