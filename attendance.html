@@ -7,14 +7,20 @@
     <body>
         <div id="info"></div>
         <h1>Chamber Music Attendance</h1>
+        <button type="button" id="reportbutton">Attendance Report</button>
+        <div id="form">
         <div style="color: white">
             <span style="color: black">Legend:</span><span class="masterclass">Masterclass</span><span class="teaching-artist">Teaching Artist Class</span>
             <span class="rehearsal-class">Rehearsal Class</span><span class="other-class">Other Required Class</span></tr>
         </div>
         <table>
             <thead><tr><th>Name</th></tr></thead>
-            <tbody></tbody>
+            <tbody><td>Loading...</td></tbody>
         </table>
+        </div>
+        <div id="report">
+            <button type="button" id="formbutton">Manage Attendance</button>
+        </div>
         <script src="d3/d3.min.js"></script>
         <script src="podio.js"></script>
         <script>
@@ -22,6 +28,18 @@
                               'http://chiaraquartet.net/SOM-Chamber-Music/attendance.html')
             if (p.authenticate(location)) {
                 p.showStudents()
+                d3.select('#reportbutton').on('click', function() {
+                    d3.select('#form')
+                      .style('display', 'none')
+                    d3.select('#report')
+                      .style('display', 'block')
+                })
+                d3.select('#formbutton').on('click', function() {
+                    d3.select('#form')
+                      .style('display', 'block')
+                    d3.select('#report')
+                      .style('display', 'none')
+                })
             }
         </script>
     </body>

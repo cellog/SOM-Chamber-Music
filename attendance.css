@@ -16,3 +16,6 @@ body {
 .other-class {
     background-color: gray
 }
+#report {
+    display: none
+}
