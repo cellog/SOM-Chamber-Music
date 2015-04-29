@@ -169,56 +169,37 @@ podio.prototype = {
      return t.name + ' (' + t.instruments + ')'
     })
   tr.call(function(s) {
-   masterclasses.items.forEach(function (m) {
+   var classes = ['masterclass', 'teaching-artist', 'other-class', 'rehearsal-class']
+   var things = [masterclasses, teaching, other, rehearsalclass]
+   things.forEach(function(cb, i) {
     s.append('td')
-     .attr('class', 's_attendance masterclass')
+     .attr('class', 's_attendance ' + classes[i])
      .attr('id', function(d) {
-       return 's_' + d.item_id + '_' + m.item_id
-      })
+      return 's_' + d.item_id + '_' + cb.item_id
+     })
      .append('input')
      .attr('type', 'checkbox')
      .on('change', function(e) {
-      self.updateAbsence(this.__data__.item_id, m.item_id, this.checked)
+      self.updateAbsence(this, this.__data__.item_id, m.item_id, this.checked)
      })
-   })
-   teaching.items.forEach(function (m) {
-    s.append('td')
-     .attr('class', 's_attendance teaching-artist')
-     .attr('id', function(d) {
-       return 's_' + d.item_id + '_' + m.item_id
-      })
-     .append('input')
-     .attr('type', 'checkbox')
-   })
-   other.items.forEach(function (m) {
-    s.append('td')
-     .attr('class', 's_attendance other-class')
-     .attr('id', function(d) {
-       return 's_' + d.item_id + '_' + m.item_id
-      })
-     .append('input')
-     .attr('type', 'checkbox')
-   })
-   rehearsalclass.items.forEach(function (m) {
-    s.append('td')
-     .attr('class', 's_attendance rehearsal-class')
-     .attr('id', function(d) {
-       return 's_' + d.item_id + '_' + m.item_id
-      })
-     .append('input')
-     .attr('type', 'checkbox')
    })
   })
   absences.items.forEach(function(a) {
    var id = 's_' + a.fields[0].values[0].value.item_id + '_' + a.fields[1].values[0].value.item_id
    var box = document.getElementById(id).firstChild
    box.checked = true
+   box.__absence__ = a.item_id
    if (a.fields[2].values[0].value.id == 2) {
     box.disabled = true
+    box.setAttribute('title', 'Excused absence')
    }
   })
  },
- updateAbsence: function(student, missed_class, is_absent) {
-  alert('student ' + student + ', class ' + missed_class + (is_absent ? ' absent' : ' present'))
+ updateAbsence: function(box, student, missed_class, is_absent) {
+  var z = '';
+  if (box.__absence__) {
+    z = 'existing absence ' + box.__absence__ + ' '
+  }
+  alert(z + 'student ' + student + ', class ' + missed_class + (is_absent ? ' absent' : ' present'))
  }
 }
