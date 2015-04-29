@@ -341,17 +341,18 @@ podio.prototype = {
  },
  bindAbsences: function() {
   var self = this
+  // clear the old letters
+  var old = d3.select('#letters').selectAll('div.letter').data([]).exit().remove()
+  // make the new ones
   var a = d3.select('#letters').selectAll('div.letter')
-   .data(this.absencesbycoach, function(d) {for (var i in d) { return i }})
-  a.exit()
-  .remove()
-  a.enter()
-  .append('div')
-  .attr('class', 'letter')
-  .append('textarea')
-  .text(function (d) {
-   return self.renderLetter(d)
-  })
+   .data(this.absencesbycoach)
+   .enter()
+   .append('div')
+   .attr('class', 'letter')
+   .append('textarea')
+   .text(function (d) {
+    return self.renderLetter(d)
+   })
  },
  updateLetters: function() {
   var self = this
