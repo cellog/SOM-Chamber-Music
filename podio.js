@@ -4,6 +4,12 @@ function podio(clientid, redirecturi) {
  this.tokeninfo = {
   access_token: false
  }
+ this.students = []
+ this.masterclass = []
+ this.teaching = []
+ this.other = []
+ this.rehearsal = []
+ this.absences = []
 }
 podio.prototype = {
  constructor: podio,
@@ -61,6 +67,7 @@ podio.prototype = {
   this.post('/item/app/6505430/filter/all_by_date/', {}, done)
  },
  setMasterclasses: function(data) {
+  this.masterclass = data
   d3.select('thead').select('tr').selectAll('th.masterclass')
    .data(data.items)
    .enter().append('th')
@@ -70,6 +77,7 @@ podio.prototype = {
    })
  },
  setTeachingArtistClasses: function(data) {
+  this.teaching = data
   d3.select('thead').select('tr').selectAll('th.teaching-artist')
    .data(data.items)
    .enter().append('th')
@@ -79,6 +87,7 @@ podio.prototype = {
    })
  },
  setOtherClasses: function(data) {
+  this.other = data
   d3.select('thead').select('tr').selectAll('th.other-class')
    .data(data.items)
    .enter().append('th')
@@ -88,6 +97,7 @@ podio.prototype = {
    })
  },
  setRehearsalClasses: function(data) {
+  this.rehearsal = data
   d3.select('thead').select('tr').selectAll('th.rehearsal-class')
    .data(data.items)
    .enter().append('th')
@@ -95,6 +105,9 @@ podio.prototype = {
    .text(function(d) {
     return d.fields[3].values[0].start_date
    })
+ },
+ setAbsences: function(data) {
+  this.absences = data
  },
  showStudents: function() {
   this.getData(this.displayStudents)
@@ -146,6 +159,7 @@ podio.prototype = {
   this.setTeachingArtistClasses(teaching)
   this.setOtherClasses(other)
   this.setRehearsalClasses(rehearsalclass)
+  this.setAbsences(absences)
   var tr = d3.select('tbody').selectAll('tr')
    .data(students.items)
    .enter().append('tr')
@@ -164,7 +178,7 @@ podio.prototype = {
          p += ', '
         }
         return p + s.value.title
-       })
+       }, '')
      }
      var t = {
       //id: d.item_id,
@@ -238,5 +252,34 @@ podio.prototype = {
   } else {
    this.removeAbsence(box)
   }
+ },
+ 
+ setFormText: function() {
+  d3.select('#reportbutton').on('click', function() {
+   d3.select('#form')
+     .style('display', 'none')
+   d3.select('#report')
+     .style('display', 'block')
+  })
+  d3.select('#formbutton').on('click', function() {
+   d3.select('#form')
+     .style('display', 'block')
+   d3.select('#report')
+     .style('display', 'none')
+  })
+  d3.select('#formletter')
+  .text("Dear [[professor]],\n" +
+        "\n" +
+        "The following students had absences from chamber music.  You can\n" + 
+        "find the required information about attendance in the syllabus\n" +
+        "at http://goo.gl/VTjRLZ.\n" +
+        "\n" +
+        "[[absences]]\n" +
+        "\n" +
+        "Thank you for all that you do!\n" +
+        "\n" +
+        "Sincerely,\n" +
+        "Jonah Sirota\n" +
+        "jsirota2@unl.edu")
  }
 }

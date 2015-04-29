@@ -4,6 +4,10 @@ table {
 body {
     width: 100%
 }
+textarea {
+    width: 100%;
+    height: 20em
+}
 .masterclass {
     background-color: red
 }
