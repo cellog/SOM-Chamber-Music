@@ -354,6 +354,7 @@ podio.prototype = {
   })
  },
  updateLetters: function() {
+  var self = this
   d3.select("#letters").selectAll('div.letter')
    .each(function(d) {
     d3.select(this).text(self.renderLetter(d))
