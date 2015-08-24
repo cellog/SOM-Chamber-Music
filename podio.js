@@ -79,7 +79,7 @@ podio.prototype = {
  getAbsences: function(done) {
   this.post('/item/app/6505430/filter/all_by_date/', {}, done)
  },
- setMasterclasses: function(data) {
+ setMasterclasses: function(data, students) {
   this.masterclass = data
   var m = d3.select('thead').select('tr').selectAll('th.masterclass')
    .data(data.items)
@@ -92,7 +92,9 @@ podio.prototype = {
   m.append('input')
     .attr('type', 'checkbox')
     .on('click', function(d) {
-      console.log(d)
+      students.forEach(function(s) {
+        console.log('s_' + d.item_id + '_' + s.item_id)
+      })
     })
  },
  setTeachingArtistClasses: function(data) {
@@ -177,10 +179,10 @@ podio.prototype = {
       rehearsalclass = data[4], absences = data[5], self = this
   d3.select('#loading').style('display', 'none')
   this.students = students
-  this.setMasterclasses(masterclasses)
-  this.setTeachingArtistClasses(teaching)
-  this.setOtherClasses(other)
-  this.setRehearsalClasses(rehearsalclass)
+  this.setMasterclasses(masterclasses, students)
+  this.setTeachingArtistClasses(teaching, students)
+  this.setOtherClasses(other, students)
+  this.setRehearsalClasses(rehearsalclass, students)
   this.setAbsences(absences)
   var tr = d3.select('tbody').selectAll('tr')
    .data(students.items)
