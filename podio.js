@@ -81,13 +81,19 @@ podio.prototype = {
  },
  setMasterclasses: function(data) {
   this.masterclass = data
-  d3.select('thead').select('tr').selectAll('th.masterclass')
+  var m = d3.select('thead').select('tr').selectAll('th.masterclass')
    .data(data.items)
    .enter().append('th')
    .attr('class', 'masterclass')
+  m
    .text(function(d) {
     return d.fields[3].values[0].start_date
    })
+  m.append('input')
+    .attr('type', 'checkbox')
+    .on('click', function() {
+      alert('test')
+    })
  },
  setTeachingArtistClasses: function(data) {
   this.teaching = data
