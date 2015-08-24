@@ -335,7 +335,7 @@ podio.prototype = {
    // first student
    students[a.title] ? students[a.title]++ : (students[a.title] = 1)
    // then absence by coach
-   if (a.fields[3] && !a.fields[3].values) {
+   if (a.fields[3] && a.fields[3].values) {
     var coaches = a.fields[3].values[0].value.split(';')
     if (!r[coaches[0]]) {
      r[coaches[0]] = []
@@ -347,19 +347,19 @@ podio.prototype = {
      }
      r[coaches[1]].push(a.title)
     }
-   })
-   self.absencesbycoach = []
-   for (var i in r) {
-    var coachinfo = {}
-    coachinfo[i] = r[i].filter(
-     function(a, b, c) {
-      return c.indexOf(a) == b
-     }).map(function(student) {
-      return student + ": " + students[student] + " absence" +
-       (students[student] > 1 ? 's' : '')
-     }).join("\n")
-    self.absencesbycoach.push(coachinfo)
    }
+  })
+  self.absencesbycoach = []
+  for (var i in r) {
+   var coachinfo = {}
+   coachinfo[i] = r[i].filter(
+    function(a, b, c) {
+     return c.indexOf(a) == b
+    }).map(function(student) {
+     return student + ": " + students[student] + " absence" +
+      (students[student] > 1 ? 's' : '')
+    }).join("\n")
+   self.absencesbycoach.push(coachinfo)
   }
   this.bindAbsences()
  },
