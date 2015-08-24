@@ -77,7 +77,7 @@ podio.prototype = {
   this.post('/item/app/6521115/filter/24263447/', {}, done)
  },
  getAbsences: function(done) {
-  this.post('/item/app/6505430/filter/all_by_date/', {}, done)
+  this.post('/item/app/6505430/filter/all_by_date/', {limit: 300}, done)
  },
  setMasterclasses: function(data, students) {
   var self = this
