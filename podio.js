@@ -102,12 +102,13 @@ podio.prototype = {
       } else {
         if (!confirm('Mark all students as present? (check students who are absent afterwards)')) return
       }
-      students.items.forEach(function(s) {
+      students.items.forEach(function(s, i) {
         var checkbox = document.getElementById('s_' + s.item_id + '_' + d.item_id).firstElementChild
         if (checkbox.checked && setabsent) {
           return
         }
-        self.updateAbsence(checkbox, s.item_id, d.item_id, setabsent)
+        checkbox.checked = true
+        setTimeout(function() {self.updateAbsence(checkbox, s.item_id, d.item_id, setabsent)}, 30*i)
       })
     })
  },
