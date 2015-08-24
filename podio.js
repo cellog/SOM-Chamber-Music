@@ -107,7 +107,7 @@ podio.prototype = {
         if (checkbox.checked && setabsent) {
           return
         }
-        checkbox.checked = true
+        checkbox.checked = !checkbox.checked
         setTimeout(function() {self.updateAbsence(checkbox, s.item_id, d.item_id, setabsent)}, 30*i)
       })
     })
