@@ -79,6 +79,22 @@ podio.prototype = {
  getAbsences: function(done) {
   this.post('/item/app/6505430/filter/all_by_date/', {limit: 300}, done)
  },
+ massAbsenceChecker:function(d) {
+    var setabsent = document.getElementById('call_' + d.item_id).checked
+    if (setabsent) {
+      if (!confirm('Mark all students absent? (uncheck students who are present afterwards)')) return
+    } else {
+      if (!confirm('Mark all students as present? (check students who are absent afterwards)')) return
+    }
+    students.items.forEach(function(s, i) {
+      var checkbox = document.getElementById('s_' + s.item_id + '_' + d.item_id).firstElementChild
+      if (checkbox.checked && setabsent) {
+        return
+      }
+      checkbox.checked = !checkbox.checked
+      setTimeout(function() {self.updateAbsence(checkbox, s.item_id, d.item_id, setabsent)}, 30*i)
+    })
+  },
  setMasterclasses: function(data, students) {
   var self = this
   this.masterclass = data
@@ -95,52 +111,58 @@ podio.prototype = {
     .attr('id', function(d) {
       return 'call_' + d.item_id
     })
-    .on('click', function(d) {
-      var setabsent = document.getElementById('call_' + d.item_id).checked
-      if (setabsent) {
-        if (!confirm('Mark all students absent? (uncheck students who are present afterwards)')) return
-      } else {
-        if (!confirm('Mark all students as present? (check students who are absent afterwards)')) return
-      }
-      students.items.forEach(function(s, i) {
-        var checkbox = document.getElementById('s_' + s.item_id + '_' + d.item_id).firstElementChild
-        if (checkbox.checked && setabsent) {
-          return
-        }
-        checkbox.checked = !checkbox.checked
-        setTimeout(function() {self.updateAbsence(checkbox, s.item_id, d.item_id, setabsent)}, 30*i)
-      })
-    })
+    .on('click', this.massAbsenceChecker)
  },
  setTeachingArtistClasses: function(data) {
   this.teaching = data
-  d3.select('thead').select('tr').selectAll('th.teaching-artist')
+  var m = d3.select('thead').select('tr').selectAll('th.teaching-artist')
    .data(data.items)
    .enter().append('th')
    .attr('class', 'teaching-artist')
+  m
    .text(function(d) {
     return d.fields[2].values[0].start_date
    })
+  m.append('input')
+    .attr('type', 'checkbox')
+    .attr('id', function(d) {
+      return 'call_' + d.item_id
+    })
+    .on('click', this.massAbsenceChecker)
  },
  setOtherClasses: function(data) {
   this.other = data
-  d3.select('thead').select('tr').selectAll('th.other-class')
+  var m = d3.select('thead').select('tr').selectAll('th.other-class')
    .data(data.items)
    .enter().append('th')
    .attr('class', 'other-class')
+  m
    .text(function(d) {
     return d.fields[1].values[0].start_date
    })
+  m.append('input')
+    .attr('type', 'checkbox')
+    .attr('id', function(d) {
+      return 'call_' + d.item_id
+    })
+    .on('click', this.massAbsenceChecker)
  },
  setRehearsalClasses: function(data) {
   this.rehearsal = data
-  d3.select('thead').select('tr').selectAll('th.rehearsal-class')
+  var m = d3.select('thead').select('tr').selectAll('th.rehearsal-class')
    .data(data.items)
    .enter().append('th')
    .attr('class', 'rehearsal-class')
+  m
    .text(function(d) {
     return d.fields[3].values[0].start_date
    })
+  m.append('input')
+    .attr('type', 'checkbox')
+    .attr('id', function(d) {
+      return 'call_' + d.item_id
+    })
+    .on('click', this.massAbsenceChecker)
  },
  setAbsences: function(data) {
   this.absences = data
