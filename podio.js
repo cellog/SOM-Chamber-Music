@@ -80,6 +80,7 @@ podio.prototype = {
   this.post('/item/app/6505430/filter/all_by_date/', {limit: 300}, done)
  },
  massAbsenceChecker:function(students) {
+  var self = this
   return function(d) {
     var setabsent = document.getElementById('call_' + d.item_id).checked
     if (setabsent) {
@@ -98,7 +99,6 @@ podio.prototype = {
   }
  },
  setMasterclasses: function(data, students) {
-  var self = this
   this.masterclass = data
   var m = d3.select('thead').select('tr').selectAll('th.masterclass')
    .data(data.items)
