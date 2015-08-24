@@ -79,7 +79,8 @@ podio.prototype = {
  getAbsences: function(done) {
   this.post('/item/app/6505430/filter/all_by_date/', {limit: 300}, done)
  },
- massAbsenceChecker:function(d) {
+ massAbsenceChecker:function(students) {
+  return function(d) {
     var setabsent = document.getElementById('call_' + d.item_id).checked
     if (setabsent) {
       if (!confirm('Mark all students absent? (uncheck students who are present afterwards)')) return
@@ -94,7 +95,8 @@ podio.prototype = {
       checkbox.checked = !checkbox.checked
       setTimeout(function() {self.updateAbsence(checkbox, s.item_id, d.item_id, setabsent)}, 30*i)
     })
-  },
+  }
+ },
  setMasterclasses: function(data, students) {
   var self = this
   this.masterclass = data
@@ -111,9 +113,9 @@ podio.prototype = {
     .attr('id', function(d) {
       return 'call_' + d.item_id
     })
-    .on('click', this.massAbsenceChecker)
+    .on('click', this.massAbsenceChecker(students))
  },
- setTeachingArtistClasses: function(data) {
+ setTeachingArtistClasses: function(data, students) {
   this.teaching = data
   var m = d3.select('thead').select('tr').selectAll('th.teaching-artist')
    .data(data.items)
@@ -128,9 +130,9 @@ podio.prototype = {
     .attr('id', function(d) {
       return 'call_' + d.item_id
     })
-    .on('click', this.massAbsenceChecker)
+    .on('click', this.massAbsenceChecker(students))
  },
- setOtherClasses: function(data) {
+ setOtherClasses: function(data, students) {
   this.other = data
   var m = d3.select('thead').select('tr').selectAll('th.other-class')
    .data(data.items)
@@ -145,9 +147,9 @@ podio.prototype = {
     .attr('id', function(d) {
       return 'call_' + d.item_id
     })
-    .on('click', this.massAbsenceChecker)
+    .on('click', this.massAbsenceChecker(students))
  },
- setRehearsalClasses: function(data) {
+ setRehearsalClasses: function(data, students) {
   this.rehearsal = data
   var m = d3.select('thead').select('tr').selectAll('th.rehearsal-class')
    .data(data.items)
@@ -162,7 +164,7 @@ podio.prototype = {
     .attr('id', function(d) {
       return 'call_' + d.item_id
     })
-    .on('click', this.massAbsenceChecker)
+    .on('click', this.massAbsenceChecker(students))
  },
  setAbsences: function(data) {
   this.absences = data
