@@ -92,8 +92,8 @@ podio.prototype = {
   m.append('input')
     .attr('type', 'checkbox')
     .on('click', function(d) {
-      students.forEach(function(s) {
-        console.log('s_' + d.item_id + '_' + s.item_id)
+      students.items.forEach(function(s) {
+        console.log('s_' + s.item_id + '_' + d.item_id)
       })
     })
  },
