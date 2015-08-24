@@ -80,6 +80,7 @@ podio.prototype = {
   this.post('/item/app/6505430/filter/all_by_date/', {}, done)
  },
  setMasterclasses: function(data, students) {
+  var self = this
   this.masterclass = data
   var m = d3.select('thead').select('tr').selectAll('th.masterclass')
    .data(data.items)
@@ -91,9 +92,22 @@ podio.prototype = {
    })
   m.append('input')
     .attr('type', 'checkbox')
+    .attr('id', function(d) {
+      return 'call_' + d.item_id
+    })
     .on('click', function(d) {
+      var setabsent = !document.getElementById('call_' + d.item_id).checked
+      if (setabsent) {
+        if (!confirm('Mark all students absent? (uncheck students who are present afterwards)')) return
+      } else {
+        if (!confirm('Mark all students as present? (check students who are absent afterwards)')) return
+      }
       students.items.forEach(function(s) {
-        console.log('s_' + s.item_id + '_' + d.item_id)
+        var checkbox = document.getElementById('s_' + s.item_id + '_' + d.item_id).firstElementChild
+        if (checkbox.checked && setabsent) {
+          return
+        }
+        self.updateAbsence(checkbox, s.item_id, d.item_id, setabsent)
       })
     })
  },
