@@ -91,8 +91,8 @@ podio.prototype = {
    })
   m.append('input')
     .attr('type', 'checkbox')
-    .on('click', function() {
-      alert('test')
+    .on('click', function(d) {
+      console.log(d)
     })
  },
  setTeachingArtistClasses: function(data) {
