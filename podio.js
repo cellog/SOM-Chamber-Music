@@ -96,7 +96,7 @@ podio.prototype = {
       return 'call_' + d.item_id
     })
     .on('click', function(d) {
-      var setabsent = !document.getElementById('call_' + d.item_id).checked
+      var setabsent = !(document.getElementById('call_' + d.item_id).checked)
       if (setabsent) {
         if (!confirm('Mark all students absent? (uncheck students who are present afterwards)')) return
       } else {
