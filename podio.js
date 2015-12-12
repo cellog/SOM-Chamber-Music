@@ -68,7 +68,7 @@ podio.prototype = {
   this.post('/item/app/6558188/filter/24263448/', {}, done)
  },
  getMasterclasses: function(done) {
-  this.post('/item/app/6505403/filter/24263446/', {}, done)
+  this.post('/item/app/6505403/filter/27250898/', {}, done)
  },
  getOtherClasses: function(done) {
   this.post('/item/app/12110848/filter/24263454/', {}, done)
